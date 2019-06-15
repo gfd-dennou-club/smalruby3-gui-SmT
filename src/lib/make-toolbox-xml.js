@@ -698,6 +698,13 @@ const ruby = function () {
         id="ruby"
         colour="#CC0043"
         secondaryColour="#FF4D6A">
+	<block type="mrubyc_gpio_init_output">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM">16</field>
+                </shadow>
+            </value>
+        </block>
         <block type="ruby_statement">
             <value name="STATEMENT">
                 <shadow type="text">

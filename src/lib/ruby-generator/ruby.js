@@ -20,6 +20,11 @@ export default function (Generator) {
         return `${statement}\n`;
     };
 
+    Generator.mrubyc_gpio_init_output = function (block) {
+        const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
+        return `gpio_init_output(${pin})\n`;
+    };
+
     Generator.ruby_statement_with_block = function (block) {
         const statement = getUnquoteText(block, 'STATEMENT', Generator.ORDER_NONE);
         let args = getUnquoteText(block, 'ARGS', Generator.ORDER_NONE);
