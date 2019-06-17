@@ -53,6 +53,27 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_gpio_set_level = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_set_level',
+                message0: 'gpio_set_level(%1,%1)',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'PIN'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'STATE'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.ruby_statement_with_block = {
         init: function () {
             this.jsonInit({
