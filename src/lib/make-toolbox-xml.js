@@ -717,6 +717,13 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_define_class">
+            <value name="CLASS">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
         <block type="ruby_statement">
             <value name="STATEMENT">
                 <shadow type="text">

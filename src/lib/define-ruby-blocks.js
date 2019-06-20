@@ -57,7 +57,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_gpio_set_level',
-                message0: 'gpio_set_level(%1,%1)',
+                message0: 'gpio_set_level(%1,%2)',
                 args0: [
                     {
                         type: 'input_value',
@@ -66,6 +66,31 @@ export default function (ScratchBlocks) {
                     {
                         type: 'input_value',
                         name: 'STATE'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_define_class = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_define_class',
+                message0: 'class %1',
+                message1: '%1',
+                message2: 'end',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'CLASS'
+                    }
+                ],
+                args1: [
+                    {
+                        type: 'input_statement',
+                        name: 'SUBSTACK'
                     }
                 ],
                 category: ScratchBlocks.Categories.ruby,
