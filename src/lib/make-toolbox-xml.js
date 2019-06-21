@@ -739,7 +739,14 @@ const ruby = function () {
         </block>
         <block type="mrubyc_thermistor_new">
         </block>
-        <block type="mrubyc_thermistor_temprature">
+        <block type="mrubyc_thermistor_temperature">
+        </block>
+        <block type="mrubyc_puts">
+            <value name="OUTPUT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
         </block>
         <block type="ruby_statement">
             <value name="STATEMENT">
