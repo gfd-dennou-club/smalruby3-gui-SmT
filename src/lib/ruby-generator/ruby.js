@@ -41,7 +41,7 @@ export default function (Generator) {
         return `thermistor = Thermistor.new\n`;
     };
 
-    Generator.mrubyc_thermistor_temprature = function (block) {
+    Generator.mrubyc_thermistor_temperature = function (block) {
         return `thermistor.temperature\n`;
     };
 

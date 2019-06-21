@@ -118,13 +118,13 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_thermistor_temprature = {
+    ScratchBlocks.Blocks.mrubyc_thermistor_temperature = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_thermistor_temprature',
-                message0: 'thermistor_temprature',
+                type: 'mrubyc_thermistor_temperature',
+                message0: 'thermistor_temperature',
                 category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'output_integer']
+                extensions: ['colours_ruby', 'output_number']
             });
         }
     };
