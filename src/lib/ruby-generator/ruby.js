@@ -37,6 +37,32 @@ export default function (Generator) {
         return `class ${buf} \n${branch}end\n`;
     };
 
+    Generator.mrubyc_thermistor_new = function (block) {
+        return `thermistor = Thermistor.new\n`;
+    };
+
+    Generator.mrubyc_thermistor_temprature = function (block) {
+        return `thermistor.temperature\n`;
+    };
+
+    Generator.mrubyc_led_new = function (block) {
+        return `led = Led.new\n`;
+    };
+
+    Generator.mrubyc_led_turn_on = function (block) {
+        return `led.turn_on\n`;
+    };
+
+    Generator.mrubyc_led_turn_off = function (block) {
+        return `led.turn_off\n`;
+    };
+
+    Generator.mrubyc_define_function = function (block) {
+        const buf = getUnquoteText(block, 'FUNCTION', Generator.ORDER_NONE);
+        const branch = Generator.statementToCode(block, 'SUBSTACK') || '';
+        return `def ${buf} \n${branch}end\n`;
+    };
+
     Generator.ruby_statement_with_block = function (block) {
         const statement = getUnquoteText(block, 'STATEMENT', Generator.ORDER_NONE);
         let args = getUnquoteText(block, 'ARGS', Generator.ORDER_NONE);

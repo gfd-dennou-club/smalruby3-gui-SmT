@@ -724,6 +724,23 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_define_function">
+            <value name="FUNCTION">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_led_turn_on">
+        </block>
+        <block type="mrubyc_led_turn_off">
+        </block>
+        <block type="mrubyc_led_new">
+        </block>
+        <block type="mrubyc_thermistor_new">
+        </block>
+        <block type="mrubyc_thermistor_temprature">
+        </block>
         <block type="ruby_statement">
             <value name="STATEMENT">
                 <shadow type="text">

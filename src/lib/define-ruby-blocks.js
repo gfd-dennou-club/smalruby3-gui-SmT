@@ -74,6 +74,61 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_led_turn_on = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_led_turn_on',
+                message0: 'LED ON',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_led_turn_off = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_led_turn_on',
+                message0: 'LED OFF',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_led_new = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_led_new',
+                message0: 'LED new',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_thermistor_new = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_thermistor_new',
+                message0: 'thermistor new',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_thermistor_temprature = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_thermistor_temprature',
+                message0: 'thermistor_temprature',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_integer']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_define_class = {
         init: function () {
             this.jsonInit({
@@ -85,6 +140,31 @@ export default function (ScratchBlocks) {
                     {
                         type: 'input_value',
                         name: 'CLASS'
+                    }
+                ],
+                args1: [
+                    {
+                        type: 'input_statement',
+                        name: 'SUBSTACK'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_define_function = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_define_class',
+                message0: 'def %1',
+                message1: '%1',
+                message2: 'end',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'FUNCTION'
                     }
                 ],
                 args1: [
