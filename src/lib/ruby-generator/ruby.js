@@ -52,7 +52,8 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_led_new = function (block) {
-        return `led = Led.new\n`;
+        const pin = getUnquoteText(block, 'PIN', Generator.ORDER_NONE);
+        return `led = Led.new(${pin})\n`;
     };
 
     Generator.mrubyc_thermistor_new = function (block) {

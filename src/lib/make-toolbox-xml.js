@@ -701,14 +701,14 @@ const ruby = function () {
 	    <block type="mrubyc_gpio_init_output">
             <value name="PIN">
                 <shadow type="math_number">
-                    <field name="NUM">16</field>
+                    <field name="NUM">19</field>
                 </shadow>
             </value>
         </block>
         <block type="mrubyc_gpio_set_level">
             <value name="PIN">
                 <shadow type="math_number">
-                    <field name="NUM">16</field>
+                    <field name="NUM">19</field>
                 </shadow>
             </value>
             <value name="STATE">
@@ -736,6 +736,11 @@ const ruby = function () {
         <block type="mrubyc_led_turn_off">
         </block>
         <block type="mrubyc_led_new">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM">19</field>
+                </shadow>
+            </value>
         </block>
         <block type="mrubyc_thermistor_new">
         </block>

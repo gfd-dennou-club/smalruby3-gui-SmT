@@ -150,7 +150,13 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_led_new',
-                message0: 'LED new',
+                message0: 'LED new %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'PIN'
+                    }
+                ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
