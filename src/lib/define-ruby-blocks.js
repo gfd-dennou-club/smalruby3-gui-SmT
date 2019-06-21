@@ -150,8 +150,12 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_led_new',
-                message0: 'LED new %1',
+                message0: 'LED%1 new %2',
                 args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NUMBER'
+                    },
                     {
                         type: 'input_value',
                         name: 'PIN'
@@ -167,7 +171,13 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_thermistor_new',
-                message0: 'thermistor new',
+                message0: 'thermistor%1 new',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NUMBER'
+                    }
+                ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -190,6 +200,23 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_puts',
                 message0: 'puts %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'OUTPUT'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_puts_var= {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_puts_var',
+                message0: 'puts_var %1',
                 args0: [
                     {
                         type: 'input_value',

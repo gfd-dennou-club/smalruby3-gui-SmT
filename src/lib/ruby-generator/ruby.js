@@ -52,12 +52,14 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_led_new = function (block) {
+        const number = getUnquoteText(block, 'NUMBER', Generator.ORDER_NONE);
         const pin = getUnquoteText(block, 'PIN', Generator.ORDER_NONE);
-        return `led = Led.new(${pin})\n`;
+        return `led${number} = Led.new(${pin})\n`;
     };
 
     Generator.mrubyc_thermistor_new = function (block) {
-        return `thermistor = Thermistor.new\n`;
+        const number = getUnquoteText(block, 'NUMBER', Generator.ORDER_NONE);
+        return `thermistor${number} = Thermistor.new\n`;
     };
 
     Generator.mrubyc_thermistor_temperature = function (block) {
@@ -67,6 +69,11 @@ export default function (Generator) {
     Generator.mrubyc_puts = function (block) {
         const output = getUnquoteText(block, 'OUTPUT', Generator.ORDER_NONE);
         return `puts "${output}"\n`;
+    };
+
+    Generator.mrubyc_puts_var = function (block) {
+        const output = getUnquoteText(block, 'OUTPUT', Generator.ORDER_NONE);
+        return `puts ${output}\n`;
     };
 
     Generator.ruby_statement_with_block = function (block) {
