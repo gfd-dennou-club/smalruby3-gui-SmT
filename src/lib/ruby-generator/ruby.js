@@ -63,7 +63,7 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_thermistor_temperature = function (block) {
-        return `thermistor.temperature\n`;
+        return ['thermistor.temperature', Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_puts = function (block) {

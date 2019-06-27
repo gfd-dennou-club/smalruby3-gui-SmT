@@ -25,7 +25,7 @@ class RubyDownloader extends React.Component {
             targets[sprite.order + 1] = idToTarget[id];
         }
         const options = {
-            requires: ['smalruby3'],
+            requires: [],
             withSpriteNew: true
         };
         if (this.props.rubyCode.modified) {

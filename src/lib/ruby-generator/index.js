@@ -251,20 +251,20 @@ RubyGenerator.spriteNew = function (renderedTarget) {
         attributes.current_costume = renderedTarget.currentCostume - 1;
     }
     const costumes = renderedTarget.sprite.costumes;
-    if (costumes.length > 0) {
-        const s = costumes.map(i => {
-            const h = {
-                asset_id: this.quote_(i.assetId),
-                name: this.quote_(i.name),
-                bitmap_resolution: i.bitmapResolution ? i.bitmapResolution : 1,
-                data_format: this.quote_(i.dataFormat),
-                rotation_center_x: i.rotationCenterX,
-                rotation_center_y: i.rotationCenterY
-            };
-            return this.hashToCode(h);
-        }).join(',\n');
-        attributes.costumes = `[\n${this.prefixLines(s, this.INDENT)}\n]`;
-    }
+    // if (costumes.length > 0) {
+    //     const s = costumes.map(i => {
+    //         const h = {
+    //             asset_id: this.quote_(i.assetId),
+    //             name: this.quote_(i.name),
+    //             bitmap_resolution: i.bitmapResolution ? i.bitmapResolution : 1,
+    //             data_format: this.quote_(i.dataFormat),
+    //             rotation_center_x: i.rotationCenterX,
+    //             rotation_center_y: i.rotationCenterY
+    //         };
+    //         return this.hashToCode(h);
+    //     }).join(',\n');
+    //     attributes.costumes = `[\n${this.prefixLines(s, this.INDENT)}\n]`;
+    // }
     if (renderedTarget.rotationStyle !== 'all around') {
         attributes.rotation_style = this.quote_(renderedTarget.rotationStyle);
     }
@@ -282,30 +282,30 @@ RubyGenerator.spriteNew = function (renderedTarget) {
             break;
         }
     }
-    if (variables.length > 0) {
-        const s = variables.map(i => {
-            const h = {
-                name: this.quote_(i.name)
-            };
-            if (i.value !== 0) {
-                h.value = this.scalarToCode(i.value);
-            }
-            return this.hashToCode(h);
-        }).join(',\n');
-        attributes.variables = `[\n${this.prefixLines(s, this.INDENT)}\n]`;
-    }
-    if (lists.length > 0) {
-        const s = lists.map(i => {
-            const h = {
-                name: this.quote_(i.name)
-            };
-            if (i.value.length > 0) {
-                h.value = this.listToCode(i.value);
-            }
-            return this.hashToCode(h);
-        }).join(',\n');
-        attributes.lists = `[\n${this.prefixLines(s, this.INDENT)}\n]`;
-    }
+    // if (variables.length > 0) {
+    //     const s = variables.map(i => {
+    //         const h = {
+    //             name: this.quote_(i.name)
+    //         };
+    //         if (i.value !== 0) {
+    //             h.value = this.scalarToCode(i.value);
+    //         }
+    //         return this.hashToCode(h);
+    //     }).join(',\n');
+    //     attributes.variables = `[\n${this.prefixLines(s, this.INDENT)}\n]`;
+    // }
+    // if (lists.length > 0) {
+    //     const s = lists.map(i => {
+    //         const h = {
+    //             name: this.quote_(i.name)
+    //         };
+    //         if (i.value.length > 0) {
+    //             h.value = this.listToCode(i.value);
+    //         }
+    //         return this.hashToCode(h);
+    //     }).join(',\n');
+    //     attributes.lists = `[\n${this.prefixLines(s, this.INDENT)}\n]`;
+    // }
 
     let code = this.hashToCode(attributes, ': ', false);
     if (code.length > 0) {
