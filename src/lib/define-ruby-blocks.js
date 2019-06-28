@@ -229,6 +229,29 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_read_adc = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_read_adc',
+                message0: 'read_adc',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_init_adc = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_init_adc',
+                message0: 'init_adc',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+
    
 
     ScratchBlocks.Blocks.ruby_statement_with_block = {

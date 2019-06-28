@@ -76,6 +76,14 @@ export default function (Generator) {
         return `puts ${output}\n`;
     };
 
+    Generator.mrubyc_read_adc = function (block) {
+        return `read_adc\n`;
+    };
+
+    Generator.mrubyc_init_adc = function (block) {
+        return `init_adc\n`;
+    };
+
     Generator.ruby_statement_with_block = function (block) {
         const statement = getUnquoteText(block, 'STATEMENT', Generator.ORDER_NONE);
         let args = getUnquoteText(block, 'ARGS', Generator.ORDER_NONE);

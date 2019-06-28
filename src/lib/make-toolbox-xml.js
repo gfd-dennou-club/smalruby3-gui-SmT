@@ -770,6 +770,10 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_read_adc">
+        </block>
+        <block type="mrubyc_init_adc">
+        </block>
         <block type="ruby_statement">
             <value name="STATEMENT">
                 <shadow type="text">
