@@ -50,16 +50,10 @@ export default function (Generator) {
     Generator.mrubyc_led_turn_off = function (block) {
         return `led.turn_off\n`;
     };
-
-    Generator.mrubyc_led_new = function (block) {
-        const number = getUnquoteText(block, 'NUMBER', Generator.ORDER_NONE);
-        const pin = getUnquoteText(block, 'PIN', Generator.ORDER_NONE);
-        return `led${number} = Led.new(${pin})\n`;
-    };
-
-    Generator.mrubyc_thermistor_new = function (block) {
-        const number = getUnquoteText(block, 'NUMBER', Generator.ORDER_NONE);
-        return `thermistor${number} = Thermistor.new\n`;
+    
+    Generator.mrubyc_thermistor_trans = function (block) {
+        const vref = getUnquoteText(block, 'VREF', Generator.ORDER_NONE);
+        return `1.to_f / ( 1.to_f / 3435 * Math.log(((3300 - ${vref}).to_f / (${vref}.to_f/ 10_000)) / 10_000) + 1.to_f / (25 + 273) ) - 273\n`;
     };
 
     Generator.mrubyc_thermistor_temperature = function (block) {
@@ -77,7 +71,7 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_read_adc = function (block) {
-        return `read_adc\n`;
+        return ['read_adc', Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_init_adc = function (block) {

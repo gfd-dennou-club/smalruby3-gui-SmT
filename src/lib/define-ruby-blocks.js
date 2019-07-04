@@ -146,40 +146,19 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_led_new = {
+    ScratchBlocks.Blocks.mrubyc_thermistor_trans = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_led_new',
-                message0: 'LED%1 new %2',
+                type: 'mrubyc_thermistor_trans',
+                message0: 'thermistor_trans %1',
                 args0: [
                     {
                         type: 'input_value',
-                        name: 'NUMBER'
-                    },
-                    {
-                        type: 'input_value',
-                        name: 'PIN'
+                        name: 'VREF'
                     }
                 ],
                 category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_thermistor_new = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_thermistor_new',
-                message0: 'thermistor%1 new',
-                args0: [
-                    {
-                        type: 'input_value',
-                        name: 'NUMBER'
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
+                extensions: ['colours_ruby', 'output_number']
             });
         }
     };
@@ -235,7 +214,7 @@ export default function (ScratchBlocks) {
                 type: 'mrubyc_read_adc',
                 message0: 'read_adc',
                 category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
+                extensions: ['colours_ruby', 'output_number']
             });
         }
     };

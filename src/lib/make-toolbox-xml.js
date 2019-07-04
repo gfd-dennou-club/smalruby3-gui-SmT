@@ -735,22 +735,10 @@ const ruby = function () {
         </block>
         <block type="mrubyc_led_turn_off">
         </block>
-        <block type="mrubyc_led_new">
-            <value name="NUMBER">
+        <block type="mrubyc_thermistor_trans">
+            <value name="VREF">
                 <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM">19</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_thermistor_new">
-            <value name="NUMBER">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
+                    <field name="NUM"></field>
                 </shadow>
             </value>
         </block>
