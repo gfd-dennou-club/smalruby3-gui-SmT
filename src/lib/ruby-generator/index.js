@@ -128,14 +128,6 @@ RubyGenerator.finish = function (code, options) {
         code = `${commentCodes.join('\n')}\n${code}`;
     }
 
-    if (options && options.withSpriteNew) {
-        const spriteNewCode = this.spriteNew(this.currentTarget);
-        if (code.length > 0) {
-            code = this.prefixLines(code, this.INDENT);
-        }
-        code = `${spriteNewCode} do\n${code}end\n`;
-    }
-
     if (defs.length === 0 && code.length === 0) {
         return '';
     }
@@ -315,7 +307,7 @@ RubyGenerator.spriteNew = function (renderedTarget) {
     // const klass = renderedTarget.isStage ? 'Stage' : 'Sprite';
     // const name = renderedTarget.sprite.name;
     // return `${klass}.new(${this.quote_(name)}${code})`;
-    // return `Thermistor.new(${this.quote_()}${code})`;
+    // return `Led.new(${this.quote_()})`;
 };
 
 RubyGenerator.scrubNakedValue = function (line) {
