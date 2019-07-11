@@ -5,7 +5,7 @@
  */
 export default function (Generator) {
     Generator.data_variable = function (block) {
-        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE'));
+        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE')).slice(1);
         return [variable, Generator.ORDER_ATOMIC];
     };
 

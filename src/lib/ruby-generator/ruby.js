@@ -53,7 +53,7 @@ export default function (Generator) {
     
     Generator.mrubyc_thermistor_trans = function (block) {
         const vref = getUnquoteText(block, 'VREF', Generator.ORDER_NONE);
-        return `1.to_f / ( 1.to_f / 3435 * Math.log(((3300 - ${vref}).to_f / (${vref}.to_f/ 10_000)) / 10_000) + 1.to_f / (25 + 273) ) - 273\n`;
+        return [`1.to_f / ( 1.to_f / 3435 * Math.log(((3300 - ${vref}).to_f / (${vref}.to_f/ 10_000)) / 10_000) + 1.to_f / (25 + 273) ) - 273`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_thermistor_temperature = function (block) {

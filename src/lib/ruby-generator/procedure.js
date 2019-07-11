@@ -40,7 +40,7 @@ export default function (Generator) {
     };
 
     Generator.procedures_call = function (block) {
-        return blockToMethod(block, true);
+        return `self.${blockToMethod(block, true)}`;
     };
 
     Generator.procedures_prototype = function (block) {
