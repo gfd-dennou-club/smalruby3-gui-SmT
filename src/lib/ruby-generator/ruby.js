@@ -31,10 +31,10 @@ export default function (Generator) {
         return `gpio_set_level(${pin},${state})\n`;
     };
 
-    Generator.mrubyc_define_class = function (block) {
-        const buf = getUnquoteText(block, 'CLASS', Generator.ORDER_NONE);
+    Generator.mrubyc_while = function (block) {
+        const buf = getUnquoteText(block, 'CONDITION', Generator.ORDER_NONE);
         const branch = Generator.statementToCode(block, 'SUBSTACK') || '';
-        return `class ${buf} \n${branch}end\n`;
+        return `while ${buf} do\n${branch}end\n`;
     };
 
     Generator.mrubyc_define_function = function (block) {

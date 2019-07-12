@@ -74,17 +74,17 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_define_class = {
+    ScratchBlocks.Blocks.mrubyc_while = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_define_class',
-                message0: 'class %1',
+                type: 'mrubyc_while',
+                message0: 'while %1 do',
                 message1: '%1',
                 message2: 'end',
                 args0: [
                     {
                         type: 'input_value',
-                        name: 'CLASS'
+                        name: 'CONDITION'
                     }
                 ],
                 args1: [

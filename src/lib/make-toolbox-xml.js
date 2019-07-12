@@ -717,8 +717,8 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_define_class">
-            <value name="CLASS">
+        <block type="mrubyc_while">
+            <value name="CONDITION">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
