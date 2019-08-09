@@ -5,29 +5,29 @@
  */
 export default function (Generator) {
     Generator.data_variable = function (block) {
-        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE')).slice(1);
+        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE'));
         return [variable, Generator.ORDER_ATOMIC];
     };
 
     Generator.data_setvariableto = function (block) {
-        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE')).slice(1);
+        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE'));
         const value = Generator.valueToCode(block, 'VALUE', Generator.ORDER_NONE) || '0';
         return `${variable} = ${Generator.nosToCode(value)}\n`;
     };
 
     Generator.data_changevariableby = function (block) {
-        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE')).slice(1);
+        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE'));
         const value = Generator.valueToCode(block, 'VALUE', Generator.ORDER_NONE) || 0;
         return `${variable} += ${Generator.nosToCode(value)}\n`;
     };
 
     Generator.data_showvariable = function (block) {
-        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE')).slice(1);
+        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE'));
         return `show_variable(${Generator.quote_(variable)})\n`;
     };
 
     Generator.data_hidevariable = function (block) {
-        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE')).slice(1);
+        const variable = Generator.variableName(Generator.getFieldId(block, 'VARIABLE'));
         return `hide_variable(${Generator.quote_(variable)})\n`;
     };
 
