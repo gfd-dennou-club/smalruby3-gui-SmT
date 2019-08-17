@@ -300,14 +300,13 @@ RubyGenerator.spriteNew = function (renderedTarget) {
     }
 
     let code = this.hashToCode(attributes, ': ', false);
-    // if (code.length > 0) {
-    //     const indent = renderedTarget.isStage ? '          ' : '           ';
-    //     code = `,\n${this.prefixLines(code, indent)}`;
-    // }
+    if (code.length > 0) {
+        const indent = renderedTarget.isStage ? '          ' : '           ';
+        code = `,\n${this.prefixLines(code, indent)}`;
+    }
     // const klass = renderedTarget.isStage ? 'Stage' : 'Sprite';
     // const name = renderedTarget.sprite.name;
     // return `${klass}.new(${this.quote_(name)}${code})`;
-    // return `Led.new(${this.quote_()})`;
 };
 
 RubyGenerator.scrubNakedValue = function (line) {
