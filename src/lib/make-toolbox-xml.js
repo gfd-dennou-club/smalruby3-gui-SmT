@@ -701,19 +701,85 @@ const ruby = function () {
 	    <block type="mrubyc_gpio_init_output">
             <value name="PIN">
                 <shadow type="math_number">
-                    <field name="NUM">19</field>
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_init_input">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_lcd_init">
+        </block>
+        <block type="mrubyc_i2c_lcd_write">
+            <value name="LINE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_lcd_write_var">
+            <value name="LINE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VAR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
                 </shadow>
             </value>
         </block>
         <block type="mrubyc_gpio_set_level">
             <value name="PIN">
                 <shadow type="math_number">
-                    <field name="NUM">19</field>
+                    <field name="NUM"></field>
                 </shadow>
             </value>
             <value name="STATE">
                 <shadow type="math_number">
-                    <field name="NUM">1</field>
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_sound">
+            <value name="SOUND">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="math_number">
+                    <field name="NUM">1000</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_LED">
+            <value name="LED">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_buzzer">
+        </block>
+        <block type="mrubyc_sw">
+            <value name="SW">
+                <shadow type="math_number">
+                    <field name="NUM"/>
                 </shadow>
             </value>
         </block>
@@ -724,25 +790,12 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_define_function">
-            <value name="FUNCTION">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_led_turn_on">
-        </block>
-        <block type="mrubyc_led_turn_off">
-        </block>
         <block type="mrubyc_thermistor_trans">
             <value name="VREF">
                 <shadow type="math_number">
                     <field name="NUM"></field>
                 </shadow>
             </value>
-        </block>
-        <block type="mrubyc_thermistor_temperature">
         </block>
         <block type="mrubyc_puts">
             <value name="OUTPUT">

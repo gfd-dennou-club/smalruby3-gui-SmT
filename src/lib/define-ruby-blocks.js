@@ -40,13 +40,41 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_gpio_init_output',
-                message0: 'gpio_init_output(%1)',
+                message0: '%1を出力モードで使う',
                 args0: [
                     {
                         type: 'input_value',
                         name: 'PIN'
                     }
                 ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_init_input = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_init_input',
+                message0: '%1を入力モードで使う',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'PIN'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_lcd_init = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_lcd_init',
+                message0: 'モニターを使う',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -57,15 +85,19 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_gpio_set_level',
-                message0: 'gpio_set_level(%1,%2)',
+                message0: '%1を%2にする',
                 args0: [
                     {
                         type: 'input_value',
                         name: 'PIN'
                     },
                     {
-                        type: 'input_value',
-                        name: 'STATE'
+                        type: 'field_dropdown',
+                        name: 'STATE',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
                     }
                 ],
                 category: ScratchBlocks.Categories.ruby,
@@ -74,13 +106,157 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_gpio_sound = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_sound',
+                message0: '%1の音を%2秒鳴らす',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SOUND',
+                        options: [
+                            ['ド', '261'],
+                            ['レ', '294'],
+                            ['ミ', '329'],
+                            ['ファ', '349'],
+                            ['ソ', '391'],
+                            ['ラ', '440'],
+                            ['シ', '466'],
+                            ['高いド', '523']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TIME'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_lcd_write = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_lcd_write',
+                message0: 'モニターの%1行目に%2と書く',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LINE',
+                        options: [
+                            ['1', 'i2c.lcd_write(0x00, [ 0x01, 0x80 ] )\n'],
+                            ['2', 'i2c.lcd_write(0x00, [ 0x80 + 0x40 ] )\n']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TEXT'
+                    },
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_lcd_write_var = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_lcd_write',
+                message0: 'モニターの%1行目に%2と書く%3(変数用)',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LINE',
+                        options: [
+                            ['1', 'i2c.lcd_write(0x00, [ 0x01, 0x80 ] )\n'],
+                            ['2', 'i2c.lcd_write(0x00, [ 0x80 + 0x40 ] )\n']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TEXT'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'VAR'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_LED = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_LED',
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LED',
+                        options: [
+                            ['LED1', '13'],
+                            ['LED2', '12'],
+                            ['LED3', '14'],
+                            ['LED4', '27'],
+                            ['LED5', '26'],
+                            ['LED6', '25'],
+                            ['LED7', '33'],
+                            ['LED8', '32']
+                        ]
+                    }
+              ],
+              extensions: ['colours_ruby', 'output_string']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_buzzer = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_buzzer',
+                message0: 'ブザー',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_sw = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_sw',
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SW',
+                        options: [
+                            ['スイッチ1', '19'],
+                            ['スイッチ2', '18'],
+                            ['スイッチ3', '35'],
+                            ['スイッチ4', '34']
+                        ]
+                    }
+              ],
+              extensions: ['colours_ruby', 'output_string']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_while = {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_while',
-                message0: 'while %1 do',
+                message0: '%1の間繰り返す',
                 message1: '%1',
-                message2: 'end',
+                message2: '',
                 args0: [
                     {
                         type: 'input_value',
@@ -99,75 +275,17 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_define_function = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_define_class',
-                message0: 'def %1',
-                message1: '%1',
-                message2: 'end',
-                args0: [
-                    {
-                        type: 'input_value',
-                        name: 'FUNCTION'
-                    }
-                ],
-                args1: [
-                    {
-                        type: 'input_statement',
-                        name: 'SUBSTACK'
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_led_turn_on = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_led_turn_on',
-                message0: 'LED ON',
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_led_turn_off = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_led_turn_on',
-                message0: 'LED OFF',
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
     ScratchBlocks.Blocks.mrubyc_thermistor_trans = {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_thermistor_trans',
-                message0: 'thermistor_trans %1',
+                message0: '%1を温度に変える',
                 args0: [
                     {
                         type: 'input_value',
                         name: 'VREF'
                     }
                 ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'output_number']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_thermistor_temperature = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_thermistor_temperature',
-                message0: 'thermistor_temperature',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_number']
             });
@@ -187,6 +305,17 @@ export default function (ScratchBlocks) {
                 ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_read_adc = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_read_adc',
+                message0: '温度計の電圧',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
             });
         }
     };
@@ -212,7 +341,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_read_adc',
-                message0: 'read_adc',
+                message0: '温度計の電圧',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_number']
             });
@@ -223,15 +352,12 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_init_adc',
-                message0: 'init_adc',
+                message0: '温度計を使う',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
         }
     };
-
-
-   
 
     ScratchBlocks.Blocks.ruby_statement_with_block = {
         init: function () {

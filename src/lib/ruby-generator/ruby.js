@@ -25,10 +25,62 @@ export default function (Generator) {
         return `gpio_init_output(${pin})\n`;
     };
 
+    Generator.mrubyc_gpio_init_input = function (block) {
+        const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
+        return `gpio_init_input(${pin})\n`;
+    };
+
+    Generator.mrubyc_i2c_lcd_init = function (block) {
+        return `i2c = GpioTest.new(22, 21)\ni2c.i2c_init\ni2c.lcd_init\n`;
+    };
+
+    Generator.mrubyc_i2c_lcd_write = function (block) {
+        const order = Generator.ORDER_FUNCTION_CALL;
+        const line = Generator.getFieldValue(block, 'LINE') || null;
+        const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
+        return [`${line}i2c.lcd_write(0x40, sprintf(${text}))\n`, order];
+    };
+
+    Generator.mrubyc_i2c_lcd_write_var = function (block) {
+        const order = Generator.ORDER_FUNCTION_CALL;
+        const line = Generator.getFieldValue(block, 'LINE') || null;
+        const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
+        const hensu = Generator.valueToCode(block, 'VAR', Generator.ORDER_NONE);
+        return [`${line}i2c.lcd_write(0x40, sprintf(${text},${hensu}))\n`, order];
+    };
+
+    Generator.mrubyc_i2c_lcd_write = function (block) {
+        const order = Generator.ORDER_FUNCTION_CALL;
+        const line = Generator.getFieldValue(block, 'LINE') || null;
+        const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
+        return [`${line}i2c.lcd_write(0x40, sprintf(${text}))\n`, order];
+    };
+
     Generator.mrubyc_gpio_set_level = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
-        const state = Generator.valueToCode(block, 'STATE', Generator.ORDER_NONE);
-        return `gpio_set_level(${pin},${state})\n`;
+        const state = Generator.getFieldValue(block, 'STATE') || null;
+        return [`gpio_set_level(${pin},${state})\n`,Generator.ORDER_ATOMIC];
+    };
+
+    Generator.mrubyc_gpio_sound = function (block) {
+        const order = Generator.ORDER_FUNCTION_CALL;
+        const sound = Generator.getFieldValue(block, 'SOUND') || null;
+        const time = Generator.valueToCode(block, 'TIME', Generator.ORDER_NONE);
+        return [`gpio_sound(15,${sound},${time})\n`, order];
+    };
+
+    Generator.mrubyc_LED = function (block) {
+        const object = Generator.getFieldValue(block, 'LED') || null;
+        return [object, Generator.ORDER_ATOMIC];
+    };
+
+    Generator.mrubyc_buzzer = function (block) {
+        return [`15`, Generator.ORDER_ATOMIC];
+    };
+
+    Generator.mrubyc_sw = function (block) {
+        const object = Generator.getFieldValue(block, 'SW') || null;
+        return [object, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_while = function (block) {
@@ -36,28 +88,10 @@ export default function (Generator) {
         const branch = Generator.statementToCode(block, 'SUBSTACK') || '';
         return `while ${buf} do\n${branch}end\n`;
     };
-
-    Generator.mrubyc_define_function = function (block) {
-        const buf = getUnquoteText(block, 'FUNCTION', Generator.ORDER_NONE);
-        const branch = Generator.statementToCode(block, 'SUBSTACK') || '';
-        return `def ${buf} \n${branch}end\n`;
-    };
-
-    Generator.mrubyc_led_turn_on = function (block) {
-        return `led.turn_on\n`;
-    };
-
-    Generator.mrubyc_led_turn_off = function (block) {
-        return `led.turn_off\n`;
-    };
     
     Generator.mrubyc_thermistor_trans = function (block) {
         const vref = getUnquoteText(block, 'VREF', Generator.ORDER_NONE);
         return [`1.to_f / ( 1.to_f / 3435 * Math.log(((3300 - ${vref}).to_f / (${vref}.to_f/ 10_000)) / 10_000) + 1.to_f / (25 + 273) ) - 273`, Generator.ORDER_ATOMIC];
-    };
-
-    Generator.mrubyc_thermistor_temperature = function (block) {
-        return ['thermistor.temperature', Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_puts = function (block) {
