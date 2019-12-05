@@ -20,6 +20,19 @@ export default function (Generator) {
         return `${statement}\n`;
     };
 
+    Generator.mrubyc_wifi_enterprise = function (block) {
+        const ssid = Generator.valueToCode(block, 'SSID', Generator.ORDER_NONE);
+        const username = Generator.valueToCode(block, 'USERNAME', Generator.ORDER_NONE);
+        const pass = Generator.valueToCode(block, 'PASSWORD', Generator.ORDER_NONE);
+        return `initialize_wifi(0,${ssid},${username},${pass})\n`;
+    };
+
+    Generator.mrubyc_wifi_personal = function (block) {
+        const ssid = Generator.valueToCode(block, 'SSID', Generator.ORDER_NONE);
+        const pass = Generator.valueToCode(block, 'PASSWORD', Generator.ORDER_NONE);
+        return `initialize_wifi(1,${ssid},${pass})\n`;
+    };
+
     Generator.mrubyc_gpio_init_output = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
         return `gpio_init_output(${pin})\n`;
@@ -33,12 +46,36 @@ export default function (Generator) {
     Generator.mrubyc_i2c_lcd_init = function (block) {
         return `i2c = GpioTest.new(22, 21)\ni2c.i2c_init\ni2c.lcd_init\n`;
     };
+    
+    Generator.mrubyc_sht_init = function (block) {
+        const object = Generator.getFieldValue(block, 'SHT') || null;
+        return `sht = GpioTest.new(${object})\nsht.sht_init\n`;
+    };
+
+    Generator.mrubyc_data_send = function (block) {
+        return `connected = check_network_status()\nif connected\n  http_client_init(url)\n  get_http_response()\n  http_client_cleanup()\nend\n`;
+    };
+    
+
+    Generator.mrubyc_sht_get_temp = function (block) {
+        return [`sht.sht_get_temp / 100.0`, Generator.ORDER_ATOMIC];
+    };
+
+    Generator.mrubyc_sht_get_humi = function (block) {
+        const temp = Generator.valueToCode(block, 'TEMP', Generator.ORDER_NONE);
+        return [`sht.sht_get_humi(${temp})`, Generator.ORDER_ATOMIC];
+    };
+
+    Generator.mrubyc_i2c_rtc_get_time = function (block) {
+        return [`i2c.rtc_get_time`, Generator.ORDER_ATOMIC];
+    };
+
 
     Generator.mrubyc_i2c_lcd_write = function (block) {
         const order = Generator.ORDER_FUNCTION_CALL;
         const line = Generator.getFieldValue(block, 'LINE') || null;
         const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
-        return [`${line}i2c.lcd_write(0x40, sprintf(${text}))\n`, order];
+        return `${line}i2c.lcd_write(0x40, sprintf(${text}))\n`;
     };
 
     Generator.mrubyc_i2c_lcd_write_var = function (block) {
@@ -46,27 +83,27 @@ export default function (Generator) {
         const line = Generator.getFieldValue(block, 'LINE') || null;
         const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
         const hensu = Generator.valueToCode(block, 'VAR', Generator.ORDER_NONE);
-        return [`${line}i2c.lcd_write(0x40, sprintf(${text},${hensu}))\n`, order];
+        return `${line}i2c.lcd_write(0x40, sprintf(${text},${hensu}))\n`;
     };
 
     Generator.mrubyc_i2c_lcd_write = function (block) {
         const order = Generator.ORDER_FUNCTION_CALL;
         const line = Generator.getFieldValue(block, 'LINE') || null;
         const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
-        return [`${line}i2c.lcd_write(0x40, sprintf(${text}))\n`, order];
+        return `${line}i2c.lcd_write(0x40, sprintf(${text}))\n`;
     };
 
     Generator.mrubyc_gpio_set_level = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
         const state = Generator.getFieldValue(block, 'STATE') || null;
-        return [`gpio_set_level(${pin},${state})\n`,Generator.ORDER_ATOMIC];
+        return `gpio_set_level(${pin},${state})\n`;
     };
 
     Generator.mrubyc_gpio_sound = function (block) {
         const order = Generator.ORDER_FUNCTION_CALL;
         const sound = Generator.getFieldValue(block, 'SOUND') || null;
         const time = Generator.valueToCode(block, 'TIME', Generator.ORDER_NONE);
-        return [`gpio_sound(15,${sound},${time})\n`, order];
+        return `gpio_sound(15,${sound},${time})\n`;
     };
 
     Generator.mrubyc_LED = function (block) {

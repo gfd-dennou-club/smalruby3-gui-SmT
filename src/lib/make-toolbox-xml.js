@@ -698,6 +698,35 @@ const ruby = function () {
         id="ruby"
         colour="#CC0043"
         secondaryColour="#FF4D6A">
+        <block type="mrubyc_wifi_enterprise">
+            <value name="SSID">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="USERNAME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="PASSWORD">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_wifi_personal">
+            <value name="SSID">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="PASSWORD">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
 	    <block type="mrubyc_gpio_init_output">
             <value name="PIN">
                 <shadow type="math_number">
@@ -712,7 +741,43 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_LED">
+            <value name="LED">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_buzzer">
+        </block>
+        <block type="mrubyc_sw">
+            <value name="SW">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
         <block type="mrubyc_i2c_lcd_init">
+        </block>
+        <block type="mrubyc_sht_init">
+            <value name="SHT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_sht_get_temp">
+        </block>
+        <block type="mrubyc_sht_get_humi">
+            <value name="TEMP">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_rtc_get_time">
+        </block>
+        <block type="mrubyc_data_send">
         </block>
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
@@ -764,22 +829,6 @@ const ruby = function () {
             <value name="TIME">
                 <shadow type="math_number">
                     <field name="NUM">1000</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_LED">
-            <value name="LED">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_buzzer">
-        </block>
-        <block type="mrubyc_sw">
-            <value name="SW">
-                <shadow type="math_number">
-                    <field name="NUM"/>
                 </shadow>
             </value>
         </block>

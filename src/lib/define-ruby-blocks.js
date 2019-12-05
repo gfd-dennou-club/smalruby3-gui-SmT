@@ -36,6 +36,52 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_wifi_enterprise = {
+        init: function () {
+            this.jsonInit({
+                type: 'mruby_wifi',
+                message0: '企業Wi-fiに接続する SSID:%1 ユーザー名:%2 パスワード:%3',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'SSID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'USERNAME'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'PASSWORD'
+                    },
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_wifi_personal = {
+        init: function () {
+            this.jsonInit({
+                type: 'mruby_wifi',
+                message0: '個人Wi-fiに接続する SSID:%1 パスワード:%2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'SSID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'PASSWORD'
+                    },
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_gpio_init_output = {
         init: function () {
             this.jsonInit({
@@ -110,7 +156,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_gpio_sound',
-                message0: '%1の音を%2秒鳴らす',
+                message0: '%1の音を%2ミリ秒鳴らす',
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -122,7 +168,7 @@ export default function (ScratchBlocks) {
                             ['ファ', '349'],
                             ['ソ', '391'],
                             ['ラ', '440'],
-                            ['シ', '466'],
+                            ['シ', '493'],
                             ['高いド', '523']
                         ]
                     },
@@ -131,6 +177,56 @@ export default function (ScratchBlocks) {
                         name: 'TIME'
                     }
                 ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_sht_get_temp = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_sht_get_temp',
+                message0: '拡張温度センサの気温',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_sht_get_humi = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_sht_get_temp',
+                message0: '拡張温度センサの湿度  気温：%1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'TEMP'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_get_time = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_get_time',
+                message0: '現在の時刻',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_data_send = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_data_send',
+                message0: 'サーバにデータを送信',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -337,22 +433,32 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_read_adc = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_read_adc',
-                message0: '温度計の電圧',
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'output_number']
-            });
-        }
-    };
-
     ScratchBlocks.Blocks.mrubyc_init_adc = {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_init_adc',
                 message0: '温度計を使う',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_sht_init = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_init_sht',
+                message0: '%1ポートの温度センサを使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SHT',
+                        options: [
+                            ['1', '2,4'],
+                            ['2', '5,23']
+                        ]
+                    }
+                ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
