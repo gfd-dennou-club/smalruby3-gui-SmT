@@ -12,6 +12,7 @@ const RotationStyle = [
  */
 const MotionConverter = {
     // eslint-disable-next-line no-unused-vars
+    // メソッド
     onSend: function (receiver, name, args, rubyBlockArgs, rubyBlock) {
         let block;
         if ((this._isSelf(receiver) || receiver === Opal.nil) && !rubyBlock) {
@@ -127,6 +128,7 @@ const MotionConverter = {
     },
 
     // eslint-disable-next-line no-unused-vars
+    //代入
     onOpAsgn: function (lh, operator, rh) {
         let block;
         if (this._isBlock(lh) && operator === '+' && this._isNumberOrBlock(rh)) {

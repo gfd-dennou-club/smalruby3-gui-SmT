@@ -196,7 +196,16 @@ class Generator {
         this.initTargets(options);
 
         const codes = [];
+        let first = true;
+        let second = true;
         targets.forEach(target => {
+            if (first) {
+                first = false;
+            }else if(second) {
+                second = false;
+            }else {
+                return;
+            }
             const code = this.targetToCode_(target, options);
             if (code.length > 0) {
                 codes.push(code);

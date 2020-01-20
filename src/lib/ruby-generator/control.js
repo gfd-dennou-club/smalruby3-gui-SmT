@@ -17,7 +17,7 @@ export default function (Generator) {
 
     Generator.control_forever = function (block) {
         const branch = Generator.statementToCode(block, 'SUBSTACK') || '';
-        return `loop do\n${branch}${Generator.INDENT}wait\nend\n`;
+        return `while true do\n${branch}end\n`;
     };
 
     Generator.control_if = function (block) {
@@ -41,7 +41,7 @@ export default function (Generator) {
     Generator.control_repeat_until = function (block) {
         const operator = Generator.valueToCode(block, 'CONDITION', Generator.ORDER_NONE) || false;
         const branch = Generator.statementToCode(block, 'SUBSTACK') || '';
-        return `until ${operator}\n${branch}  wait\nend\n`;
+        return `until ${operator} do\n${branch}end\n`;
     };
 
     Generator.control_stop = function (block) {

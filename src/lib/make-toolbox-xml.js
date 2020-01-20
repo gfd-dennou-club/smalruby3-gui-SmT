@@ -741,23 +741,9 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_LED">
-            <value name="LED">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_buzzer">
-        </block>
-        <block type="mrubyc_sw">
-            <value name="SW">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
         <block type="mrubyc_i2c_lcd_init">
+        </block>
+        <block type="mrubyc_init_adc">
         </block>
         <block type="mrubyc_sht_init">
             <value name="SHT">
@@ -765,6 +751,40 @@ const ruby = function () {
                     <field name="TEXT"></field>
                 </shadow>
             </value>
+        </block>
+        ${blockSeparator}
+        <block type="mrubyc_gpio_set_level">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_sound">
+            <value name="SOUND">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="math_number">
+                    <field name="NUM">1000</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_sw_state">
+            <value name="SW">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_read_adc">
         </block>
         <block type="mrubyc_sht_get_temp">
         </block>
@@ -776,8 +796,6 @@ const ruby = function () {
             </value>
         </block>
         <block type="mrubyc_i2c_rtc_get_time">
-        </block>
-        <block type="mrubyc_data_send">
         </block>
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
@@ -808,41 +826,53 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_gpio_set_level">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="STATE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
+        <block type="mrubyc_i2c_lcd_clean">
         </block>
-        <block type="mrubyc_gpio_sound">
-            <value name="SOUND">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
+        <block type="mrubyc_ambient_send_to">
+            <value name="ID">
+                <shadow type="text">
+                    <field name="TEXT"></field>
                 </shadow>
             </value>
-            <value name="TIME">
-                <shadow type="math_number">
-                    <field name="NUM">1000</field>
+            <value name="RKEY">
+                <shadow type="text">
+                    <field name="TEXT"></field>
                 </shadow>
             </value>
-        </block>
-        <block type="mrubyc_while">
-            <value name="CONDITION">
+            <value name="WKEY">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_thermistor_trans">
-            <value name="VREF">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
+        <block type="mrubyc_ambient_add_data">
+            <value name="D1">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="DATA1">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="D2">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="DATA2">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_ambient_data_send">
+        </block>
+        <block type="mrubyc_while">
+            <value name="CONDITION">
+                <shadow type="text">
+                    <field name="TEXT"></field>
                 </shadow>
             </value>
         </block>
@@ -859,10 +889,6 @@ const ruby = function () {
                     <field name="TEXT"></field>
                 </shadow>
             </value>
-        </block>
-        <block type="mrubyc_read_adc">
-        </block>
-        <block type="mrubyc_init_adc">
         </block>
         <block type="ruby_statement">
             <value name="STATEMENT">
