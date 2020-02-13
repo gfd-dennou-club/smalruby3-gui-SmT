@@ -126,9 +126,9 @@ export default function (Generator) {
         const d2 = Generator.getFieldValue(block, 'D2') || null;
         const data2 = Generator.valueToCode(block, 'DATA2', Generator.ORDER_NONE);
         return `data = "{\n` +
-                  `\"writeKey\": \"#{ambient_write_key}\",\n` +
-                  `\"${d1}\": #{${data1}},\n` +
-                  `\"${d2}\": #{${data2}}\n` +
+                  `\\\"writeKey\\\": \\\"#{ambient_write_key}\\\",\n` +
+                  `\\\"${d1}\\\": #{${data1}},\n` +
+                  `\\\"${d2}\\\": #{${data2}}\n` +
                 `}".tr("\\n", "")\n`
     };
 
@@ -136,7 +136,7 @@ export default function (Generator) {
         return  `connected = check_network_status()\n` + 
                 `if connected\n` +
                 `  http_client_init(url)\n` +
-                `  http_client_set_header("Content-Type", "application/json"\n` +
+                `  http_client_set_header("Content-Type", "application/json")\n` +
                 `  http_client_set_header("Connection", "close")\n` +
                 `  http_client_set_post_field(data)\n` +
                 `  get_http_response()\n` +
