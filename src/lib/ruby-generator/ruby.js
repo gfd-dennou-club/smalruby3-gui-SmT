@@ -38,6 +38,11 @@ export default function (Generator) {
         return `gpio_init_output(${pin})\n`;
     };
 
+    Generator.mrubyc_rboard_gpio_init_output = function (block) {
+        const pin = Generator.getFieldValue(block, 'PIN') || null;
+        return `pinMode(${pin},0)\n`;
+    };
+
     Generator.mrubyc_gpio_init_input = function (block) {
         const pin = Generator.getFieldValue(block, 'PIN') || null;
         return `gpio_init_input(${pin})\n`;

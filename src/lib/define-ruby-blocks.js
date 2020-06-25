@@ -110,6 +110,29 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_gpio_init_output = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_gpio_init_output',
+                message0: '%1を出力モードで使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['LED1', '0'],
+                            ['LED2', '1'],
+                            ['LED3', '5'],
+                            ['LED4', '6'],
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_gpio_init_input = {
         init: function () {
             this.jsonInit({

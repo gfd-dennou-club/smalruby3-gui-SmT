@@ -734,6 +734,13 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+         <block type="mrubyc_rboard_gpio_init_output">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
         <block type="mrubyc_gpio_init_input">
             <value name="PIN">
                 <shadow type="math_number">
