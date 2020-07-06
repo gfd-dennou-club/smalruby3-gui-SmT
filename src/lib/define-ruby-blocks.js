@@ -234,6 +234,37 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_gpio_set_level = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_gpio_set_level',
+                message0: '%1を%2にする',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['LED1', '0'],
+                            ['LED2', '1'],
+                            ['LED3', '5'],
+                            ['LED4', '6']
+                        ]
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'STATE',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_sw_state = {
         init: function() {
             this.jsonInit({

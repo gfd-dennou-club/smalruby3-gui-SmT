@@ -67,6 +67,12 @@ export default function (Generator) {
         return `gpio_set_level(${pin},${state})\n`;
     };
 
+    Generator.mrubyc_rboard_gpio_set_level = function (block) {
+        const pin = Generator.getFieldValue(block, 'PIN') || null;
+        const state = Generator.getFieldValue(block, 'STATE') || null;
+        return `digitalWrite(${pin},${state})\n`;
+    };
+
     Generator.mrubyc_sw_state = function (block) {
         const SW = Generator.getFieldValue(block, 'SW') || null;
         return [`gpio_get_level(${SW})`, Generator.ORDER_ATOMIC];
