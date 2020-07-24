@@ -83,6 +83,11 @@ export default function (Generator) {
         return [`gpio_get_level(${SW})`, Generator.ORDER_ATOMIC];
     };
 
+    Generator.mrubyc_rboard_pin_state = function (block) {
+        const pin = Generator.getFieldValue(block, 'PIN') || null;
+        return `digitalRead(${pin})\n`;
+    };
+
     Generator.mrubyc_gpio_sound = function (block) {
         const sound = Generator.getFieldValue(block, 'SOUND') || null;
         const time = Generator.valueToCode(block, 'TIME', Generator.ORDER_NONE);

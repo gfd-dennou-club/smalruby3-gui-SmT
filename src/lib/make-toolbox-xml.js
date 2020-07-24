@@ -810,6 +810,13 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_rboard_pin_state">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
         <block type="mrubyc_read_adc">
         </block>
         <block type="mrubyc_sht_get_temp">

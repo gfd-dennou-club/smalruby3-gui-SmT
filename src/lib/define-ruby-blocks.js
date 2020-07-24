@@ -307,6 +307,29 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_pin_state = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_rboard_pin_state',
+                message0: '%1の状態',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['外部スイッチ', '16'],
+                            ['LED1', '0'],
+                            ['LED2', '1'],
+                            ['LED3', '5'],
+                            ['LED4', '6']
+                        ]
+                    },
+              ],
+              extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_gpio_sound = {
         init: function () {
             this.jsonInit({
