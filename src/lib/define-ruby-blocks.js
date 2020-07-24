@@ -156,6 +156,26 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_gpio_init_input = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_gpio_init_input',
+                message0: '%1を入力モードで使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['外部スイッチ', '16']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_i2c_lcd_init = {
         init: function () {
             this.jsonInit({

@@ -48,6 +48,11 @@ export default function (Generator) {
         return `gpio_init_input(${pin})\n`;
     };
 
+    Generator.mrubyc_rboard_gpio_init_input = function (block) {
+        const pin = Generator.getFieldValue(block, 'PIN') || null;
+        return `pinMode(${pin},1)\n`;
+    };
+
     Generator.mrubyc_i2c_lcd_init = function (block) {
         return `i2c = GpioTest.new(22, 21)\ni2c.i2c_init\ni2c.lcd_init\n`;
     };
