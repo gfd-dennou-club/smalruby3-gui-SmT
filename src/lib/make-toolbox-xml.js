@@ -977,6 +977,22 @@ const ruby = function () {
     `;
 };
 
+ScratchBlocks.Msg.CATEGORY_RBOARD = 'Rboard';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_RBOARD = 'Rboard';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_RBOARD = 'Rboard';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_RBOARD = 'Rboard';
+
+const Rboard = function () {
+    return `
+    <category
+        name="%{BKY_CATEGORY_RBOARD}"
+        id="Rboard"
+        colour="#00608D"
+        secondaryColour="#2CA9E1">
+    </category>
+    `;
+};
+
 const xmlOpen = '<xml style="display: none">';
 const xmlClose = '</xml>';
 
@@ -1000,7 +1016,8 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
         operators(isStage, targetId), gap,
         variables(isStage, targetId), gap,
         myBlocks(isStage, targetId), gap,
-        ruby(isStage, targetId)
+        ruby(isStage, targetId),gap,
+        Rboard(isStage, targetId)
     ];
 
     if (categoriesXML) {
