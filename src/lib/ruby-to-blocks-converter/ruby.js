@@ -17,8 +17,7 @@ const RubyConverter = {
                     this._addTextInput(block, 'SSID', args[1], '');
                     this._addTextInput(block, 'USERNAME', args[2], '');
                     this._addTextInput(block, 'PASSWORD', args[3], '');
-                }
-                else if (args.length === 3){
+                }else if (args.length === 3){
                     block = this._createBlock('mrubyc_wifi_personal', 'statement');
                     this._addTextInput(block, 'SSID', args[1], ' ');
                     this._addTextInput(block, 'PASSWORD', args[2], ' ');
@@ -36,23 +35,16 @@ const RubyConverter = {
                 if (args.length === 2){
                     let opcode;
                     switch (args[1].value){
-                        case 0:
-                            opcode = 'mrubyc_rboard_gpio_init_output';
+                    case 0:
+                        opcode = 'mrubyc_rboard_gpio_init_output';
                         break;
-                        case 1:
-                            opcode = 'mrubyc_rboard_gpio_init_input';
+                    case 1:
+                        opcode = 'mrubyc_rboard_gpio_init_input';
                         break;
                     }
                     block = this._createBlock(opcode, 'statement');
                     this._addField(block, 'PIN', args[0]);
                 }
-                break;
-
-            case 'gpio_init_output':
-                    if(args.length === 1){
-                        block = this._createBlock('mrubyc_gpio_init_output', 'statement');
-                        this._addField(block, 'PIN', args[0]);
-                    }
                 break;
 
             case 'gpio_init_input':
