@@ -70,6 +70,14 @@ const RubyConverter = {
                     }
                 break;
 
+                case 'digitalWrite':
+                    if(args.length === 2){
+                        block = this._createBlock('mrubyc_rboard_gpio_set_level', 'statement');
+                        this._addField(block, 'PIN', args[0]);
+                        this._addField(block, 'STATE', args[1]);
+                    }
+                break;
+
                 case 'gpio_get_level':
                     if(args.length === 1){
                         block = this._createBlock('mrubyc_sw_state', 'statement');
