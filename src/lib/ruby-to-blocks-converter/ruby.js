@@ -85,6 +85,13 @@ const RubyConverter = {
                     }
                 break;
 
+                case 'digitalRead':
+                    if(args.length === 1){
+                        block = this._createBlock('mrubyc_rboard_pin_state', 'statement');
+                        this._addField(block, 'PIN', args[0]);
+                    }
+                break;
+
             }
         }
         return block;
