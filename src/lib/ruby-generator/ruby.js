@@ -150,11 +150,11 @@ export default function (Generator) {
                   `\\\"writeKey\\\": \\\"#{ambient_write_key}\\\",\n` +
                   `\\\"${d1}\\\": #{${data1}},\n` +
                   `\\\"${d2}\\\": #{${data2}}\n` +
-                `}".tr("\\n", "")\n`
+                `}".tr("\\n", "")\n`;
     };
 
     Generator.mrubyc_ambient_data_send = function (block) {
-        return  `connected = check_network_status()\n` + 
+        return  `connected = check_network_status()\n` +
                 `if connected\n` +
                 `  http_client_init(url)\n` +
                 `  http_client_set_header("Content-Type", "application/json")\n` +
@@ -163,7 +163,7 @@ export default function (Generator) {
                 `  get_http_response()\n` +
                 `  http_client_cleanup()\n` +
                 `end\n`;
-    };    
+    };
 
     Generator.mrubyc_while = function (block) {
         const buf = getUnquoteText(block, 'CONDITION', Generator.ORDER_NONE);

@@ -17,7 +17,7 @@ const RubyConverter = {
                     this._addTextInput(block, 'SSID', args[1], '');
                     this._addTextInput(block, 'USERNAME', args[2], '');
                     this._addTextInput(block, 'PASSWORD', args[3], '');
-                }else if (args.length === 3){
+                } else if (args.length === 3){
                     block = this._createBlock('mrubyc_wifi_personal', 'statement');
                     this._addTextInput(block, 'SSID', args[1], ' ');
                     this._addTextInput(block, 'PASSWORD', args[2], ' ');
