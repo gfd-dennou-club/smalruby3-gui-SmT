@@ -54,6 +54,13 @@ const RubyConverter = {
                     }
                 break;
 
+                case 'gpio_get_level':
+                    if(args.length === 1){
+                        block = this._createBlock('mrubyc_sw_state', 'statement');
+                        this._addField(block, 'SW', args[0]);
+                    }
+                break;
+
             }
         }
         return block;
