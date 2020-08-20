@@ -32,6 +32,13 @@ const RubyConverter = {
                     }
                 break;
 
+                case 'pinMode':
+                    if(args.length === 2){
+                        block = this._createBlock('mrubyc_rboard_gpio_init_output', 'statement');
+                        this._addField(block, 'PIN', args[0]);
+                    }
+                break;
+
                 case 'gpio_init_output':
                     if(args.length === 1){
                         block = this._createBlock('mrubyc_gpio_init_output', 'statement');
