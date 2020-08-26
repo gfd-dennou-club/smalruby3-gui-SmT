@@ -38,19 +38,9 @@ export default function (Generator) {
         return `gpio_init_output(${pin})\n`;
     };
 
-    Generator.mrubyc_rboard_gpio_init_output = function (block) {
-        const pin = Generator.getFieldValue(block, 'PIN') || null;
-        return `pinMode(${pin},0)\n`;
-    };
-
     Generator.mrubyc_gpio_init_input = function (block) {
         const pin = Generator.getFieldValue(block, 'PIN') || null;
         return `gpio_init_input(${pin})\n`;
-    };
-
-    Generator.mrubyc_rboard_gpio_init_input = function (block) {
-        const pin = Generator.getFieldValue(block, 'PIN') || null;
-        return `pinMode(${pin},1)\n`;
     };
 
     Generator.mrubyc_i2c_lcd_init = function (block) {
@@ -72,20 +62,9 @@ export default function (Generator) {
         return `gpio_set_level(${pin},${state})\n`;
     };
 
-    Generator.mrubyc_rboard_gpio_set_level = function (block) {
-        const pin = Generator.getFieldValue(block, 'PIN') || null;
-        const state = Generator.getFieldValue(block, 'STATE') || null;
-        return `digitalWrite(${pin},${state})\n`;
-    };
-
     Generator.mrubyc_sw_state = function (block) {
         const SW = Generator.getFieldValue(block, 'SW') || null;
         return [`gpio_get_level(${SW})`, Generator.ORDER_ATOMIC];
-    };
-
-    Generator.mrubyc_rboard_pin_state = function (block) {
-        const pin = Generator.getFieldValue(block, 'PIN') || null;
-        return `digitalRead(${pin})\n`;
     };
 
     Generator.mrubyc_gpio_sound = function (block) {

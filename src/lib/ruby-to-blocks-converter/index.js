@@ -18,6 +18,7 @@ import OperatorsConverter from './operators';
 import VariablesConverter from './variables';
 import MyBlocksConverter from './my-blocks';
 import RubyConverter from './ruby';
+import RboardConverter from './rboard';
 
 /**
  * Class for a block converter that translates ruby code into the blocks.
@@ -35,7 +36,8 @@ class RubyToBlocksConverter {
             OperatorsConverter,
             VariablesConverter,
             MyBlocksConverter,
-            RubyConverter
+            RubyConverter,
+            RboardConverter
         ];
         this.reset();
     }

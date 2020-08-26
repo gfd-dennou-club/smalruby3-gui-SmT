@@ -5,7 +5,11 @@
  */
 export default function (ScratchBlocks) {
     const name = 'ruby';
+    const name2 = 'rboard';
     if (ScratchBlocks.Categories.hasOwnProperty(name)) {
+        return ScratchBlocks;
+    }
+    if (ScratchBlocks.Categories.hasOwnProperty(name2)) {
         return ScratchBlocks;
     }
     ScratchBlocks.Categories[name] = name;
@@ -14,10 +18,22 @@ export default function (ScratchBlocks) {
         secondary: '#DB4D7B',
         tertiary: '#7A0028'
     };
+    ScratchBlocks.Categories[name2] = name2;
+    ScratchBlocks.Colours[name2] = {
+        primary: '#00608D',
+        secondary: '#2CA9E1',
+        tertiary: '#191970'
+    };
     ScratchBlocks.Extensions.register(
         `colours_${name}`,
         ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(name)
     );
+    ScratchBlocks.Extensions.register(
+        `colours_${name2}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(name2)
+    );
+
+    /* ////////////////////////define ruby blocks////////////////////////// */
 
     ScratchBlocks.Blocks.ruby_statement = {
         init: function () {
@@ -53,7 +69,7 @@ export default function (ScratchBlocks) {
                     {
                         type: 'input_value',
                         name: 'PASSWORD'
-                    },
+                    }
                 ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
@@ -74,7 +90,7 @@ export default function (ScratchBlocks) {
                     {
                         type: 'input_value',
                         name: 'PASSWORD'
-                    },
+                    }
                 ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
@@ -100,30 +116,7 @@ export default function (ScratchBlocks) {
                             ['LED6', '25'],
                             ['LED7', '33'],
                             ['LED8', '32'],
-                            ['ブザー', '15'],
-                        ]
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_rboard_gpio_init_output = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_rboard_gpio_init_output',
-                message0: '%1を出力モードで使う',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'PIN',
-                        options: [
-                            ['LED1', '0'],
-                            ['LED2', '1'],
-                            ['LED3', '5'],
-                            ['LED4', '6'],
+                            ['ブザー', '15']
                         ]
                     }
                 ],
@@ -147,26 +140,6 @@ export default function (ScratchBlocks) {
                             ['スイッチ2', '35'],
                             ['スイッチ3', '18'],
                             ['スイッチ4', '19']
-                        ]
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_rboard_gpio_init_input = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_rboard_gpio_init_input',
-                message0: '%1を入力モードで使う',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'PIN',
-                        options: [
-                            ['外部スイッチ', '16']
                         ]
                     }
                 ],
@@ -254,39 +227,8 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_rboard_gpio_set_level = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_rboard_gpio_set_level',
-                message0: '%1を%2にする',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'PIN',
-                        options: [
-                            ['LED1', '0'],
-                            ['LED2', '1'],
-                            ['LED3', '5'],
-                            ['LED4', '6']
-                        ]
-                    },
-                    {
-                        type: 'field_dropdown',
-                        name: 'STATE',
-                        options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
-                        ]
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
     ScratchBlocks.Blocks.mrubyc_sw_state = {
-        init: function() {
+        init: function () {
             this.jsonInit({
                 type: 'mrubyc_sw_state',
                 message0: '%1の状態',
@@ -300,32 +242,9 @@ export default function (ScratchBlocks) {
                             ['スイッチ3', '18'],
                             ['スイッチ4', '19']
                         ]
-                    },
-              ],
-              extensions: ['colours_ruby', 'output_number']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_rboard_pin_state = {
-        init: function() {
-            this.jsonInit({
-                type: 'mrubyc_rboard_pin_state',
-                message0: '%1の状態',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'PIN',
-                        options: [
-                            ['外部スイッチ', '16'],
-                            ['LED1', '0'],
-                            ['LED2', '1'],
-                            ['LED3', '5'],
-                            ['LED4', '6']
-                        ]
-                    },
-              ],
-              extensions: ['colours_ruby', 'output_number']
+                    }
+                ],
+                extensions: ['colours_ruby', 'output_number']
             });
         }
     };
@@ -428,7 +347,7 @@ export default function (ScratchBlocks) {
                     {
                         type: 'input_value',
                         name: 'TEXT'
-                    },
+                    }
                 ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
@@ -586,7 +505,7 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_puts= {
+    ScratchBlocks.Blocks.mrubyc_puts = {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_puts',
@@ -603,7 +522,7 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_puts_var= {
+    ScratchBlocks.Blocks.mrubyc_puts_var = {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_puts_var',
@@ -704,6 +623,105 @@ export default function (ScratchBlocks) {
                 ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_boolean']
+            });
+        }
+    };
+
+    /* ////////////////////////define rboard blocks////////////////////////// */
+
+    ScratchBlocks.Blocks.mrubyc_rboard_gpio_init_output = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_gpio_init_output',
+                message0: '%1を出力モードで使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['LED1', '0'],
+                            ['LED2', '1'],
+                            ['LED3', '5'],
+                            ['LED4', '6']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_gpio_init_input = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_gpio_init_input',
+                message0: '%1を入力モードで使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['外部スイッチ', '16']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_gpio_set_level = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_gpio_set_level',
+                message0: '%1を%2にする',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['LED1', '0'],
+                            ['LED2', '1'],
+                            ['LED3', '5'],
+                            ['LED4', '6']
+                        ]
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'STATE',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_pin_state = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_pin_state',
+                message0: '%1の状態',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['外部スイッチ', '16'],
+                            ['LED1', '0'],
+                            ['LED2', '1'],
+                            ['LED3', '5'],
+                            ['LED4', '6']
+                        ]
+                    }
+                ],
+                extensions: ['colours_rboard', 'output_number']
             });
         }
     };

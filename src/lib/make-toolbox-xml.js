@@ -727,14 +727,7 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-	    <block type="mrubyc_gpio_init_output">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-         <block type="mrubyc_rboard_gpio_init_output">
+        <block type="mrubyc_gpio_init_output">
             <value name="PIN">
                 <shadow type="math_number">
                     <field name="NUM"></field>
@@ -742,13 +735,6 @@ const ruby = function () {
             </value>
         </block>
         <block type="mrubyc_gpio_init_input">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_rboard_gpio_init_input">
             <value name="PIN">
                 <shadow type="math_number">
                     <field name="NUM"></field>
@@ -779,18 +765,6 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-         <block type="mrubyc_rboard_gpio_set_level">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="STATE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
         <block type="mrubyc_gpio_sound">
             <value name="SOUND">
                 <shadow type="math_number">
@@ -805,13 +779,6 @@ const ruby = function () {
         </block>
         <block type="mrubyc_sw_state">
             <value name="SW">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_rboard_pin_state">
-            <value name="PIN">
                 <shadow type="math_number">
                     <field name="NUM"/>
                 </shadow>
@@ -982,13 +949,46 @@ ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_RBOARD = 'Rboard';
 ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_RBOARD = 'Rboard';
 ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_RBOARD = 'Rboard';
 
-const Rboard = function () {
+const rboard = function () {
     return `
     <category
         name="%{BKY_CATEGORY_RBOARD}"
-        id="Rboard"
+        id="rboard"
         colour="#00608D"
         secondaryColour="#2CA9E1">
+        <block type="mrubyc_rboard_gpio_init_output">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_rboard_gpio_init_input">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_rboard_gpio_set_level">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_rboard_pin_state">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
     </category>
     `;
 };
@@ -1016,8 +1016,8 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
         operators(isStage, targetId), gap,
         variables(isStage, targetId), gap,
         myBlocks(isStage, targetId), gap,
-        ruby(isStage, targetId),gap,
-        Rboard(isStage, targetId)
+        ruby(isStage, targetId), gap,
+        rboard(isStage, targetId)
     ];
 
     if (categoriesXML) {

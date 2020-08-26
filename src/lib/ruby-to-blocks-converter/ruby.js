@@ -31,22 +31,6 @@ const RubyConverter = {
                 }
                 break;
 
-            case 'pinMode':
-                if (args.length === 2 && this._isNumberOrBlock(args[0]) && this._isNumberOrBlock(args[1])){
-                    let opcode;
-                    switch (args[1].value){
-                    case 0:
-                        opcode = 'mrubyc_rboard_gpio_init_output';
-                        break;
-                    case 1:
-                        opcode = 'mrubyc_rboard_gpio_init_input';
-                        break;
-                    }
-                    block = this._createBlock(opcode, 'statement');
-                    this._addField(block, 'PIN', args[0]);
-                }
-                break;
-
             case 'gpio_init_input':
                 if (args.length === 1 && this._isNumberOrBlock(args[0])){
                     block = this._createBlock('mrubyc_gpio_init_input', 'statement');
@@ -62,28 +46,12 @@ const RubyConverter = {
                 }
                 break;
 
-            case 'digitalWrite':
-                if (args.length === 2 && this._isNumberOrBlock(args[0]) && this._isNumberOrBlock(args[1])){
-                    block = this._createBlock('mrubyc_rboard_gpio_set_level', 'statement');
-                    this._addField(block, 'PIN', args[0]);
-                    this._addField(block, 'STATE', args[1]);
-                }
-                break;
-
             case 'gpio_get_level':
                 if (args.length === 1 && this._isNumberOrBlock(args[0])){
                     block = this._createBlock('mrubyc_sw_state', 'statement');
                     this._addField(block, 'SW', args[0]);
                 }
                 break;
-
-            case 'digitalRead':
-                if (args.length === 1 && this._isNumberOrBlock(args[0])){
-                    block = this._createBlock('mrubyc_rboard_pin_state', 'statement');
-                    this._addField(block, 'PIN', args[0]);
-                }
-                break;
-
             }
         }
         return block;
