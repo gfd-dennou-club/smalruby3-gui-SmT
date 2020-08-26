@@ -726,5 +726,16 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_pin_init = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_pin_init',
+                message0: 'すべてのpinを初期化',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     return ScratchBlocks;
 }

@@ -41,6 +41,12 @@ const RboardConverter = {
                     this._addField(block, 'PIN', args[0]);
                 }
                 break;
+
+            case 'pinInit':
+                if(args.length === 0){
+                    block = this._createBlock('mrubyc_rboard_pin_init', 'statement');
+                }
+                break;
             }
         }
         return block;

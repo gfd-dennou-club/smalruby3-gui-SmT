@@ -989,6 +989,8 @@ const rboard = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_rboard_pin_init">
+        </block>
     </category>
     `;
 };

@@ -41,5 +41,9 @@ export default function (Generator) {
         return `digitalRead(${pin})\n`;
     };
 
+    Generator.mrubyc_rboard_pin_init = function (block) {
+        return `pinInit\n`;
+    };
+
     return Generator;
 }
