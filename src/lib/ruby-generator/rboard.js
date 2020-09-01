@@ -45,5 +45,10 @@ export default function (Generator) {
         return `pinInit\n`;
     };
 
+    Generator.mrubyc_rboard_puts = function (block) {
+        const str = Generator.getFieldValue(block, 'STR') || null;
+        return `puts(${str})\n`;
+    };
+
     return Generator;
 }

@@ -991,6 +991,14 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_pin_init">
         </block>
+        <block type="mrubyc_rboard_puts">
+            <value name="STR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value
+        </block>
+
     </category>
     `;
 };

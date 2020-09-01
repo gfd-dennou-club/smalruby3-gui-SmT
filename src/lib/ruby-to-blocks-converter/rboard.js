@@ -47,6 +47,13 @@ const RboardConverter = {
                     block = this._createBlock('mrubyc_rboard_pin_init', 'statement');
                 }
                 break;
+
+            case 'puts':
+                if(args,length === 1 && this._isStringOrBlock(args[0])){
+                    block = this._createBlock('mrubyc_rboard_puts', 'statement');
+                    this._addTextInput(block, 'STR', args[0], '');
+                }
+                break;
             }
         }
         return block;

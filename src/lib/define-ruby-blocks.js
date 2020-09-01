@@ -737,5 +737,22 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_puts = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_puts',
+                message0: 'ターミナルに%1を出力',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'STR'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     return ScratchBlocks;
 }
