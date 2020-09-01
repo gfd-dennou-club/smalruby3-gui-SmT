@@ -52,6 +52,12 @@ const RubyConverter = {
                     this._addField(block, 'SW', args[0]);
                 }
                 break;
+
+            case 'init_adc':
+                if(args.length === 0){
+                    block = this._createBlock('mrubyc_init_adc', 'statement');
+                }
+                break;
             }
         }
         return block;
