@@ -54,8 +54,16 @@ const RubyConverter = {
                 break;
 
             case 'init_adc':
-                if(args.length === 0){
+                if (args.length === 0){
                     block = this._createBlock('mrubyc_init_adc', 'statement');
+                }
+                break;
+
+            case 'gpio_sound':
+                if (args.length === 3 && args[0].value === 15 && this._isNumberOrBlock(args[1]) && this._isNumberOrBlock(args[2])){
+                    block = this._createBlock('mrubyc_gpio_sound', 'statement');
+                    this._addField(block, 'SOUND', args[1]);
+                    this._addNumberInput(block, 'TIME', 'math_number', args[2], 1000);
                 }
                 break;
             }
