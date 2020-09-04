@@ -1000,6 +1000,10 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_adc_init">
         </block>
+        <block type="mrubyc_rboard_adc_start">
+        </block>
+        <block type="mrubyc_rboard_adc_stop">
+        </block>
     </category>
     `;
 };

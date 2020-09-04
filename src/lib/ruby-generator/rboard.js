@@ -54,6 +54,14 @@ export default function (Generator) {
         return `adc = ADC.new()\nadc.ch(7)\n`;
     };
 
+    Generator.mrubyc_rboard_adc_start = function (block) {
+        return `adc.start\n`;
+    };
+
+    Generator.mrubyc_rboard_adc_stop = function (block) {
+        return `adc.stop\n`;
+    };
+
 
 
     return Generator;

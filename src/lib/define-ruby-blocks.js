@@ -765,5 +765,27 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_adc_start = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_adc_start',
+                message0: 'ADCスタート',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_adc_stop = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_adc_stop',
+                message0: 'ADCストップ',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     return ScratchBlocks;
 }
