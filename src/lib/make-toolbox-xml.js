@@ -1014,6 +1014,8 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_i2c_read">
         </block>
+        <block type="mrubyc_rboard_pwm_init">
+        </block>
     </category>
     `;
 };

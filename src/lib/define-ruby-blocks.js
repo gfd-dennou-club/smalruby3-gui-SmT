@@ -853,5 +853,16 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_pwm_init = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_pwm_init',
+                message0: 'PWMを使う',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     return ScratchBlocks;
 }
