@@ -90,5 +90,11 @@ export default function (Generator) {
         return `Timer.new()`;
     };
 
+    Generator.mrubyc_rboard_time_start = function (block) {
+        return `Timer.start`;
+    };
+
+
+
     return Generator;
 }

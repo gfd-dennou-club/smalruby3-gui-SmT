@@ -875,5 +875,17 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_time_start = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_time_start',
+                message0: 'タイマースタート',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+
     return ScratchBlocks;
 }
