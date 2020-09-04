@@ -87,15 +87,15 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_rboard_time_init = function (block) {
-        return `Timer.new()`;
+        return `Timer.new()\n`;
     };
 
     Generator.mrubyc_rboard_time_start = function (block) {
-        return `Timer.start`;
+        return `Timer.start\n`;
     };
 
     Generator.mrubyc_rboard_time_stop = function (block) {
-        return `Timer.stop`;
+        return `Timer.stop\n`;
     };
 
     Generator.mrubyc_rboard_time_clear = function (block) {
