@@ -78,6 +78,19 @@ export default function (Generator) {
         return `I2C.write(0x18, 0x08, 0x03)\n`;
     };
 
+    Generator.mrubyc_rboard_i2c_read = function (block) {
+        return `ans = I2C.read(0x18,0x05,2)\n`;
+    };
+
+    Generator.mrubyc_rboard_pwm_init = function (block) {
+        return `PWM.new()\nPWM.pin(16)`;
+    };
+
+    Generator.mrubyc_rboard_time_init = function (block) {
+        return `Timer.new()`;
+    };
+
+
 
 
 

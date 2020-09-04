@@ -842,7 +842,16 @@ export default function (ScratchBlocks) {
         }
     };
 
-    
+    ScratchBlocks.Blocks.mrubyc_rboard_i2c_read = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_i2c_read',
+                message0: 'I2Cから読み込み',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
 
     return ScratchBlocks;
 }
