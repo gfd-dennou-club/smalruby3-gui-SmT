@@ -1004,6 +1004,8 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_adc_stop">
         </block>
+        <block type="mrubyc_rboard_adc_read">
+        </block>
     </category>
     `;
 };
