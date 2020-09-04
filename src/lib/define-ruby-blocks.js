@@ -809,5 +809,16 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_adc_read_v = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_adc_read_V',
+                message0: 'ADC値を取得(電圧)',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     return ScratchBlocks;
 }

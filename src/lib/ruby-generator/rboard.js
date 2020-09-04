@@ -66,6 +66,10 @@ export default function (Generator) {
         return `adc.read\n`;
     };
 
+    Generator.mrubyc_rboard_adc_read_v = function (block) {
+        return `adc.read_v\n`;
+    };
+
 
 
 
