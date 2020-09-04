@@ -886,6 +886,28 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_time_stop = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_time_stop',
+                message0: 'タイマーストップ',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_time_clear = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_time_clear',
+                message0: 'タイマークリア',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
 
     return ScratchBlocks;
 }

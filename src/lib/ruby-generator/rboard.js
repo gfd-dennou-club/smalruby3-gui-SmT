@@ -94,6 +94,14 @@ export default function (Generator) {
         return `Timer.start`;
     };
 
+    Generator.mrubyc_rboard_time_stop = function (block) {
+        return `Timer.stop`;
+    };
+
+    Generator.mrubyc_rboard_time_clear = function (block) {
+        return `Timer.count_clear\n`;
+    };
+
 
 
     return Generator;

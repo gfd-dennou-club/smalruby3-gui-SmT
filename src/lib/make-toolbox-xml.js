@@ -1020,6 +1020,10 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_time_start">
         </block>
+        <block type="mrubyc_rboard_time_stop">
+        </block>
+        <block type="mrubyc_rboard_time_clear">
+        </block>
 
 
     </category>
