@@ -86,6 +86,9 @@ export default function (Generator) {
         return `PWM.new()\nPWM.pin(16)`;
     };
 
+    Generator.mrubyc_rboard_time_init = function (block) {
+        return `Timer.new()`;
+    };
 
     return Generator;
 }
