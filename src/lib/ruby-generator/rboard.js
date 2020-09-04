@@ -38,7 +38,7 @@ export default function (Generator) {
 
     Generator.mrubyc_rboard_pin_state = function (block) {
         const pin = Generator.getFieldValue(block, 'PIN') || null;
-        return `digitalRead(${pin})\n`;
+        return [`digitalRead(${pin})\n`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_rboard_pin_init = function (block) {

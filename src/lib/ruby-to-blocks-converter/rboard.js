@@ -37,7 +37,7 @@ const RboardConverter = {
                 
             case 'digitalRead':
                 if (args.length === 1 && this._isNumberOrBlock(args[0])){
-                    block = this._createBlock('mrubyc_rboard_pin_state', 'statement');
+                    block = this._createBlock('mrubyc_rboard_pin_state', 'value');
                     this._addField(block, 'PIN', args[0]);
                 }
                 break;

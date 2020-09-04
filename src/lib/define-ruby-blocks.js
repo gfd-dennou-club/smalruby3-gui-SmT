@@ -305,7 +305,7 @@ export default function (ScratchBlocks) {
     ScratchBlocks.Blocks.mrubyc_sht_get_humi = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_sht_get_temp',
+                type: 'mrubyc_sht_get_humi',
                 message0: '拡張温度センサの湿度  気温：%1',
                 args0: [
                     {
