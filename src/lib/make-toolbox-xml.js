@@ -998,6 +998,7 @@ const rboard = function () {
                 </shadow>
             </value>
         </block>
+        ${blockSeparator}
         <block type="mrubyc_rboard_adc_init">
         </block>
         <block type="mrubyc_rboard_adc_start">
@@ -1010,12 +1011,15 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_adc_temp">
         </block>
+        ${blockSeparator}
         <block type="mrubyc_rboard_i2c_write">
         </block>
         <block type="mrubyc_rboard_i2c_read">
         </block>
+        ${blockSeparator}
         <block type="mrubyc_rboard_pwm_init">
         </block>
+        ${blockSeparator}
         <block type="mrubyc_rboard_time_init">
         </block>
         <block type="mrubyc_rboard_time_start">
@@ -1024,8 +1028,7 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_time_clear">
         </block>
-
-
+        ${blockSeparator}
     </category>
     `;
 };
