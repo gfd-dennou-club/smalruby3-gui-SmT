@@ -996,7 +996,9 @@ const rboard = function () {
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
-            </value
+            </value>
+        </block>
+        <block type="mrubyc_rboard_adc_init">
         </block>
     </category>
     `;

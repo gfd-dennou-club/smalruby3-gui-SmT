@@ -50,5 +50,11 @@ export default function (Generator) {
         return `puts(${str})\n`;
     };
 
+    Generator.mrubyc_rboard_adc_init = function (block) {
+        return `adc = ADC.new()\nadc.ch(7)\n`;
+    };
+
+
+
     return Generator;
 }

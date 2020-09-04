@@ -55,7 +55,7 @@ export default function (ScratchBlocks) {
     ScratchBlocks.Blocks.mrubyc_wifi_enterprise = {
         init: function () {
             this.jsonInit({
-                type: 'mruby_wifi_enterprise',
+                type: 'mrubyc_wifi_enterprise',
                 message0: '企業Wi-fiに接続する SSID:%1 ユーザー名:%2 パスワード:%3',
                 args0: [
                     {
@@ -80,7 +80,7 @@ export default function (ScratchBlocks) {
     ScratchBlocks.Blocks.mrubyc_wifi_personal = {
         init: function () {
             this.jsonInit({
-                type: 'mruby_wifi_personal',
+                type: 'mrubyc_wifi_personal',
                 message0: '個人Wi-fiに接続する SSID:%1 パスワード:%2',
                 args0: [
                     {
@@ -748,6 +748,17 @@ export default function (ScratchBlocks) {
                         name: 'STR'
                     }
                 ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_adc_init = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_adc_init',
+                message0: 'ADCを使う',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_rboard', 'shape_statement']
             });
