@@ -1008,6 +1008,10 @@ const rboard = function () {
         </block>
         <block type="mrubyc_rboard_adc_read_v">
         </block>
+        <block type="mrubyc_rboard_adc_temp">
+        </block>
+        <block type="mrubyc_rboard_i2c_write">
+        </block>
     </category>
     `;
 };

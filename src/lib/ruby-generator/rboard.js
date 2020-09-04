@@ -70,6 +70,14 @@ export default function (Generator) {
         return `adc.read_v\n`;
     };
 
+    Generator.mrubyc_rboard_adc_temp = function (block) {
+        return `temp = 1.0/(Math.log(a)/4275+1/298.15)-273.15\n`;
+    };
+
+    Generator.mrubyc_rboard_i2c_write = function (block) {
+        return `I2C.write(0x18, 0x08, 0x03)\n`;
+    };
+
 
 
 

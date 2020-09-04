@@ -820,5 +820,29 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_adc_temp = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_adc_temp',
+                message0: 'ADC値⇒気温',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_i2c_write = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_i2c_write',
+                message0: 'I2Cに書き込み',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    
+
     return ScratchBlocks;
 }
