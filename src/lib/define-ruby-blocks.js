@@ -864,6 +864,28 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_pwm_start = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_pwm_start',
+                message0: 'PWMスタート',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_rboard_pwm_stop = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_pwm_stop',
+                message0: 'PWMストップ',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_rboard_time_init = {
         init: function () {
             this.jsonInit({

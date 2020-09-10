@@ -1019,6 +1019,10 @@ const rboard = function () {
         ${blockSeparator}
         <block type="mrubyc_rboard_pwm_init">
         </block>
+        <block type="mrubyc_rboard_pwm_start">
+        </block>
+        <block type="mrubyc_rboard_pwm_stop">
+        </block>
         ${blockSeparator}
         <block type="mrubyc_rboard_time_init">
         </block>
