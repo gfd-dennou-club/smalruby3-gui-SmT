@@ -79,7 +79,11 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_rboard_i2c_read = function (block) {
-        return `ans = I2C.read(0x18,0x05,2)\n`;
+        return `ans = I2C.read(0x18,0x05,2)\n a = ans[1] | ((ans[0] & 0x1f)<<8)\n`;
+    };
+
+    Generator.mrubyc_rboard_i2c_temp= function (block) {
+        return `a = (a.to_f)* 0.0625\n`;
     };
 
     Generator.mrubyc_rboard_pwm_init = function (block) {

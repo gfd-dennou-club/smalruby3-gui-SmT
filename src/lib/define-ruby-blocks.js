@@ -853,6 +853,17 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_i2c_temp = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_i2c_temp',
+                message0: 'I2C⇒気温',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_rboard_pwm_init = {
         init: function () {
             this.jsonInit({
