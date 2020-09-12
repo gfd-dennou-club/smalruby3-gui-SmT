@@ -46,7 +46,7 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_rboard_puts = function (block) {
-        const str = Generator.getFieldValue(block, 'STR') || null;
+        const str = Generator.valueToCode(block, 'STR') || null;
         return `puts(${str})\n`;
     };
 
