@@ -951,13 +951,13 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'BUZZER',
                         options: [
-                            ['ド', '0x4F3'],
-                            ['レ', '0x58C'],
-                            ['ミ', '0x639'],
-                            ['ファ', '0x6EF'],
-                            ['ソ', '0x76A'],
-                            ['ラ', '0x84D'],
-                            ['シ', '0x95A']
+                            ['ド', 0x4F3],
+                            ['レ', 0x58C],
+                            ['ミ', 0x639],
+                            ['ファ', 0x6EF],
+                            ['ソ', 0x76A],
+                            ['ラ', 0x84D],
+                            ['シ', 0x95A]
                         ]
                     }
                 ],
