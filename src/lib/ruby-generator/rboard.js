@@ -114,7 +114,10 @@ export default function (Generator) {
         return `Timer.count_clear\n`;
     };
 
-
+    Generator.mrubyc_rboard_grove_buzzer_ling = function (block) {
+        const buzzer = Generator.getFieldValue(block, 'BUZZER') || null;
+        return `PWM.cycle(${buzzer}, 4)\n`;
+    };
 
     return Generator;
 }
