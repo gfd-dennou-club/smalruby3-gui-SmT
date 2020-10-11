@@ -941,6 +941,31 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_rboard_grove_buzzer_ling = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_rboard_grove_buzzer_ling',
+                message0: '%1の音のブザーを鳴らす',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'BUZZER',
+                        options: [
+                            ['ド', '0x4F3'],
+                            ['レ', '0x58C'],
+                            ['ミ', '0x639'],
+                            ['ファ', '0x6EF'],
+                            ['ソ', '0x76A'],
+                            ['ラ', '0x84D'],
+                            ['シ', '0x95A']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_rboard', 'shape_statement']
+            });
+        }
+    };
 
     return ScratchBlocks;
 }

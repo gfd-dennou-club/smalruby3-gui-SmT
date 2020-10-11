@@ -1035,6 +1035,8 @@ const rboard = function () {
         <block type="mrubyc_rboard_time_clear">
         </block>
         ${blockSeparator}
+        <block type="mrubyc_rboard_grove_buzzer_ling">
+        </block>
     </category>
     `;
 };
