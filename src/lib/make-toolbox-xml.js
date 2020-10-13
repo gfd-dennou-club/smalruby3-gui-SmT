@@ -1041,7 +1041,19 @@ const rboard = function () {
         </block>
         ${blockSeparator}
         <block type="mrubyc_rboard_mcp9808_use">
-        <value name="VARIABLE">
+            <value name="VARIABLE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_rboard_mcp9808_temp">
+            <value name="VARIABLE1">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VARIABLE2">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
