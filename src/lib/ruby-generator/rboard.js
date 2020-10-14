@@ -129,9 +129,9 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_rboard_mcp9808_temp = function (block) {
-        const variable1 = Generator.valueToCode(block, 'VARIABLE1') || null;
-        const variable2 = Generator.valueToCode(block, 'VARIABLE2') || null;
-        return `${variable1} = ${variable2}[1] | ((${variable2}[0] & 0x1f) << 8)\n${variable1} = (${variable1}.to_f) * 0.0625\n`;
+        const temp_var = Generator.valueToCode(block, 'TEMP_VAR') || null;
+        const sensor_var = Generator.valueToCode(block, 'SENSOR_VAR') || null;
+        return `${temp_var} = ${sensor_var}[1] | ((${sensor_var}[0] & 0x1f) << 8)\n${temp_var} = (${temp_var}.to_f) * 0.0625\n`;
     };
 
     return Generator;

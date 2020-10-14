@@ -1003,11 +1003,11 @@ export default function (ScratchBlocks) {
                 args0: [
                     {
                         type: 'input_value',
-                        name: 'VARIABLE1'
+                        name: 'TEMP_VAR'
                     },
                     {
                         type: 'input_value',
-                        name: 'VARIABLE2'
+                        name: 'SENSOR_VAR'
                     }
                 ],
                 category: ScratchBlocks.Categories.ruby,

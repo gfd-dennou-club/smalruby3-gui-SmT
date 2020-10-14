@@ -1048,12 +1048,12 @@ const rboard = function () {
             </value>
         </block>
         <block type="mrubyc_rboard_mcp9808_temp">
-            <value name="VARIABLE1">
+            <value name="TEMP_VAR">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
             </value>
-            <value name="VARIABLE2">
+            <value name="SENSOR_VAR">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
