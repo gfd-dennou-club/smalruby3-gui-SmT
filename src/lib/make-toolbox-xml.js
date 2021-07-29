@@ -698,7 +698,123 @@ const ruby = function () {
         id="ruby"
         colour="#CC0043"
         secondaryColour="#FF4D6A">
-        <block type="mrubyc_wifi_enterprise">
+
+	<block type="mrubyc_gpio_output_init">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+	<block type="mrubyc_gpio_output_half_init">
+        </block>
+	<block type="mrubyc_gpio_output_all_init">
+        </block>
+        <block type="mrubyc_gpio_input_init">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_input_all_init">
+        </block>
+        <block type="mrubyc_gpio_set_level">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+	<block type="mrubyc_gpio_set_half_level">
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+	<block type="mrubyc_gpio_set_all_level">
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_get_level">
+            <value name="SW">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_sw_status">
+            <value name="SW">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_pwm_sound">
+            <value name="SOUND">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_pwm_clear">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_adc_read">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_sht_init">
+            <value name="SHT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_sht_get_temp">
+        </block>
+        <block type="mrubyc_sht_get_humi">
+            <value name="TEMP">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_scd30_init">
+        </block>
+        <block type="mrubyc_i2c_scd30_status">
+        </block>
+        <block type="mrubyc_i2c_scd30_read">
+        </block>
+        <block type="mrubyc_i2c_scd30_co2">
+        </block>
+        <block type="mrubyc_i2c_scd30_temp">
+        </block>
+        <block type="mrubyc_i2c_scd30_humi">
+        </block>
+
+        ${blockSeparator}
+
+        <block type="mrubyc_wifi_enterprise_init">
             <value name="SSID">
                 <shadow type="text">
                     <field name="TEXT"></field>
@@ -715,7 +831,7 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_wifi_personal">
+        <block type="mrubyc_wifi_personal_init">
             <value name="SSID">
                 <shadow type="text">
                     <field name="TEXT"></field>
@@ -727,76 +843,18 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-	    <block type="mrubyc_gpio_init_output">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_rtc_sntp_init">
         </block>
-        <block type="mrubyc_gpio_init_input">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
+        <block type="mrubyc_i2c_rtc_get">
         </block>
-        <block type="mrubyc_i2c_lcd_init">
+        <block type="mrubyc_i2c_rtc_time">
         </block>
-        <block type="mrubyc_init_adc">
-        </block>
-        <block type="mrubyc_sht_init">
-            <value name="SHT">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
+        <block type="mrubyc_i2c_rtc_lcd">
         </block>
         ${blockSeparator}
-        <block type="mrubyc_gpio_set_level">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="STATE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_gpio_sound">
-            <value name="SOUND">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="TIME">
-                <shadow type="math_number">
-                    <field name="NUM">1000</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_sw_state">
-            <value name="SW">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_read_adc">
-        </block>
-        <block type="mrubyc_sht_get_temp">
-        </block>
-        <block type="mrubyc_sht_get_humi">
-            <value name="TEMP">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_i2c_rtc_get_time">
-        </block>
+
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
                 <shadow type="math_number">
@@ -809,25 +867,117 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_i2c_lcd_write_var">
-            <value name="LINE">
+        <block type="mrubyc_i2c_lcd_clear">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_uart_gps_read">
+        </block>
+        <block type="mrubyc_uart_gps_status">
+        </block>
+        <block type="mrubyc_uart_gps_time">
+        </block>
+        <block type="mrubyc_uart_gps_lat">
+        </block>
+        <block type="mrubyc_uart_gps_lng">
+        </block>
+        <block type="mrubyc_uart_gps_lcd">
+        </block>
+        <block type="mrubyc_uart_gps_distance_measure">
+            <value name="POS">
                 <shadow type="math_number">
                     <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="TEXT">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="VAR">
+        </block>
+        <block type="mrubyc_uart_gps_distance">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_spi_sd_init">
+            <value name="FILE">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_i2c_lcd_clean">
+        <block type="mrubyc_spi_sd_write">
+            <value name="FILE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="STR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
         </block>
+        <block type="mrubyc_spi_sd_matsue_store_data">
+            <value name="FILE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="KEY">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIMEZONE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_matsue_send_data">
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="KEY">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIMEZONE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+
+
         <block type="mrubyc_ambient_send_to">
             <value name="ID">
                 <shadow type="text">
@@ -869,6 +1019,15 @@ const ruby = function () {
         </block>
         <block type="mrubyc_ambient_data_send">
         </block>
+        ${blockSeparator}
+
+    </category>
+    `;
+};
+
+/*
+
+
         <block type="mrubyc_while">
             <value name="CONDITION">
                 <shadow type="text">
@@ -940,9 +1099,7 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-    </category>
-    `;
-};
+*/
 
 const xmlOpen = '<xml style="display: none">';
 const xmlClose = '</xml>';
