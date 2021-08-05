@@ -99,7 +99,9 @@ export default function (Generator) {
     // PWM 
     //
     Generator.mrubyc_pwm_init = function (block) {
-        return `pwm1 = PWM.new( 15 )\n`;
+        return `sleep(1)\n` +
+	       `pwm1 = PWM.new( 15 )\n` +
+	       `sleep(1)\n`;
     };
 
     Generator.mrubyc_pwm_sound = function (block) {
@@ -128,7 +130,7 @@ export default function (Generator) {
 	Generator.prepares_['adc'] = Generator.mrubyc_adc_init(null);
         return `voltage = adc.read()\n` + 
                `temp = 1.0 / ( 1.0 / 3435.0 * Math.log( (3300.0 - voltage) / (voltage/ 10.0) / 10.0) + 1.0 / (25.0 + 273.0) ) - 273.0\n` + 
-               `temp1 = sprintf("%f",temp)\n`;
+               `temp1 = sprintf("%.1f",temp)\n`;
     };
 
     Generator.mrubyc_adc_read = function (block) {
@@ -327,7 +329,7 @@ export default function (Generator) {
 	const key  = Generator.getFieldValue(block, 'KEY') || null;
         const val  = Generator.valueToCode(block,   'VALUE', Generator.ORDER_NONE);
 	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
-        return  `url = sprintf("curl http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring2.php?hostname=%s&time=%s&%s=%.1f&utc=%d",${name},${time},"${key}",${val},${tz})\n`+
+        return  `url = sprintf("curl http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%s&utc=%d",${name},${time},"${key}",${val},${tz})\n`+
 	        `fid = ESP32_STDIO.fopen("/sdcard/${filename}", "a")\n` +
 	        `ESP32_STDIO.fputs(fid, url)\n`+
 	        `ESP32_STDIO.fputs(fid, "\\n")\n`+
@@ -371,7 +373,7 @@ export default function (Generator) {
 	const key  = Generator.getFieldValue(block, 'KEY') || null;
         const val  = Generator.valueToCode(block,   'VALUE', Generator.ORDER_NONE);
 	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
-        return  `url = sprintf("http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring2.php?hostname=%s&time=%s&%s=%.1f&utc=%d",${name},${time},"${key}",${val},${tz})\n` +
+        return  `url = sprintf("http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%s&utc=%d",${name},${time},"${key}",${val},${tz})\n` +
                 `HTTPClient.init(url)\n` +
                 `HTTPClient.invoke()\n` +
                 `HTTPClient.cleanup()\n`;
