@@ -834,12 +834,12 @@ const ruby = function () {
         <block type="mrubyc_wifi_personal_init">
             <value name="SSID">
                 <shadow type="text">
-                    <field name="TEXT"></field>
+                    <field name="TEXT">SugiyamaLab</field>
                 </shadow>
             </value>
             <value name="PASSWORD">
                 <shadow type="text">
-                    <field name="TEXT"></field>
+                    <field name="TEXT">epi.it.matsue-ct.jp</field>
                 </shadow>
             </value>
         </block>

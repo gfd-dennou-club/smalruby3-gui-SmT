@@ -329,7 +329,7 @@ export default function (Generator) {
 	const key  = Generator.getFieldValue(block, 'KEY') || null;
         const val  = Generator.valueToCode(block,   'VALUE', Generator.ORDER_NONE);
 	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
-        return  `url = sprintf("curl http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%s&utc=%d",${name},${time},"${key}",${val},${tz})\n`+
+        return  `url = sprintf("curl http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%f&utc=%d",${name},${time},"${key}",${val},${tz})\n`+
 	        `fid = ESP32_STDIO.fopen("/sdcard/${filename}", "a")\n` +
 	        `ESP32_STDIO.fputs(fid, url)\n`+
 	        `ESP32_STDIO.fputs(fid, "\\n")\n`+
@@ -354,15 +354,15 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_i2c_scd30_co2 = function (block) {
-        return [`sprintf("%.1f",scd30val[0])`, Generator.ORDER_ATOMIC];
+        return [`scd30val[0]`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_i2c_scd30_temp = function (block) {
-        return [`sprintf("%.1f",scd30val[1])`, Generator.ORDER_ATOMIC];
+        return [`scd30val[1]`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_i2c_scd30_humi = function (block) {
-        return [`sprintf("%.1f",scd30val[2])`, Generator.ORDER_ATOMIC];
+        return [`scd30val[2]`, Generator.ORDER_ATOMIC];
     };
     
     // 高専サーバへの送信
@@ -373,7 +373,7 @@ export default function (Generator) {
 	const key  = Generator.getFieldValue(block, 'KEY') || null;
         const val  = Generator.valueToCode(block,   'VALUE', Generator.ORDER_NONE);
 	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
-        return  `url = sprintf("http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%s&utc=%d",${name},${time},"${key}",${val},${tz})\n` +
+        return  `url = sprintf("http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%f&utc=%d",${name},${time},"${key}",${val},${tz})\n` +
                 `HTTPClient.init(url)\n` +
                 `HTTPClient.invoke()\n` +
                 `HTTPClient.cleanup()\n`;

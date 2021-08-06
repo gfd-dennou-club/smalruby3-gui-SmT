@@ -715,7 +715,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_spi_sd_matsue_store_data',
-                message0: '高専サーバにデータを送る情報をSDカードに保管  ファイル名:%1  名前%2  時刻%3  %4%5  タイムゾーン%6',
+                message0: 'SDカードに高専サーバにデータを送る情報を保管  ファイル名:%1  名前%2  時刻%3  %4%5  タイムゾーン%6',
                 args0: [
                     {
                         type: 'input_value',
