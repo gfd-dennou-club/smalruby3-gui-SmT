@@ -95,6 +95,14 @@ export default function (Generator) {
         return [`(sw${SW}.read == 1)`, Generator.ORDER_ATOMIC];
     };
 
+    Generator.mrubyc_gpio_sw_status2 = function (block) {
+        const SW1 = Generator.getFieldValue(block, 'SW1') || null;
+	const SW2 = Generator.getFieldValue(block, 'SW2') || null;
+	const SW3 = Generator.getFieldValue(block, 'SW3') || null;
+	const SW4 = Generator.getFieldValue(block, 'SW4') || null;
+        return [`(sw34.read == ${SW1}) && (sw35.read == ${SW2}) && (sw18.read == ${SW3}) && (sw19.read == ${SW4}) `, Generator.ORDER_ATOMIC];
+    };
+
     //
     // PWM 
     //
@@ -107,15 +115,36 @@ export default function (Generator) {
     Generator.mrubyc_pwm_sound = function (block) {
         Generator.prepares_['pwm'] = Generator.mrubyc_pwm_init(null);
         const sound = Generator.getFieldValue(block, 'SOUND') || null;
+        return `pwm1.freq(${sound})\n` +
+               `pwm1.duty(128)\n` ;
+    };
+
+    Generator.mrubyc_pwm_sound2 = function (block) {
+        Generator.prepares_['pwm'] = Generator.mrubyc_pwm_init(null);
+        const sound = Generator.getFieldValue(block, 'SOUND') || null;
         const time = Generator.valueToCode(block, 'TIME', Generator.ORDER_NONE);
         return `pwm1.freq(${sound})\n` +
                `pwm1.duty(128)\n` +
-               `sleep(${time})\n`;
+               `sleep(${time})\n`+
+	       `pwm1.duty(0)\n`;
     };
 
     Generator.mrubyc_pwm_clear = function (block) {
         Generator.prepares_['pwm'] = Generator.mrubyc_pwm_init(null);
         return `pwm1.duty(0)\n`;
+    };
+
+    Generator.mrubyc_pwm_music = function (block) {
+        Generator.prepares_['pwm'] = Generator.mrubyc_pwm_init(null);
+        return `pwm1.duty(0)\n`+
+	    `freq=[587,440,466,523,466,440,392] \n`+
+	    `sound=[0.4,0.2,0.2,0.4,0.2,0.2,1.0] \n`+
+	    `pwm1.duty(128)\n`+
+            `for i in 0..6 do \n`+
+            `   pwm1.freq(freq[i]) \n`+
+            `   sleep(sound[i]) \n`+
+            `end \n`+
+            `pwm1.duty(0)\n`;
     };
 
 
@@ -181,6 +210,10 @@ export default function (Generator) {
 	    `sleep(3) \n` ;
     };
 
+    Generator.mrubyc_wifi_is_connected = function (block) {
+        return [`WiFi.is_connected?`, Generator.ORDER_ATOMIC];
+    };
+    
     //
     // I2C
     //
@@ -262,7 +295,7 @@ export default function (Generator) {
         return `gps.clear_tx_buffer\n` +
  	       `sleep 3\n`+
 	       `lines = gps.read_nonblock(4096).split('$').pop\n`+
-	       `gps0 = lines.split(',')\n`;
+ 	       `gps0 = lines.split(',')\n`;
     };
     
     Generator.mrubyc_uart_gps_status = function (block) {
@@ -274,33 +307,51 @@ export default function (Generator) {
     };
 
     Generator.mrubyc_uart_gps_lat = function (block) {
-        return [`"#{gps0[3][2]}#{gps0[3][3]}#{gps0[3][4]}#{gps0[3][5]}#{gps0[3][6]}#{gps0[3][7]}#{gps0[3][8]}"`, Generator.ORDER_ATOMIC];
+        return [`gps0[3]`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_uart_gps_lng = function (block) {
-        return [`"#{gps0[5][3]}#{gps0[5][4]}#{gps0[5][5]}#{gps0[5][6]}#{gps0[5][7]}#{gps0[5][8]}#{gps0[5][9]}"`, Generator.ORDER_ATOMIC];
+        return [`gps0[5]`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_uart_gps_lcd = function (block) {
 	Generator.prepares_['i2c_lcd'] = Generator.mrubyc_i2c_lcd_init(null);
         return `lcd.clear \n` +
 	       `lcd.cursor(0, 0)\n` + 
-               `lcd.write_string("20#{gps0[9][4]}#{gps0[9][5]}#{gps0[9][2]}#{gps0[9][3]}#{gps0[9][0]}#{gps0[9][1]})"\n` +
+               `lcd.write_string("#{gps0[9][4]}#{gps0[9][5]}-#{gps0[9][2]}#{gps0[9][3]}-#{gps0[9][0]}#{gps0[9][1]}")\n` +
                `lcd.cursor(0, 1)\n` + 
-               `lcd.write_string(sprintf("%06d", gps0[1].to_i).to_s)\n`;
+               `lcd.write_string(sprintf("%s%s:%s%sUTC",gps0[1][0],gps0[1][1],gps0[1][2],gps0[1][3]).to_s)\n`;
     };
     
     Generator.mrubyc_uart_gps_distance_measure = function (block) {
-	const pos = Generator.getFieldValue(block, 'POS') || null;
-        return `lat = "#{data[3][2]}#{data[3][3]}#{data[3][4]}#{data[3][5]}#{data[3][6]}#{data[3][7]}#{data[3][8]}"\n` +
- 	       `lat_del = (lat.to_f - lat_ref.to_f).abs * 1521\n`+
-	       `lng = "#{data[5][3]}#{data[5][4]}#{data[5][5]}#{data[5][6]}#{data[5][7]}#{data[5][8]}#{data[5][9]}"\n`+
-	       `lng_del = (lng.to_f - lng_ref.to_f).abs * 1849\n`+
-	       `gps_del = Math.sqrt(lat_del * lat_del + lng_del * lng_del)\n`;	
+        return `pos0 = "#{gps0[3][0]}#{gps0[3][1]}".to_f \n` +
+	    `pos1 = "#{gps0[3][2]}#{gps0[3][3]}#{gps0[3][4]}#{gps0[3][5]}#{gps0[3][6]}#{gps0[3][7]}#{gps0[3][8]}".to_f \n`+
+	    `pos2 = "#{gps0[5][0]}#{gps0[5][1]}#{gps0[5][2]}".to_f \n` +
+	    `pos3 = "#{gps0[5][3]}#{gps0[5][4]}#{gps0[5][5]}#{gps0[5][6]}#{gps0[5][7]}#{gps0[5][8]}#{gps0[5][9]}".to_f \n`+
+	    `if (sw34.read == 0) && (sw35.read == 0) && (sw18.read == 0)\n` + 
+	    `  led13.write(1) \n  pos = [35,29.8100,133,1.5250] \n` +
+	    `elsif (sw34.read == 1) && (sw35.read == 0) && (sw18.read == 0)\n` +
+	    `  led12.write(1) \n  pos = [35,29.7431,133,1.5960] \n` +
+	    `elsif (sw34.read == 0) && (sw35.read == 1) && (sw18.read == 0)\n`+
+	    `  led14.write(1) \n  pos = [35,29.8635,133,1.5397] \n`+
+	    `elsif (sw34.read == 1) && (sw35.read == 1) && (sw18.read == 0)\n` +
+	    `  led27.write(1) \n  pos = [35,29.7880,133,1.5800] \n`+
+	    `elsif (sw34.read == 0) && (sw35.read == 0) && (sw18.read == 1)\n`+
+	    `  led26.write(1) \n  pos = [35,29.8191,133,1.6020] \n`+
+	    `elsif (sw34.read == 1) && (sw35.read == 0) && (sw18.read == 1)\n`+
+	    `  led25.write(1) \n  pos = [35,29.8160,133,1.5628] \n`+
+	    `elsif (sw34.read == 0) && (sw35.read == 1) && (sw18.read == 1)\n`+
+	    `  led33.write(1) \n  pos = [35,29.8490,133,1.5792] \n`+
+	    `elsif (sw34.read == 1) && (sw35.read == 1) && (sw18.read == 1)\n`+
+	    `  led32.write(1) \n  pos = [35,29.7717,133,1.5980] \n`+
+	    `end\n`+
+	    `lat_del = ( (pos[0] - pos0).abs * 60 + (pos[1] - pos1).abs ) * 1521 \n`+
+	    `lng_del = ( (pos[2] - pos2).abs * 60 + (pos[3] - pos3).abs ) * 1849 \n`+
+	    `gps_del = Math.sqrt(lat_del * lat_del + lng_del * lng_del)\n`;
     };
-    
+
     Generator.mrubyc_uart_gps_distance = function (block) {
-        return [`sprintf("%.1f",gps_del)`, Generator.ORDER_ATOMIC];
+        return [`sprintf("%.1f",gps_del).to_f`, Generator.ORDER_ATOMIC];
     };
 
     
@@ -308,34 +359,20 @@ export default function (Generator) {
     // SDカード
     //
     Generator.mrubyc_spi_sd_init = function (block) {
-        const filename = Generator.valueToCode(block, 'FILE', Generator.ORDER_NONE);
         return `SDSPI.spi_bus_initialize(23, 19, 18)\n` +
  	       `SDSPI.esp_vfs_fat_sdspi_mount(2, "/sdcard")\n`;
     };
 
     Generator.mrubyc_spi_sd_write = function (block) {
-	const filename = Generator.valueToCode(block, 'FILE', Generator.ORDER_NONE);
-	const string   = Generator.valueToCode(block, 'STR',  Generator.ORDER_NONE);
-        return `fid = ESP32_STDIO.fopen("/sdcard/${filename}", "a")\n` +
-	       `ESP32_STDIO.fputs(fid, ${string})\n`+
+	const file = Generator.valueToCode(block, 'FILE', Generator.ORDER_NONE);
+	const str  = Generator.valueToCode(block, 'STR',  Generator.ORDER_NONE);
+        return `fid = ESP32_STDIO.fopen( sprintf("/sdcard/%s",${file}), "a")\n` +
+	       `ESP32_STDIO.fputs(fid, ${str})\n`+
 	       `ESP32_STDIO.fputs(fid, "\\n")\n`+
 	       `ESP32_STDIO.fclose(fid)\n`;
     };
     
-    Generator.mrubyc_spi_sd_matsue_store_data = function (block) {
-	const filename = Generator.valueToCode(block, 'FILE', Generator.ORDER_NONE);
-	const name = Generator.valueToCode(block,   'NAME') || null;
-	const time = Generator.valueToCode(block,   'TIME', Generator.ORDER_NONE);
-	const key  = Generator.getFieldValue(block, 'KEY') || null;
-        const val  = Generator.valueToCode(block,   'VALUE', Generator.ORDER_NONE);
-	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
-        return  `url = sprintf("curl http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?hostname=%s&time=%s&%s=%f&utc=%d",${name},${time},"${key}",${val},${tz})\n`+
-	        `fid = ESP32_STDIO.fopen("/sdcard/${filename}", "a")\n` +
-	        `ESP32_STDIO.fputs(fid, url)\n`+
-	        `ESP32_STDIO.fputs(fid, "\\n")\n`+
-	        `ESP32_STDIO.fclose(fid)\n`;
-    };    
-    
+     
     //
     // SCD30
     //
@@ -367,6 +404,37 @@ export default function (Generator) {
     
     // 高専サーバへの送信
     //
+    Generator.mrubyc_matsue_send = function (block) {
+        const val  = Generator.valueToCode(block,   'VALUE', Generator.ORDER_NONE);
+        return  `HTTPClient.init(${val})\n` +
+                `HTTPClient.invoke()\n` +
+                `HTTPClient.cleanup()\n`;
+    };
+
+    Generator.mrubyc_matsue_mem_init = function (block) {
+        return  `list  = Array.new\n`+
+	        `time0 = 0\n`;
+    };
+    
+    Generator.mrubyc_matsue_mem_store = function (block) {
+        Generator.prepares_['mem'] = Generator.mrubyc_matsue_mem_init(null);
+	const name = Generator.valueToCode(block,   'NAME') || null;
+        return  `if gps0[1].to_i - time0 > 199 \n` +
+	        `  list.push( sprintf("http://pluto.epi.it.matsue-ct.jp/gps/monitoring.php?hostname=%s&time=%s&lat=%s&lng=%s&utc=%d",${name},"20#{gps0[9][4]}#{gps0[9][5]}#{gps0[9][2]}#{gps0[9][3]}#{gps0[9][0]}#{gps0[9][1]}#{sprintf("%06d",gps0[1].to_i)}",gps0[3],gps0[5],1) ) \n`+
+	        `  time0 = gps0[1].to_i \n`+
+  	        `end \n`;
+    };
+
+    Generator.mrubyc_matsue_mem_send = function (block) {
+        Generator.prepares_['mem'] = Generator.mrubyc_matsue_mem_init(null);
+        return  `while list.size > 0 \n`+
+		'  data = list.shift \n'+
+		`  HTTPClient.init( data )\n` +
+                `  HTTPClient.invoke()\n` +
+                `  HTTPClient.cleanup()\n`+
+                `end\n`;		
+	};
+    
     Generator.mrubyc_matsue_send_data = function (block) {
 	const name = Generator.valueToCode(block,   'NAME') || null;
 	const time = Generator.valueToCode(block,   'TIME', Generator.ORDER_NONE);
@@ -377,8 +445,34 @@ export default function (Generator) {
                 `HTTPClient.init(url)\n` +
                 `HTTPClient.invoke()\n` +
                 `HTTPClient.cleanup()\n`;
-    };    
+    };
 
+    Generator.mrubyc_matsue_send_gps = function (block) {
+	const name = Generator.valueToCode(block,   'NAME') || null;
+	const time = Generator.valueToCode(block,   'TIME', Generator.ORDER_NONE);
+	const lat  = Generator.valueToCode(block,   'LAT',  Generator.ORDER_NONE);
+	const lng  = Generator.valueToCode(block,   'LNG',  Generator.ORDER_NONE);
+	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
+        return  `url = sprintf("http://pluto.epi.it.matsue-ct.jp/gps/monitoring.php?hostname=%s&time=%s&lat=%s&lng=%s&utc=%d",${name},${time},${lat},${lng},${tz})\n` +
+                `HTTPClient.init(url)\n` +
+                `HTTPClient.invoke()\n` +
+                `HTTPClient.cleanup()\n`;
+    };
+
+   Generator.mrubyc_spi_sd_matsue_store_data = function (block) {
+	const file = Generator.valueToCode(block,   'FILE', Generator.ORDER_NONE);
+	const name = Generator.valueToCode(block,   'NAME') || null;
+	const time = Generator.valueToCode(block,   'TIME', Generator.ORDER_NONE);
+	const lat  = Generator.valueToCode(block,   'LAT',  Generator.ORDER_NONE);
+	const lng  = Generator.valueToCode(block,   'LNG',  Generator.ORDER_NONE);
+	const tz   = Generator.getFieldValue(block, 'TIMEZONE') || null;
+        return  `url = sprintf("http://es2021.epi.it.matsue-ct.jp/~sugiyama/php/monitoring.php?hostname=%s&time=%s&lat=%s&lng=%s&utc=%d",${name},${time},${lat},${lng},${tz})\n` +
+	        `fid = ESP32_STDIO.fopen( sprintf("/sdcard/%s",${file}), "a")\n` +
+	        `ESP32_STDIO.fputs(fid, "curl \\"#{url}\\"")\n`+
+	        `ESP32_STDIO.fputs(fid, "\\n")\n`+
+	        `ESP32_STDIO.fclose(fid)\n`;
+    };    
+    
 
     //
     // Ambient

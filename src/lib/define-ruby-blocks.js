@@ -243,6 +243,50 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_gpio_sw_status2 = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_gpio_sw_status2',
+                message0: 'スイッチ1 %1, スイッチ2 %2, スイッチ3 %3, スイッチ4 %4',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SW1',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    },
+		    {
+			type: 'field_dropdown',
+                        name: 'SW2',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+		    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'SW3',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+		    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'SW4',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    },
+		],
+		extensions: ['colours_ruby', 'output_boolean']
+            });
+        }
+    };
+
 
     //
     // PWM 
@@ -262,6 +306,33 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_pwm_sound',
+                message0: '%1の音を鳴しっぱなしにする',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SOUND',
+                        options: [
+                            ['ド', '261'],
+                            ['レ', '294'],
+                            ['ミ', '329'],
+                            ['ファ', '349'],
+                            ['ソ', '391'],
+                            ['ラ', '440'],
+                            ['シ', '493'],
+                            ['高いド', '523']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_pwm_sound2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_sound2',
                 message0: '%1の音を%2秒鳴らす',
                 args0: [
                     {
@@ -294,6 +365,17 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_clear',
                 message0: '音を止める',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_pwm_music = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_music',
+                message0: '音楽を鳴らす',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -444,6 +526,17 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_wifi_is_connected = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_wifi_is_connected',
+                message0: 'Wi-fiに接続している？',
+                category: ScratchBlocks.Categories.ruby,
+		extensions: ['colours_ruby', 'output_boolean']
+            });
+        }
+    };
+
     //
     // I2C
     //
@@ -586,7 +679,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_time',
-                message0: 'GPSデータを受信した?',
+                message0: 'GPSで位置が決定できた?',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_boolean']
             });
@@ -641,23 +734,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_distance_measure',
-                message0: 'お宝 %1 までの距離を計算',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'POS',
-                        options: [
-                            ['1', '[1,1]'],
-                            ['2', '[1,2]'],
-                            ['3', '[1,3]'],
-                            ['4', '[1,4]'],
-                            ['5', '[1,5]'],
-                            ['6', '[1,6]'],
-                            ['7', '[1,7]'],
-                            ['8', '[1,8]']
-                        ]
-                    }
-                ],
+                message0: 'お宝までの距離を計算',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -711,54 +788,6 @@ export default function (ScratchBlocks) {
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_spi_sd_matsue_store_data = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_spi_sd_matsue_store_data',
-                message0: 'SDカードに高専サーバにデータを送る情報を保管  ファイル名:%1  名前%2  時刻%3  %4%5  タイムゾーン%6',
-                args0: [
-                    {
-                        type: 'input_value',
-                        name: 'FILE'
-                    },
-                    {
-                        type: 'input_value',
-                        name: 'NAME'
-                    },
-		    {
-                        type: 'input_value',
-                        name: 'TIME'
-                    },
-                    {
-                        type: 'field_dropdown',
-                        name: 'KEY',
-                        options: [
-                            ['温度', 'temp'],
-                            ['湿度', 'humi'],
-                            ['CO2',  'eco2'],
-			    ['緯度', 'lat'],
-			    ['経度', 'lng']
-                        ]
-                    },
-		    {
-                        type: 'input_value',
-                        name: 'VALUE'
-                    },
-		    {
-                        type: 'field_dropdown',
-                        name: 'TIMEZONE',
-                        options: [
-                            ['JST', '0'],
-			    ['UTC', '1']
-                        ]
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-    
     //
     // SCD30
     //
@@ -827,11 +856,67 @@ export default function (ScratchBlocks) {
             });
         }
     };
-
+    
 
     //
     //高専サーバへの送信
     //
+    ScratchBlocks.Blocks.mrubyc_matsue_send = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_send',
+                message0: '%1を送信',
+                args0: [
+		    {
+                        type: 'input_value',
+                        name: 'VALUE'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_matsue_mem_init = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_mem_init',
+                message0: 'データをメモリに入れるための宣言',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_matsue_mem_store = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_mem_store',
+                message0: 'GPSデータをメモリに保存　名前%1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_matsue_mem_send = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_mem_send',
+                message0: 'メモリに保存したデータを送信',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.mrubyc_matsue_send_data = {
         init: function () {
             this.jsonInit({
@@ -852,9 +937,7 @@ export default function (ScratchBlocks) {
                         options: [
                             ['温度', 'temp'],
                             ['湿度', 'humi'],
-                            ['CO2',  'eco2'],
-			    ['緯度', 'lat'],
-			    ['経度', 'lng']
+                            ['CO2',  'eco2']
                         ]
                     },
 		    {
@@ -876,6 +959,84 @@ export default function (ScratchBlocks) {
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_matsue_send_gps = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_send_gps',
+                message0: '高専サーバに GPS データを送る　名前%1  時刻%2  緯度%3　経度%4  タイムゾーン%5',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'TIME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'LAT'
+		    },
+		    {
+                        type: 'input_value',
+                        name: 'LNG'
+                    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'TIMEZONE',
+                        options: [
+			    ['UTC', '1'],
+                            ['JST', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_spi_sd_matsue_store_data = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_spi_sd_matsue_store_data',
+                message0: 'SDカードにGPSデータを保管　ファイル名:%1　名前%2  時刻%3  緯度%4　経度%5  タイムゾーン%6',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'FILE'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'TIME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'LAT'
+		    },
+		    {
+                        type: 'input_value',
+                        name: 'LNG'
+                    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'TIMEZONE',
+                        options: [
+			    ['UTC', '1'],
+                            ['JST', '0']
+                        ]
+                    },
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+    
     
     //
     //Ambient

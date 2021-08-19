@@ -759,9 +759,31 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_gpio_sw_status2">
+            <value name="SW1">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="SW2">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="SW3">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="SW4">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
         ${blockSeparator}
 
-        <block type="mrubyc_pwm_sound">
+        <block type="mrubyc_pwm_sound2">
             <value name="SOUND">
                 <shadow type="math_number">
                     <field name="NUM"></field>
@@ -773,7 +795,16 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_pwm_sound">
+            <value name="SOUND">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
         <block type="mrubyc_pwm_clear">
+        </block>
+        <block type="mrubyc_pwm_music">
         </block>
         ${blockSeparator}
 
@@ -843,6 +874,8 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_wifi_is_connected">
+        </block>
         ${blockSeparator}
 
         <block type="mrubyc_i2c_rtc_sntp_init">
@@ -863,7 +896,7 @@ const ruby = function () {
             </value>
             <value name="TEXT">
                 <shadow type="text">
-                    <field name="TEXT"></field>
+                    <field name="TEXT">otakara</field>
                 </shadow>
             </value>
         </block>
@@ -884,11 +917,6 @@ const ruby = function () {
         <block type="mrubyc_uart_gps_lcd">
         </block>
         <block type="mrubyc_uart_gps_distance_measure">
-            <value name="POS">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
         </block>
         <block type="mrubyc_uart_gps_distance">
         </block>
@@ -913,40 +941,24 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_spi_sd_matsue_store_data">
-            <value name="FILE">
+        ${blockSeparator}
+
+        <block type="mrubyc_matsue_send">
+            <value name="VALUE">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
             </value>
+        </block>
+        <block type="mrubyc_matsue_mem_store">
             <value name="NAME">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
             </value>
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="KEY">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="VALUE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="TIMEZONE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
         </block>
-        ${blockSeparator}
-
+        <block type="mrubyc_matsue_mem_send">
+        </block>
         <block type="mrubyc_matsue_send_data">
             <value name="NAME">
                 <shadow type="text">
@@ -974,9 +986,66 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_matsue_send_gps">
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="LAT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="LNG">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIMEZONE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_spi_sd_matsue_store_data">
+            <value name="FILE">
+                <shadow type="text">
+                    <field name="TEXT">data.txt</field>
+                </shadow>
+            </value>
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT">NAME</field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="LAT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="LNG">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIMEZONE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
         ${blockSeparator}
-
-
 
         <block type="mrubyc_ambient_send_to">
             <value name="ID">
