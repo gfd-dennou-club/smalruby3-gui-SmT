@@ -10,13 +10,51 @@ export default function (ScratchBlocks) {
     }
     ScratchBlocks.Categories[name] = name;
     ScratchBlocks.Colours[name] = {
-        primary: '#CC0043',
-        secondary: '#DB4D7B',
-        tertiary: '#7A0028'
+        primary: '#CC0043',    //ブロックのメインの色
+        secondary: '#DB4D7B',  //円の縁の色
+        tertiary: '#7A0028'    //ブロックの縁の色
     };
     ScratchBlocks.Extensions.register(
         `colours_${name}`,
         ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(name)
+    );
+
+    const name2 = 'tester';
+    if (ScratchBlocks.Categories.hasOwnProperty(name2)) {
+        return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[name2] = name2;
+    ScratchBlocks.Colours[name2] = {
+        primary: '#1E90FF',
+        secondary: '#0000FF',
+        tertiary: '#6495ED'
+    };
+    ScratchBlocks.Extensions.register(
+        `colours_${name2}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(name2)
+    );
+
+    //色を追加
+    const simu = 'simu';
+    ScratchBlocks.Colours[simu] = {
+        primary: '#FF4500',    //ブロックのメインの色
+        secondary: '#D2691E',  //円の縁の色
+        tertiary: '#FF8C00'    //ブロックの縁の色
+    };
+    ScratchBlocks.Extensions.register(
+        `colours_${simu}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(simu)
+    );
+
+    const simu2 = 'simu2';
+    ScratchBlocks.Colours[simu2] = {
+        primary: '#0000FF',    //ブロックのメインの色
+        secondary: '#D2691E',  //円の縁の色
+        tertiary: '#1E90FF'    //ブロックの縁の色
+    };
+    ScratchBlocks.Extensions.register(
+        `colours_${simu2}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(simu2)
     );
 
     ScratchBlocks.Blocks.ruby_statement = {
@@ -39,6 +77,7 @@ export default function (ScratchBlocks) {
     //
     // GPIO 
     //
+
     ScratchBlocks.Blocks.mrubyc_gpio_output_init = {
         init: function () {
             this.jsonInit({
@@ -152,7 +191,7 @@ export default function (ScratchBlocks) {
                     }
                 ],
                 category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
+                extensions: ['colours_simu', 'shape_statement']
             });
         }
     };
@@ -225,7 +264,7 @@ export default function (ScratchBlocks) {
         init: function() {
             this.jsonInit({
                 type: 'mrubyc_gpio_sw_status',
-                message0: '%1はON?',
+                message0: '%1がON',
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -238,7 +277,7 @@ export default function (ScratchBlocks) {
                         ]
                     },
               ],
-		extensions: ['colours_ruby', 'output_boolean']
+		extensions: ['colours_simu', 'output_boolean']
             });
         }
     };
@@ -306,7 +345,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_pwm_sound',
-                message0: '%1の音を鳴しっぱなしにする',
+                message0: '%1の音を鳴らす',
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -401,7 +440,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_adc_measure',
-                message0: '基板上の温度計で温度計測',
+                message0: '基板上の温度計で温度を測る',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             })
@@ -418,63 +457,6 @@ export default function (ScratchBlocks) {
             });
         }
     };
-
-    
-    ////
-    //// SHT75 温湿度センサ
-    ////
-
-    ScratchBlocks.Blocks.mrubyc_sht_init = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_sht_init',
-                message0: '%1ポートの拡張温度センサを使う',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'SHT',
-                        options: [
-                            ['1', '25,26'],
-                            ['2', '32,33'],
-			    ['旧1', '5,23'],
-			    ['旧2', '2,4']
-                        ]
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_sht_get_temp = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_sht_get_temp',
-                message0: '拡張温度センサの気温',
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'output_number']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_sht_get_humi = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_sht_get_temp',
-                message0: '拡張温度センサの湿度  気温：%1',
-                args0: [
-                    {
-                        type: 'input_value',
-                        name: 'TEMP'
-                    }
-                ],
-                category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_ruby', 'output_number']
-            });
-        }
-    };
-    
     
     //
     // WIFI
@@ -530,7 +512,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_wifi_is_connected',
-                message0: 'Wi-fiに接続している？',
+                message0: 'Wi-fiに接続している',
                 category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_ruby', 'output_boolean']
             });
@@ -581,13 +563,59 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time',
-                message0: '現在の時刻 (NTP)',
+                message0: '現在の時:分:秒 (NTP)',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_number']
             });
         }
     };
 
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time_1 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time_1',
+                message0: '現在の年-月-日 (NTP)',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time2',
+                message0: '現在の%1 (NTP)',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'TIME',
+                        options: [
+                            ['年', '0'],
+                            ['月', '1'],
+                            ['日', '2'],
+                            ['時', '4'],
+                            ['分', '5'],
+                            ['秒', '6']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time_send = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time_send',
+                message0: '現在の時刻（ザーバ転送用） (NTP)',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
     
     ScratchBlocks.Blocks.mrubyc_i2c_rtc_lcd = {
         init: function () {
@@ -607,7 +635,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_lcd_init',
-                message0: '液晶ディスプレイを使う',
+                message0: 'モニターを使う',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -643,7 +671,17 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_lcd_clear',
-                message0: 'モニターの文字を消す',
+                message0: 'モニターの%1行目の文字を消す',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LINE2',
+                        options: [
+                            ['1', '0'],
+                            ['2', '1'],
+                        ]
+                    }
+                ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'shape_statement']
             });
@@ -679,7 +717,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_time',
-                message0: 'GPSで位置が決定できた?',
+                message0: 'GPSデータが取得できた',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_boolean']
             });
@@ -718,6 +756,29 @@ export default function (ScratchBlocks) {
             });
         }
     };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_val = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_val',
+                message0: 'GPSの%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'GPSVAL',
+                        options: [
+                            ['緯度', '3'],
+                            ['経度', '5'],
+                            ['時刻', '1']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
+    
 
     ScratchBlocks.Blocks.mrubyc_uart_gps_lcd = {
         init: function () {
@@ -777,7 +838,7 @@ export default function (ScratchBlocks) {
                         type: 'input_value',
                         name: 'FILE'
                     },
-		    {
+		            {
                         type: 'input_value',
                         name: 'STR'
                     },
@@ -806,7 +867,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_statue',
-                message0: 'SCD30からデータ取得可能?',
+                message0: 'SCD30からデータ取得可能',
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_boolean']
             });
@@ -857,6 +918,27 @@ export default function (ScratchBlocks) {
         }
     };
     
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_val = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_val',
+                message0: '%1(SCD30)',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SCD30VALUE',
+                        options: [
+                            ['CO2濃度', '0'],
+                            ['温度', '1'],
+                            ['湿度', '2']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'output_number']
+            });
+        }
+    };
 
     //
     //高専サーバへの送信
@@ -921,13 +1003,17 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_matsue_send_data',
-                message0: '高専サーバにデータを送る　名前%1  時刻%2  %3%4  タイムゾーン%5',
+                message0: 'サーバにデータを送る URL%1　名前%2  時刻%3  %4%5  %6%7　タイムゾーン%8',
                 args0: [
+                    {
+                        type: 'input_value',
+                        name: 'URL'
+                    },
                     {
                         type: 'input_value',
                         name: 'NAME'
                     },
-		    {
+		            {
                         type: 'input_value',
                         name: 'TIME'
                     },
@@ -937,19 +1023,36 @@ export default function (ScratchBlocks) {
                         options: [
                             ['温度', 'temp'],
                             ['湿度', 'humi'],
-                            ['CO2',  'eco2']
+                            ['CO2',  'eco2'],
+                            ['緯度', 'LAT'],
+                            ['経度', 'LNG']
                         ]
                     },
-		    {
+		            {
                         type: 'input_value',
                         name: 'VALUE'
                     },
-		    {
+                    {
+                        type: 'field_dropdown',
+                        name: 'KEY2',
+                        options: [
+                            ['湿度', 'humi'],
+                            ['温度', 'temp'],
+                            ['CO2',  'eco2'],
+                            ['緯度', 'LAT'],
+                            ['軽度', 'LNG']
+                        ]
+                    },
+		            {
+                        type: 'input_value',
+                        name: 'VALUE2'
+                    },
+		            {
                         type: 'field_dropdown',
                         name: 'TIMEZONE',
                         options: [
                             ['JST', '0'],
-			    ['UTC', '1']
+			                ['UTC', '1']
                         ]
                     }
                 ],
@@ -1275,6 +1378,1400 @@ export default function (ScratchBlocks) {
                 ],
                 category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_ruby', 'output_boolean']
+            });
+        }
+    };
+
+    //
+    //ここからSMT(普通)用
+    //
+
+    ScratchBlocks.Blocks.mrubyc_gpio_output_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_output_init_2',
+                message0: '%1を出力モードで使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['LED1', '13'],
+                            ['LED2', '12'],
+                            ['LED3', '14'],
+                            ['LED4', '27'],
+                            ['LED5', '26'],
+                            ['LED6', '25'],
+                            ['LED7', '33'],
+                            ['LED8', '32']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_simu2', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_output_all_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_output_all_init_2',
+                message0: 'LED1 ~ LED8 を出力モードで使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_output_half_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_output_half_init_2',
+                message0: 'LED1 ~ LED4 を出力モードで使う(拡張温度計を使う場合)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_input_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_input_init_2',
+                message0: '%1を入力モードで使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['スイッチ1', '34'],
+                            ['スイッチ2', '35'],
+                            ['スイッチ3', '18'],
+                            ['スイッチ4', '19']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_simu2', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_input_all_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_input_all_init_2',
+                message0: 'スイッチを全て入力モードで使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_set_level_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_set_level_2',
+                message0: '%1を%2にする',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: [
+                            ['LED1', '13'],
+                            ['LED2', '12'],
+                            ['LED3', '14'],
+                            ['LED4', '27'],
+                            ['LED5', '26'],
+                            ['LED6', '25'],
+                            ['LED7', '33'],
+                            ['LED8', '32']
+                        ]
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'STATE',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_simu2', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_set_half_level_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_set_half_level_2',
+                message0: 'LED1~LED4をまとめて%1する',
+		args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'STATE',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_set_all_level_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_gpio_set_all_level_2',
+                message0: 'LED1~LED8をまとめて%1する',
+		args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'STATE',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_get_level_2 = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_gpio_get_level_2',
+                message0: '%1の状態',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SW',
+                        options: [
+                            ['スイッチ1', '34'],
+                            ['スイッチ2', '35'],
+                            ['スイッチ3', '18'],
+                            ['スイッチ4', '19']
+                        ]
+                    },
+              ],
+              extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_sw_status_2 = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_gpio_sw_status_2',
+                message0: '%1がON',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SW',
+                        options: [
+                            ['スイッチ1', '34'],
+                            ['スイッチ2', '35'],
+                            ['スイッチ3', '18'],
+                            ['スイッチ4', '19']
+                        ]
+                    },
+              ],
+		extensions: ['colours_simu2', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_gpio_sw_status2_2 = {
+        init: function() {
+            this.jsonInit({
+                type: 'mrubyc_gpio_sw_status2_2',
+                message0: 'スイッチ1 %1, スイッチ2 %2, スイッチ3 %3, スイッチ4 %4',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SW1',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    },
+		    {
+			type: 'field_dropdown',
+                        name: 'SW2',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+		    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'SW3',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+		    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'SW4',
+                        options: [
+                            ['ON', '1'],
+                            ['OFF', '0']
+                        ]
+                    },
+		],
+		extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+
+    //
+    // PWM 
+    //
+    ScratchBlocks.Blocks.mrubyc_pwm_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_init_2',
+                message0: 'ブザーを出力モードで使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_pwm_sound_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_sound_2',
+                message0: '%1の音を鳴らす',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SOUND',
+                        options: [
+                            ['ド', '261'],
+                            ['レ', '294'],
+                            ['ミ', '329'],
+                            ['ファ', '349'],
+                            ['ソ', '391'],
+                            ['ラ', '440'],
+                            ['シ', '493'],
+                            ['高いド', '523']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_pwm_sound2_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_sound2_2',
+                message0: '%1の音を%2秒鳴らす',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SOUND',
+                        options: [
+                            ['ド', '261'],
+                            ['レ', '294'],
+                            ['ミ', '329'],
+                            ['ファ', '349'],
+                            ['ソ', '391'],
+                            ['ラ', '440'],
+                            ['シ', '493'],
+                            ['高いド', '523']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TIME'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_pwm_clear_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_clear_2',
+                message0: '音を止める',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_pwm_music_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_pwm_music_2',
+                message0: '音楽を鳴らす',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+
+    //
+    // ADC
+    //
+    ScratchBlocks.Blocks.mrubyc_adc_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_adc_init_2',
+                message0: '基板上の温度計を使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_adc_measure_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_adc_measure_2',
+                message0: '基板上の温度計で温度を測る',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            })
+        }
+    }
+
+    ScratchBlocks.Blocks.mrubyc_adc_read_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_adc_read_2',
+                message0: '基板上の温度計の温度',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    
+    ////
+    //// SHT75 温湿度センサ
+    ////
+
+    ScratchBlocks.Blocks.mrubyc_sht_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_sht_init_2',
+                message0: '%1ポートの拡張温度センサを使う',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SHT',
+                        options: [
+                            ['1', '25,26'],
+                            ['2', '32,33'],
+			    ['旧1', '5,23'],
+			    ['旧2', '2,4']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_sht_get_temp_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_sht_get_temp_2',
+                message0: '拡張温度センサの気温',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_sht_get_humi_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_sht_get_humi_2',
+                message0: '拡張温度センサの湿度  気温：%1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'TEMP'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+    
+    
+    //
+    // WIFI
+    // 
+    ScratchBlocks.Blocks.mrubyc_wifi_enterprise_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_wifi_enterprise_init_2',
+                message0: '企業Wi-fiに接続する SSID:%1 ユーザー名:%2 パスワード:%3',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'SSID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'USERNAME'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'PASSWORD'
+                    },
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    
+    ScratchBlocks.Blocks.mrubyc_wifi_personal_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_wifi_personal_init_2',
+                message0: '個人Wi-fiに接続する SSID:%1 パスワード:%2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'SSID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'PASSWORD'
+                    },
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_wifi_is_connected_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_wifi_is_connected_2',
+                message0: 'Wi-fiに接続している',
+                category: ScratchBlocks.Categories.tester,
+		extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+    //
+    // I2C
+    //
+    ScratchBlocks.Blocks.mrubyc_i2c_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_init_2',
+                message0: 'I2C センサーを使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ////
+    //// RTC + SNTP
+    ////
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_sntp_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_sntp_init_2',
+                message0: '時計合わせ (NTP)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_get_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_get_2',
+                message0: '現在の時刻を取得する (NTP)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time_2',
+                message0: '現在の時:分:秒 (NTP)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time_1_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time_1_2',
+                message0: '現在の年-月-日 (NTP)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time2_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time2_2',
+                message0: '現在の%1 (NTP)',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'TIME',
+                        options: [
+                            ['年', '0'],
+                            ['月', '1'],
+                            ['日', '2'],
+                            ['時', '4'],
+                            ['分', '5'],
+                            ['秒', '6']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_lcd_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_lcd_2',
+                message0: 'モニターに現在の時刻を表示する (NPT)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_time_send_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_time_send_2',
+                message0: '現在の時刻（ザーバ転送用） (NTP)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ////
+    //// LCD
+    ////
+    ScratchBlocks.Blocks.mrubyc_i2c_lcd_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_lcd_init_2',
+                message0: 'モニターを使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_i2c_lcd_write_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_lcd_write_2',
+                message0: 'モニターの%1行目に%2と書く',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LINE',
+                        options: [
+                            ['1', '0'],
+                            ['2', '1']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TEXT'
+                    },
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_lcd_clear_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_lcd_clear_2',
+                message0: 'モニターの%1行目の文字を消す',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LINE2',
+                        options: [
+                            ['1', '0'],
+                            ['2', '1'],
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    //
+    // GPS
+    //
+    ScratchBlocks.Blocks.mrubyc_uart_gps_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_init_2',
+                message0: 'GPS を使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_read_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_read_2',
+                message0: 'GPSデータの取得',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_status_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_time_2',
+                message0: 'GPSで位置が決定できた',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_time_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_time_2',
+                message0: 'GPSの時刻',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_lat_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_lat_2',
+                message0: 'GPSの緯度',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_lng_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_lng_2',
+                message0: 'GPSの経度',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_lcd_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_lcd_2',
+                message0: 'モニターにGPSの時刻を表示する',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_distance_measure_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_distance_measure_2',
+                message0: 'お宝までの距離を計算',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_uart_gps_distance_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_uart_gps_distance_2',
+                message0: 'お宝までの距離',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    
+    //
+    // SDカード
+    //
+    ScratchBlocks.Blocks.mrubyc_spi_sd_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_spi_sd_init_2',
+                message0: 'SDカードを使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_spi_sd_write_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_spi_sd_write_2',
+                message0: 'SDカードに書き込む  ファイル名:%1  文字列:%2',
+		args0: [
+                    {
+                        type: 'input_value',
+                        name: 'FILE'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'STR'
+                    },
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    //
+    // SCD30
+    //
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_init_2',
+                message0: 'CO2センサSCD30を使う',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_status_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_statue_2',
+                message0: 'SCD30からデータ取得可能',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_read_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_read_2',
+                message0: 'SCD30センサからデータ取得する',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_co2_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_co2_2',
+                message0: 'CO2濃度(SCD30)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_temp_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_temp_2',
+                message0: '温度(SCD30)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_humi_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_humi_2',
+                message0: '湿度(SCD30)',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_scd30_val_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_scd30_val_2',
+                message0: '%1(SCD30)',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SCD30VALUE',
+                        options: [
+                            ['CO2濃度', '0'],
+                            ['温度', '1'],
+                            ['湿度', '2']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_number']
+            });
+        }
+    };
+    
+
+    //
+    //高専サーバへの送信
+    //
+    ScratchBlocks.Blocks.mrubyc_matsue_send_data_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_send_data_2',
+                message0: 'サーバにデータを送る URL%1　名前%2  時刻%3  %4%5  %6%7　タイムゾーン%8',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'URL'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    },
+		            {
+                        type: 'input_value',
+                        name: 'TIME'
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'KEY',
+                        options: [
+                            ['温度', 'temp'],
+                            ['湿度', 'humi'],
+                            ['CO2',  'eco2'],
+                            ['緯度', 'LAT'],
+                            ['経度', 'LNG']
+                        ]
+                    },
+		            {
+                        type: 'input_value',
+                        name: 'VALUE'
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'KEY2',
+                        options: [
+                            ['湿度', 'humi'],
+                            ['温度', 'temp'],
+                            ['CO2',  'eco2'],
+                            ['緯度', 'LAT'],
+                            ['軽度', 'LNG']
+                        ]
+                    },
+		            {
+                        type: 'input_value',
+                        name: 'VALUE2'
+                    },
+		            {
+                        type: 'field_dropdown',
+                        name: 'TIMEZONE',
+                        options: [
+                            ['JST', '0'],
+			                ['UTC', '1']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_matsue_send_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_send_2',
+                message0: '%1を送信',
+                args0: [
+		    {
+                        type: 'input_value',
+                        name: 'VALUE'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_matsue_mem_init_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_mem_init_2',
+                message0: 'データをメモリに入れるための宣言',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_matsue_mem_store_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_mem_store_2',
+                message0: 'GPSデータをメモリに保存　名前%1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+    
+    ScratchBlocks.Blocks.mrubyc_matsue_mem_send_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_mem_send_2',
+                message0: 'メモリに保存したデータを送信',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_matsue_send_gps_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_matsue_send_gps_2',
+                message0: '高専サーバに GPS データを送る　名前%1  時刻%2  緯度%3　経度%4  タイムゾーン%5',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'TIME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'LAT'
+		    },
+		    {
+                        type: 'input_value',
+                        name: 'LNG'
+                    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'TIMEZONE',
+                        options: [
+			    ['UTC', '1'],
+                            ['JST', '0']
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_spi_sd_matsue_store_data_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_spi_sd_matsue_store_data_2',
+                message0: 'SDカードにGPSデータを保管　ファイル名:%1　名前%2  時刻%3  緯度%4　経度%5  タイムゾーン%6',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'FILE'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'NAME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'TIME'
+                    },
+		    {
+                        type: 'input_value',
+                        name: 'LAT'
+		    },
+		    {
+                        type: 'input_value',
+                        name: 'LNG'
+                    },
+		    {
+                        type: 'field_dropdown',
+                        name: 'TIMEZONE',
+                        options: [
+			    ['UTC', '1'],
+                            ['JST', '0']
+                        ]
+                    },
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+    
+    
+    //
+    //Ambient
+    //
+    ScratchBlocks.Blocks.mrubyc_ambient_send_to_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_ambient_send_to_2',
+                message0: 'AmbientのチャネルID：%1 リードキー：%2 ライトキー：%3',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'ID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'RKEY'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'WKEY'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_ambient_add_data_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_ambient_add_data_2',
+                message0: '送るデータ %1%2 %3%4',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'D1',
+                        options: [
+                            ['d1', 'd1'],
+                            ['d2', 'd2'],
+                            ['d3', 'd3'],
+                            ['d4', 'd4'],
+                            ['d5', 'd5'],
+                            ['d6', 'd6'],
+                            ['d7', 'd7'],
+                            ['d8', 'd8']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DATA1'
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'D2',
+                        options: [
+                            ['d1', 'd1'],
+                            ['d2', 'd2'],
+                            ['d3', 'd3'],
+                            ['d4', 'd4'],
+                            ['d5', 'd5'],
+                            ['d6', 'd6'],
+                            ['d7', 'd7'],
+                            ['d8', 'd8']
+                        ]
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DATA2'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_ambient_data_send_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_ambient_data_send_2',
+                message0: 'Ambientにデータを送信',
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+    
+
+
+    //
+    // その他
+    //
+
+    ScratchBlocks.Blocks.mrubyc_while_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_while_2',
+                message0: '%1の間繰り返す',
+                message1: '%1',
+                message2: '',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'CONDITION'
+                    }
+                ],
+                args1: [
+                    {
+                        type: 'input_statement',
+                        name: 'SUBSTACK'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_puts_2= {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_puts_2',
+                message0: 'puts %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'OUTPUT'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_puts_var_2= {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_puts_var_2',
+                message0: 'puts_var %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'OUTPUT'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.ruby_statement_with_block_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'ruby_statement_with_block_2',
+                message0: '%1 do %2',
+                message1: '%1',
+                message2: 'end',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'STATEMENT'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'ARGS'
+                    }
+                ],
+                args1: [
+                    {
+                        type: 'input_statement',
+                        name: 'SUBSTACK'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.ruby_expression_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'ruby_expression_2',
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'EXPRESSION'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.ruby_range_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'ruby_range_2',
+                message0: '%1..%2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'FROM'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TO'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.ruby_exclude_range_2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'ruby_exclude_range_2',
+                message0: '%1...%2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'FROM'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'TO'
+                    }
+                ],
+                category: ScratchBlocks.Categories.tester,
+                extensions: ['colours_tester', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.test = {
+        init: function () {
+            this.jsonInit({
+                type: 'test',
+                message0: 'テスト',   //ブロックに表示させるテキスト
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.test2 = {
+        init: function () {
+            this.jsonInit({
+                type: 'test2',
+                message0: 'テスト2%1',
+                //ここでドロップダウンボックスを作る
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'number',
+                        options: [
+                            ['a', 'hello'],
+                            ['b', 'world'],
+                            ['c', 'hgoehoge'],
+                        ]
+                    }
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.test3 = {
+        init: function () {
+            this.jsonInit({
+                type: 'test3',
+                message0: 'テスト3%1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'TEXT2'
+                    },
+                ],
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_ruby', 'shape_statement']
             });
         }
     };

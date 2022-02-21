@@ -4,7 +4,7 @@ const categorySeparator = '<sep gap="36"/>';
 
 const blockSeparator = '<sep gap="36"/>'; // At default scale, about 28px
 
-const motion = function (isStage, targetId) {
+/*const motion = function (isStage, targetId) {
     const stageSelected = ScratchBlocks.ScratchMsgs.translate(
         'MOTION_STAGE_SELECTED',
         'Stage selected: no motion blocks'
@@ -136,9 +136,9 @@ const motion = function (isStage, targetId) {
         ${categorySeparator}
     </category>
     `;
-};
+};*/
 
-const looks = function (isStage, targetId) {
+/*const looks = function (isStage, targetId) {
     const hello = ScratchBlocks.ScratchMsgs.translate('LOOKS_HELLO', 'Hello!');
     const hmm = ScratchBlocks.ScratchMsgs.translate('LOOKS_HMM', 'Hmm...');
     return `
@@ -265,9 +265,9 @@ const looks = function (isStage, targetId) {
         ${categorySeparator}
     </category>
     `;
-};
+};*/
 
-const sound = function (isStage, targetId) {
+/*const sound = function (isStage, targetId) {
     return `
     <category name="%{BKY_CATEGORY_SOUND}" id="sound" colour="#D65CD6" secondaryColour="#BD42BD">
         <block id="${targetId}_sound_playuntildone" type="sound_playuntildone">
@@ -316,9 +316,9 @@ const sound = function (isStage, targetId) {
         ${categorySeparator}
     </category>
     `;
-};
+};*/
 
-const events = function (isStage) {
+/*const events = function (isStage) {
     return `
     <category name="%{BKY_CATEGORY_EVENTS}" id="events" colour="#FFD500" secondaryColour="#CC9900">
         <block type="event_whenflagclicked"/>
@@ -355,7 +355,7 @@ const events = function (isStage) {
         ${categorySeparator}
     </category>
     `;
-};
+};*/
 
 const control = function (isStage) {
     return `
@@ -404,7 +404,7 @@ const control = function (isStage) {
     `;
 };
 
-const sensing = function (isStage) {
+/*const sensing = function (isStage) {
     const name = ScratchBlocks.ScratchMsgs.translate('SENSING_ASK_TEXT', 'What\'s your name?');
     return `
     <category name="%{BKY_CATEGORY_SENSING}" id="sensing" colour="#4CBFE6" secondaryColour="#2E8EB8">
@@ -475,7 +475,7 @@ const sensing = function (isStage) {
         ${categorySeparator}
     </category>
     `;
-};
+};*/
 
 const operators = function () {
     const apple = ScratchBlocks.ScratchMsgs.translate('OPERATORS_JOIN_APPLE', 'apple');
@@ -662,7 +662,7 @@ const operators = function () {
     `;
 };
 
-const variables = function () {
+/*const variables = function () {
     return `
     <category
         name="%{BKY_CATEGORY_VARIABLES}"
@@ -672,9 +672,9 @@ const variables = function () {
         custom="VARIABLE">
     </category>
     `;
-};
+};*/
 
-const myBlocks = function () {
+/*const myBlocks = function () {
     return `
     <category
         name="%{BKY_CATEGORY_MYBLOCKS}"
@@ -684,12 +684,12 @@ const myBlocks = function () {
         custom="PROCEDURE">
     </category>
     `;
-};
+};*/
 
 ScratchBlocks.Msg.CATEGORY_RUBY = 'Ruby';
 ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_RUBY = 'Ruby';
-ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_RUBY = 'ルビー';
-ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_RUBY = 'ルビー';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_RUBY = 'かんたん';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_RUBY = 'かんたん';
 
 const ruby = function () {
     return `
@@ -699,26 +699,24 @@ const ruby = function () {
         colour="#CC0043"
         secondaryColour="#FF4D6A">
 
-	<block type="mrubyc_gpio_output_init">
-            <value name="PIN">
+        <block type="test">
+        </block>
+        <block type="test2">
+            <value name="number">
                 <shadow type="math_number">
                     <field name="NUM"></field>
                 </shadow>
             </value>
         </block>
-	<block type="mrubyc_gpio_output_half_init">
-        </block>
-	<block type="mrubyc_gpio_output_all_init">
-        </block>
-        <block type="mrubyc_gpio_input_init">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
+
+        <block type="test3">
+            <value name="TEXT2">
+                <shadow type="text">
+                    <field name="TEXT"></field>
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_gpio_input_all_init">
-        </block>
+
         <block type="mrubyc_gpio_set_level">
             <value name="PIN">
                 <shadow type="math_number">
@@ -731,27 +729,8 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-	<block type="mrubyc_gpio_set_half_level">
-            <value name="STATE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-	<block type="mrubyc_gpio_set_all_level">
-            <value name="STATE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_gpio_get_level">
-            <value name="SW">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
+        ${blockSeparator}
+
         <block type="mrubyc_gpio_sw_status">
             <value name="SW">
                 <shadow type="math_number">
@@ -759,42 +738,8 @@ const ruby = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_gpio_sw_status2">
-            <value name="SW1">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-            <value name="SW2">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-            <value name="SW3">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-            <value name="SW4">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
         ${blockSeparator}
 
-        <block type="mrubyc_pwm_sound2">
-            <value name="SOUND">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="TIME">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-        </block>
         <block type="mrubyc_pwm_sound">
             <value name="SOUND">
                 <shadow type="math_number">
@@ -804,7 +749,21 @@ const ruby = function () {
         </block>
         <block type="mrubyc_pwm_clear">
         </block>
-        <block type="mrubyc_pwm_music">
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_lcd_write">
+            <value name="LINE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_lcd_clear">
         </block>
         ${blockSeparator}
 
@@ -812,56 +771,6 @@ const ruby = function () {
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_sht_init">
-            <value name="SHT">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_sht_get_temp">
-        </block>
-        <block type="mrubyc_sht_get_humi">
-            <value name="TEMP">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_i2c_scd30_init">
-        </block>
-        <block type="mrubyc_i2c_scd30_status">
-        </block>
-        <block type="mrubyc_i2c_scd30_read">
-        </block>
-        <block type="mrubyc_i2c_scd30_co2">
-        </block>
-        <block type="mrubyc_i2c_scd30_temp">
-        </block>
-        <block type="mrubyc_i2c_scd30_humi">
-        </block>
-
-        ${blockSeparator}
-
-        <block type="mrubyc_wifi_enterprise_init">
-            <value name="SSID">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="USERNAME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="PASSWORD">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
         <block type="mrubyc_wifi_personal_init">
             <value name="SSID">
                 <shadow type="text">
@@ -878,57 +787,20 @@ const ruby = function () {
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_i2c_rtc_sntp_init">
+        <block type="mrubyc_i2c_rtc_time2">
         </block>
-        <block type="mrubyc_i2c_rtc_get">
+        <block type="mrubyc_i2c_rtc_time_1">
         </block>
         <block type="mrubyc_i2c_rtc_time">
         </block>
-        <block type="mrubyc_i2c_rtc_lcd">
+        <block type="mrubyc_i2c_rtc_time_send">
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_i2c_lcd_write">
-            <value name="LINE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="TEXT">
-                <shadow type="text">
-                    <field name="TEXT">otakara</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_i2c_lcd_clear">
+        <block type="mrubyc_i2c_scd30_val">
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_uart_gps_read">
-        </block>
-        <block type="mrubyc_uart_gps_status">
-        </block>
-        <block type="mrubyc_uart_gps_time">
-        </block>
-        <block type="mrubyc_uart_gps_lat">
-        </block>
-        <block type="mrubyc_uart_gps_lng">
-        </block>
-        <block type="mrubyc_uart_gps_lcd">
-        </block>
-        <block type="mrubyc_uart_gps_distance_measure">
-        </block>
-        <block type="mrubyc_uart_gps_distance">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_spi_sd_init">
-            <value name="FILE">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
         <block type="mrubyc_spi_sd_write">
             <value name="FILE">
                 <shadow type="text">
@@ -943,23 +815,12 @@ const ruby = function () {
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_matsue_send">
-            <value name="VALUE">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_matsue_mem_store">
-            <value name="NAME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_matsue_mem_send">
-        </block>
         <block type="mrubyc_matsue_send_data">
+            <value name="URL">
+                <shadow type="text">
+                    <field name="TEXT">http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?</field>
+                </shadow>
+            </value>
             <value name="NAME">
                 <shadow type="text">
                     <field name="TEXT"></field>
@@ -980,31 +841,14 @@ const ruby = function () {
                     <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="TIMEZONE">
+            <value name="KEY2">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE2">
                 <shadow type="math_number">
                     <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_matsue_send_gps">
-            <value name="NAME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="LAT">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="LNG">
-                <shadow type="text">
-                    <field name="TEXT"></field>
                 </shadow>
             </value>
             <value name="TIMEZONE">
@@ -1012,87 +856,216 @@ const ruby = function () {
                     <field name="NUM"></field>
                 </shadow>
             </value>
-        </block>
-        <block type="mrubyc_spi_sd_matsue_store_data">
-            <value name="FILE">
-                <shadow type="text">
-                    <field name="TEXT">data.txt</field>
-                </shadow>
-            </value>
-            <value name="NAME">
-                <shadow type="text">
-                    <field name="TEXT">NAME</field>
-                </shadow>
-            </value>
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="LAT">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="LNG">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="TIMEZONE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_ambient_send_to">
-            <value name="ID">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="RKEY">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="WKEY">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_ambient_add_data">
-            <value name="D1">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="DATA1">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="D2">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="DATA2">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_ambient_data_send">
         </block>
         ${blockSeparator}
 
     </category>
     `;
 };
+
+//GPSブロック
+//<block type="mrubyc_uart_gps_status">
+//</block>
+//<block type="mrubyc_uart_gps_val">
+//</block>
+//${blockSeparator}
+
+ScratchBlocks.Msg.CATEGORY_TESTER = 'tester';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_TESTER = 'tester';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_TESTER = '普通';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_TESTER = '普通';
+
+const tester = function () {
+    return `
+    <category
+        name="%{BKY_CATEGORY_TESTER}"
+        id="tester"
+        colour="#1E90FF"
+        secondaryColour="#0000FF">
+        <block type="mrubyc_gpio_output_init_2">
+        </block>
+        <block type="mrubyc_gpio_set_level_2">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_input_init_2">
+        </block>
+        <block type="mrubyc_gpio_sw_status_2">
+            <value name="SW">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_pwm_init_2">
+        </block>
+        <block type="mrubyc_pwm_sound_2">
+            <value name="SOUND">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_pwm_clear_2">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_lcd_init_2">
+        </block>
+        <block type="mrubyc_i2c_lcd_write_2">
+            <value name="LINE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_lcd_clear_2">
+        </block>
+        ${blockSeparator}
+        
+        <block type="mrubyc_adc_init_2">
+        </block>
+        <block type="mrubyc_adc_measure_2">
+        </block>
+        <block type="mrubyc_adc_read_2">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_wifi_personal_init_2">
+            <value name="SSID">
+                <shadow type="text">
+                    <field name="TEXT">SugiyamaLab</field>
+                </shadow>
+            </value>
+            <value name="PASSWORD">
+                <shadow type="text">
+                    <field name="TEXT">epi.it.matsue-ct.jp</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_wifi_is_connected_2">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_rtc_sntp_init_2">
+        </block>
+        <block type="mrubyc_i2c_rtc_get_2">
+        </block>
+        <block type="mrubyc_i2c_rtc_time2_2">
+        </block>
+        <block type="mrubyc_i2c_rtc_time_2">
+        </block>
+        <block type="mrubyc_i2c_rtc_time_1_2">
+        </block>
+        <block type="mrubyc_i2c_rtc_time_send_2">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_scd30_init_2">
+        </block>
+        <block type="mrubyc_i2c_scd30_status_2">
+        </block>
+        <block type="mrubyc_i2c_scd30_read_2">
+        </block>
+        <block type="mrubyc_i2c_scd30_val_2">
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_spi_sd_init_2">
+            <value name="FILE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_spi_sd_write_2">
+            <value name="FILE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="STR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_matsue_send_data_2">
+            <value name="URL">
+                <shadow type="text">
+                    <field name="TEXT">http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?</field>
+                </shadow>
+            </value>
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="KEY">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="KEY2">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE2">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIMEZONE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+    </category>
+    `;
+};
+
+//<block type="mrubyc_uart_gps_read_2">
+//        </block>
+//        <block type="mrubyc_uart_gps_status_2">
+//        </block>
+//        <block type="mrubyc_uart_gps_time_2">
+//        </block>
+//        <block type="mrubyc_uart_gps_lat_2">
+//        </block>
+//        <block type="mrubyc_uart_gps_lng_2">
+//        </block>
+//        ${blockSeparator}
 
 /*
 
@@ -1184,16 +1157,17 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
 
     const everything = [
         xmlOpen,
-        motion(isStage, targetId), gap,
-        looks(isStage, targetId), gap,
-        sound(isStage, targetId), gap,
-        events(isStage, targetId), gap,
+        //motion(isStage, targetId), gap,
+        //looks(isStage, targetId), gap,
+        //sound(isStage, targetId), gap,
+        //events(isStage, targetId), gap,
         control(isStage, targetId), gap,
-        sensing(isStage, targetId), gap,
+        //sensing(isStage, targetId), gap,
         operators(isStage, targetId), gap,
-        variables(isStage, targetId), gap,
-        myBlocks(isStage, targetId), gap,
-        ruby(isStage, targetId)
+        //variables(isStage, targetId), gap,
+        //myBlocks(isStage, targetId), gap,
+        ruby(isStage, targetId), gap,
+        tester(isStage, targetId)
     ];
 
     if (categoriesXML) {

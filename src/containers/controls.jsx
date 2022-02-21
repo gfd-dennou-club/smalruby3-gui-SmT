@@ -35,6 +35,8 @@ class Controls extends React.Component {
                 category: 'general',
                 action: 'Green Flag'
             });
+            window.ipc.send('greenflag-click','Go');
+            
         }
     }
     handleStopAllClick (e) {
