@@ -20,7 +20,7 @@ export default function (Generator) {
     //
     // GPIO
     //
-
+    
     Generator.mrubyc_gpio_output_init_2 = function (block) {
         const pin = Generator.getFieldValue(block, 'PIN') || null;
         return `led${pin} = GPIO.new( ${pin}, GPIO::OUT )\n` ;
@@ -201,7 +201,7 @@ export default function (Generator) {
 
     Generator.mrubyc_wifi_personal_init_2 = function (block) {
         const ssid = Generator.valueToCode(block, 'SSID',     Generator.ORDER_NONE);
-        const pass = Generator.valueToCode(block, 'PASSWORD', Generator.ORDER_NONE);
+        const pass = Generator.valueToCode(block, 'PASSWORD', Generator.ORDER_NONE);o
         return `WiFi.init()\n` +
 	    `WiFi.setup_psk(${ssid}, ${pass})\n` + 
             `WiFi.start()\n` +

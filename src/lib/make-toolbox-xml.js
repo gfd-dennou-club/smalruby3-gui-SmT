@@ -384,21 +384,6 @@ const control = function (isStage) {
         ${blockSeparator}
         <block type="control_stop"/>
         ${blockSeparator}
-        ${isStage ? `
-            <block type="control_create_clone_of">
-                <value name="CLONE_OPTION">
-                    <shadow type="control_create_clone_of_menu"/>
-                </value>
-            </block>
-        ` : `
-            <block type="control_start_as_clone"/>
-            <block type="control_create_clone_of">
-                <value name="CLONE_OPTION">
-                    <shadow type="control_create_clone_of_menu"/>
-                </value>
-            </block>
-            <block type="control_delete_this_clone"/>
-        `}
         ${categorySeparator}
     </category>
     `;
@@ -532,19 +517,6 @@ const operators = function () {
             </value>
         </block>
         ${blockSeparator}
-        <block type="operator_random">
-            <value name="FROM">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <value name="TO">
-                <shadow type="math_number">
-                    <field name="NUM">10</field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
         <block type="operator_gt">
             <value name="OPERAND1">
                 <shadow type="text">
@@ -642,13 +614,6 @@ const operators = function () {
                 </shadow>
             </value>
         </block>
-        <block type="operator_round">
-            <value name="NUM">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
         ${blockSeparator}
         <block type="operator_mathop">
             <value name="NUM">
@@ -686,36 +651,18 @@ const operators = function () {
     `;
 };*/
 
-ScratchBlocks.Msg.CATEGORY_RUBY = 'Ruby';
-ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_RUBY = 'Ruby';
-ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_RUBY = 'かんたん';
-ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_RUBY = 'かんたん';
+ScratchBlocks.Msg.CATEGORY_SMT1 = 'SmT1';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT1 = 'SmT1';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT1 = 'かんたん';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT1 = 'かんたん';
 
-const ruby = function () {
+const smt1 = function () {
     return `
     <category
-        name="%{BKY_CATEGORY_RUBY}"
-        id="ruby"
+        name="%{BKY_CATEGORY_SMT1}"
+        id="smt1"
         colour="#CC0043"
         secondaryColour="#FF4D6A">
-
-        <block type="test">
-        </block>
-        <block type="test2">
-            <value name="number">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-
-        <block type="test3">
-            <value name="TEXT2">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
 
         <block type="mrubyc_gpio_set_level">
             <value name="PIN">
@@ -751,6 +698,10 @@ const ruby = function () {
         </block>
         ${blockSeparator}
 
+        <block type="mrubyc_adc_read">
+        </block>
+        ${blockSeparator}
+
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
                 <shadow type="math_number">
@@ -764,26 +715,6 @@ const ruby = function () {
             </value>
         </block>
         <block type="mrubyc_i2c_lcd_clear">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_adc_read">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_wifi_personal_init">
-            <value name="SSID">
-                <shadow type="text">
-                    <field name="TEXT">SugiyamaLab</field>
-                </shadow>
-            </value>
-            <value name="PASSWORD">
-                <shadow type="text">
-                    <field name="TEXT">epi.it.matsue-ct.jp</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_wifi_is_connected">
         </block>
         ${blockSeparator}
 
@@ -814,6 +745,21 @@ const ruby = function () {
             </value>
         </block>
         ${blockSeparator}
+
+        <block type="mrubyc_wifi_personal_init">
+            <value name="SSID">
+                <shadow type="text">
+                    <field name="TEXT">SugiyamaLab</field>
+                </shadow>
+            </value>
+            <value name="PASSWORD">
+                <shadow type="text">
+                    <field name="TEXT">epi.it.matsue-ct.jp</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_wifi_is_connected">
+        </block>
 
         <block type="mrubyc_matsue_send_data">
             <value name="URL">
@@ -858,7 +804,6 @@ const ruby = function () {
             </value>
         </block>
         ${blockSeparator}
-
     </category>
     `;
 };
@@ -870,16 +815,16 @@ const ruby = function () {
 //</block>
 //${blockSeparator}
 
-ScratchBlocks.Msg.CATEGORY_TESTER = 'tester';
-ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_TESTER = 'tester';
-ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_TESTER = '普通';
-ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_TESTER = '普通';
+ScratchBlocks.Msg.CATEGORY_SMT2 = 'SmT2';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT2 = 'SmT2';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT2 = '普通';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT2 = '普通';
 
-const tester = function () {
+const smt2 = function () {
     return `
     <category
-        name="%{BKY_CATEGORY_TESTER}"
-        id="tester"
+        name="%{BKY_CATEGORY_SMT2}"
+        id="smt2"
         colour="#1E90FF"
         secondaryColour="#0000FF">
         <block type="mrubyc_gpio_output_init_2">
@@ -920,6 +865,14 @@ const tester = function () {
         </block>
         ${blockSeparator}
 
+        <block type="mrubyc_adc_init_2">
+        </block>
+        <block type="mrubyc_adc_measure_2">
+        </block>
+        <block type="mrubyc_adc_read_2">
+        </block>
+        ${blockSeparator}
+
         <block type="mrubyc_i2c_lcd_init_2">
         </block>
         <block type="mrubyc_i2c_lcd_write_2">
@@ -938,30 +891,6 @@ const tester = function () {
         </block>
         ${blockSeparator}
         
-        <block type="mrubyc_adc_init_2">
-        </block>
-        <block type="mrubyc_adc_measure_2">
-        </block>
-        <block type="mrubyc_adc_read_2">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_wifi_personal_init_2">
-            <value name="SSID">
-                <shadow type="text">
-                    <field name="TEXT">SugiyamaLab</field>
-                </shadow>
-            </value>
-            <value name="PASSWORD">
-                <shadow type="text">
-                    <field name="TEXT">epi.it.matsue-ct.jp</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_wifi_is_connected_2">
-        </block>
-        ${blockSeparator}
-
         <block type="mrubyc_i2c_rtc_sntp_init_2">
         </block>
         <block type="mrubyc_i2c_rtc_get_2">
@@ -1007,25 +936,76 @@ const tester = function () {
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_matsue_send_data_2">
-            <value name="URL">
-                <shadow type="text">
-                    <field name="TEXT">http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?</field>
+    </category>
+    `;
+};
+
+
+ScratchBlocks.Msg.CATEGORY_SMT3 = 'SmT3';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT3 = 'SmT3';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT3 = 'むずい';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT3 = 'むずい';
+
+const smt3 = function () {
+    return `
+    <category
+        name="%{BKY_CATEGORY_SMT3}"
+        id="smt3"
+        colour="#deb887"
+        secondaryColour="#FF4D6A">
+
+        <block type="mrubyc_gpio_output_init_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="NAME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
+        </block>
+        <block type="mrubyc_gpio_input_init_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
+        </block>
+        <block type="mrubyc_gpio_pwm_init_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="KEY">
-                <shadow type="text">
-                    <field name="TEXT"></field>
+        </block>
+        <block type="mrubyc_gpio_adc_init_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_set_level_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="STATE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_gpio_get_level_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_gpio_pwm_duty_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
                 </shadow>
             </value>
             <value name="VALUE">
@@ -1033,27 +1013,30 @@ const tester = function () {
                     <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="KEY2">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="VALUE2">
+        </block>
+        <block type="mrubyc_gpio_pwm_freq_3">
+            <value name="PIN">
                 <shadow type="math_number">
                     <field name="NUM"></field>
                 </shadow>
             </value>
-            <value name="TIMEZONE">
+            <value name="VALUE">
                 <shadow type="math_number">
                     <field name="NUM"></field>
                 </shadow>
             </value>
         </block>
-        ${blockSeparator}
-
+        <block type="mrubyc_gpio_adc_vol_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
     </category>
     `;
 };
+
 
 //<block type="mrubyc_uart_gps_read_2">
 //        </block>
@@ -1166,8 +1149,9 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
         operators(isStage, targetId), gap,
         //variables(isStage, targetId), gap,
         //myBlocks(isStage, targetId), gap,
-        ruby(isStage, targetId), gap,
-        tester(isStage, targetId)
+        smt1(isStage, targetId), gap,
+        smt2(isStage, targetId), gap,
+        smt3(isStage, targetId)
     ];
 
     if (categoriesXML) {
