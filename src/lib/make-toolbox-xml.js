@@ -627,7 +627,7 @@ const operators = function () {
     `;
 };
 
-/*const variables = function () {
+const variables = function () {
     return `
     <category
         name="%{BKY_CATEGORY_VARIABLES}"
@@ -637,9 +637,9 @@ const operators = function () {
         custom="VARIABLE">
     </category>
     `;
-};*/
+};
 
-/*const myBlocks = function () {
+const myBlocks = function () {
     return `
     <category
         name="%{BKY_CATEGORY_MYBLOCKS}"
@@ -649,10 +649,10 @@ const operators = function () {
         custom="PROCEDURE">
     </category>
     `;
-};*/
+};
 
-ScratchBlocks.Msg.CATEGORY_SMT1 = 'SmT1';
-ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT1 = 'SmT1';
+ScratchBlocks.Msg.CATEGORY_SMT1 = 'smt1';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT1 = 'easy';
 ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT1 = 'かんたん';
 ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT1 = 'かんたん';
 
@@ -815,8 +815,8 @@ const smt1 = function () {
 //</block>
 //${blockSeparator}
 
-ScratchBlocks.Msg.CATEGORY_SMT2 = 'SmT2';
-ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT2 = 'SmT2';
+ScratchBlocks.Msg.CATEGORY_SMT2 = 'smt2';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT2 = 'usual';
 ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT2 = '普通';
 ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT2 = '普通';
 
@@ -872,6 +872,9 @@ const smt2 = function () {
         <block type="mrubyc_adc_read_2">
         </block>
         ${blockSeparator}
+
+        <block type="mrubyc_i2c_init_2">
+        </block>
 
         <block type="mrubyc_i2c_lcd_init_2">
         </block>
@@ -941,8 +944,8 @@ const smt2 = function () {
 };
 
 
-ScratchBlocks.Msg.CATEGORY_SMT3 = 'SmT3';
-ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT3 = 'SmT3';
+ScratchBlocks.Msg.CATEGORY_SMT3 = 'smt3';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT3 = 'hard';
 ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT3 = 'むずい';
 ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT3 = 'むずい';
 
@@ -1147,8 +1150,8 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
         control(isStage, targetId), gap,
         //sensing(isStage, targetId), gap,
         operators(isStage, targetId), gap,
-        //variables(isStage, targetId), gap,
-        //myBlocks(isStage, targetId), gap,
+        variables(isStage, targetId), gap,
+        myBlocks(isStage, targetId), gap,
         smt1(isStage, targetId), gap,
         smt2(isStage, targetId), gap,
         smt3(isStage, targetId)

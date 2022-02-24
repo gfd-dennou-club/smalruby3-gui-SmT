@@ -445,17 +445,20 @@ export default function (Generator) {
     Generator.mrubyc_i2c_scd30_read = function (block) {
         Generator.prepares_['scd30_init'] = Generator.mrubyc_i2c_scd30_init(null);
         return `def scd30read(scd30, select)\n` +
-               `  if scd30.dataReady\n` +
-               `    val = scd30.read\n` +
-               `    return val[select]\n` +
-               `  end\n` +
+               `  while true do\n` +
+               `    if scd30.dataReady\n` +
+               `      val = scd30.read\n` +
+               `      return val[select]\n` +
+               `    end\n` +
+               `    sleep 0.1\n` +
+               `  end\n` +	    
                `end\n`;
     };
 
     Generator.mrubyc_i2c_scd30_val = function (block) {
         Generator.prepares_['scd30_read'] = Generator.mrubyc_i2c_scd30_read(null);
         const scd30value = Generator.getFieldValue(block, 'SCD30VALUE') || null;
-        return [`scd30val${scd30value} = scd30read(scd30, ${scd30value})`, Generator.ORDER_ATOMIC];
+        return [`scd30read(scd30, ${scd30value})`, Generator.ORDER_ATOMIC];
     };
     
     // 高専サーバへの送信

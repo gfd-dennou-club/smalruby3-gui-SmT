@@ -268,7 +268,7 @@ export default function (Generator) {
     //// LCD
     ////
     Generator.mrubyc_i2c_lcd_init_2 = function (block) {
-        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
+//        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
         return `lcd = AQM0802A.new(i2c)\n` +
                `lcd.setup\n`;
     }; 
@@ -384,7 +384,7 @@ export default function (Generator) {
     // SCD30
     //
     Generator.mrubyc_i2c_scd30_init_2 = function (block) {
-	Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
+//	Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
         return  `scd30 = SCD30.new(i2c)\n` +
                 `sleep(3)\n`;
     };

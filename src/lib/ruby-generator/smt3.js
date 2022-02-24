@@ -31,7 +31,7 @@ export default function (Generator) {
     };
     Generator.mrubyc_gpio_adc_init_3 = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
-        return `adc = ADC.new( ${pin}, ADC::ATTEN_11DB, ADC::WIDTH_12BIT )\n`;
+        return `adc${pin} = ADC.new( ${pin}, ADC::ATTEN_11DB, ADC::WIDTH_12BIT )\n`;
     };
     Generator.mrubyc_gpio_pwm_init_3 = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
@@ -53,12 +53,12 @@ export default function (Generator) {
     Generator.mrubyc_gpio_pwm_duty_3 = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
         const value = Generator.valueToCode(block, 'VALUE', Generator.ORDER_NONE);
-        return `pwm${pin}.duty(${value} * 128)\n` ;
+        return `pwm${pin}.duty( (${value} * 128).to_i )\n` ;
     };
     Generator.mrubyc_gpio_pwm_freq_3 = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);
         const value = Generator.valueToCode(block, 'VALUE', Generator.ORDER_NONE);
-        return `pwm${pin}.freq(${value})\n`;
+        return `pwm${pin}.freq( (${value}).to_i )\n`;
     };
     Generator.mrubyc_gpio_adc_vol_3 = function (block) {
         const pin = Generator.valueToCode(block, 'PIN', Generator.ORDER_NONE);

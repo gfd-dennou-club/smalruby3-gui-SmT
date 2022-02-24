@@ -4,18 +4,27 @@
  * @return {ScratchBlocks} ScratchBlocks defined ScratchBlocks.
  */
 export default function (ScratchBlocks) {
-    const smt1 = 'smt1';
+
+    const smt1 = 'smt1'
+    if (ScratchBlocks.Categories.hasOwnProperty(smt1)) {
+	return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[smt1] = smt1;
     ScratchBlocks.Colours[smt1] = {
-        primary: '#CC0043',    //ブロックのメインの色
-        secondary: '#DB4D7B',  //円の縁の色
-        tertiary: '#7A0028'    //ブロックの縁の色
+        primary: '#CC0043',
+        secondary: '#DB4D7B',
+        tertiary: '#7A0028'
     };
     ScratchBlocks.Extensions.register(
         `colours_${smt1}`,
         ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(smt1)
     );
 
-    const smt2 = 'smt2';
+    const smt2 = 'smt2'
+    if (ScratchBlocks.Categories.hasOwnProperty(smt2)) {
+	return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[smt2] = smt2;
     ScratchBlocks.Colours[smt2] = {
         primary: '#1E90FF',
         secondary: '#0000FF',
@@ -26,18 +35,20 @@ export default function (ScratchBlocks) {
         ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(smt2)
     );
 
-    //色を追加
-    const smt3 = 'smt3';
+    const smt3 = 'smt3'
+    if (ScratchBlocks.Categories.hasOwnProperty(smt3)) {
+	return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[smt3] = smt3;
     ScratchBlocks.Colours[smt3] = {
-        primary: '#deb887',    //ブロックのメインの色
-        secondary: '#fff0f5',  //円の縁の色
-        tertiary: '#fff0f5'    //ブロックの縁の色
+        primary: '#deb887',  
+        secondary: '#fff0f5',
+        tertiary: '#fff0f5'
     };
     ScratchBlocks.Extensions.register(
         `colours_${smt3}`,
         ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(smt3)
-    );
-
+    );    
 
     ScratchBlocks.Blocks.ruby_statement = {
         init: function () {
@@ -50,7 +61,7 @@ export default function (ScratchBlocks) {
                         name: 'STATEMENT'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -80,7 +91,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -91,7 +102,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_gpio_output_all_init',
                 message0: 'LED1 ~ LED8 を出力モードで使う',
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -102,7 +113,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_gpio_output_half_init',
                 message0: 'LED1 ~ LED4 を出力モードで使う(拡張温度計を使う場合)',
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -125,7 +136,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -136,7 +147,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_gpio_input_all_init',
                 message0: 'スイッチを全て入力モードで使う',
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -171,7 +182,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -192,7 +203,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -213,7 +224,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -235,8 +246,9 @@ export default function (ScratchBlocks) {
                             ['スイッチ4', '19']
                         ]
                     },
-              ],
-              extensions: ['colours_smt1', 'output_number']
+		],
+		category: ScratchBlocks.Categories.ruby,
+		extensions: ['colours_smt1', 'output_number']
             });
         }
     };
@@ -257,7 +269,8 @@ export default function (ScratchBlocks) {
                             ['スイッチ4', '19']
                         ]
                     },
-              ],
+		],
+		category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -302,6 +315,7 @@ export default function (ScratchBlocks) {
                         ]
                     },
 		],
+		category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -316,7 +330,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_init',
                 message0: 'ブザーを出力モードで使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -343,7 +357,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -374,7 +388,7 @@ export default function (ScratchBlocks) {
                         name: 'TIME'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -385,7 +399,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_clear',
                 message0: '音を止める',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -396,7 +410,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_music',
                 message0: '音楽を鳴らす',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -411,7 +425,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_adc_init',
                 message0: '基板上の温度計を使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -422,7 +436,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_adc_measure',
                 message0: '基板上の温度計で温度を測る',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             })
         }
@@ -433,7 +447,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_adc_read',
                 message0: '基板上の温度計の温度',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -461,7 +475,7 @@ export default function (ScratchBlocks) {
                         name: 'PASSWORD'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -483,7 +497,7 @@ export default function (ScratchBlocks) {
                         name: 'PASSWORD'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -494,7 +508,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_wifi_is_connected',
                 message0: 'Wi-fiに接続している',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -508,7 +522,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_init',
                 message0: 'I2C センサーを使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -522,7 +536,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_sntp_init',
                 message0: '時計合わせ (NTP)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -533,7 +547,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_get',
                 message0: '現在の時刻を取得する (NTP)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -545,7 +559,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time',
                 message0: '現在の時:分:秒 (NTP)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -556,7 +570,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time_1',
                 message0: '現在の年-月-日 (NTP)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -581,7 +595,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -592,7 +606,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time_send',
                 message0: '現在の時刻（ザーバ転送用） (NTP)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -603,7 +617,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_lcd',
                 message0: 'モニターに現在の時刻を表示する (NPT)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -617,7 +631,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_lcd_init',
                 message0: 'モニターを使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -642,7 +656,7 @@ export default function (ScratchBlocks) {
                         name: 'TEXT'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -663,7 +677,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -677,7 +691,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_init',
                 message0: 'GPS を使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -688,7 +702,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_read',
                 message0: 'GPSデータの取得',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -699,7 +713,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_time',
                 message0: 'GPSデータが取得できた',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -710,7 +724,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_time',
                 message0: 'GPSの時刻',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -721,7 +735,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_lat',
                 message0: 'GPSの緯度',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -732,7 +746,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_lng',
                 message0: 'GPSの経度',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -754,7 +768,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -766,7 +780,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_lcd',
                 message0: 'モニターにGPSの時刻を表示する',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -777,7 +791,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_distance_measure',
                 message0: 'お宝までの距離を計算',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -788,7 +802,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_distance',
                 message0: 'お宝までの距離',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -803,7 +817,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_spi_sd_init',
                 message0: 'SDカードを使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -824,7 +838,7 @@ export default function (ScratchBlocks) {
                         name: 'STR'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -838,7 +852,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_init',
                 message0: 'CO2センサSCD30を使う',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -849,7 +863,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_statue',
                 message0: 'SCD30からデータ取得可能',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -860,7 +874,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_read',
                 message0: 'SCD30センサからデータ取得する',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -871,7 +885,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_co2',
                 message0: 'CO2濃度(SCD30)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -882,7 +896,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_temp',
                 message0: '温度(SCD30)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -893,7 +907,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_humi',
                 message0: '湿度(SCD30)',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -915,7 +929,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_number']
             });
         }
@@ -935,7 +949,7 @@ export default function (ScratchBlocks) {
                         name: 'VALUE'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -946,7 +960,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_matsue_mem_init',
                 message0: 'データをメモリに入れるための宣言',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -963,7 +977,7 @@ export default function (ScratchBlocks) {
                         name: 'NAME'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -974,7 +988,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_matsue_mem_send',
                 message0: 'メモリに保存したデータを送信',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1037,7 +1051,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1074,7 +1088,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1115,7 +1129,7 @@ export default function (ScratchBlocks) {
                         ]
                     },
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1144,7 +1158,7 @@ export default function (ScratchBlocks) {
                         name: 'WKEY'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1193,7 +1207,7 @@ export default function (ScratchBlocks) {
                         name: 'DATA2'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1204,7 +1218,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_ambient_data_send',
                 message0: 'Ambientにデータを送信',
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1235,7 +1249,7 @@ export default function (ScratchBlocks) {
                         name: 'SUBSTACK'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1252,7 +1266,7 @@ export default function (ScratchBlocks) {
                         name: 'OUTPUT'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1269,7 +1283,7 @@ export default function (ScratchBlocks) {
                         name: 'OUTPUT'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1298,7 +1312,7 @@ export default function (ScratchBlocks) {
                         name: 'SUBSTACK'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'shape_statement']
             });
         }
@@ -1315,7 +1329,7 @@ export default function (ScratchBlocks) {
                         name: 'EXPRESSION'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -1336,7 +1350,7 @@ export default function (ScratchBlocks) {
                         name: 'TO'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -1357,7 +1371,7 @@ export default function (ScratchBlocks) {
                         name: 'TO'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt1,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt1', 'output_boolean']
             });
         }
@@ -1388,7 +1402,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1399,7 +1413,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_gpio_output_all_init_2',
                 message0: 'LED1 ~ LED8 を出力モードで使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1410,7 +1424,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_gpio_output_half_init_2',
                 message0: 'LED1 ~ LED4 を出力モードで使う(拡張温度計を使う場合)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1433,7 +1447,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1444,7 +1458,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_gpio_input_all_init_2',
                 message0: 'スイッチを全て入力モードで使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1479,7 +1493,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1500,7 +1514,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1521,7 +1535,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1543,8 +1557,9 @@ export default function (ScratchBlocks) {
                             ['スイッチ4', '19']
                         ]
                     },
-              ],
-              extensions: ['colours_smt2', 'output_number']
+		],
+		category: ScratchBlocks.Categories.ruby,
+		extensions: ['colours_smt2', 'output_number']
             });
         }
     };
@@ -1565,7 +1580,8 @@ export default function (ScratchBlocks) {
                             ['スイッチ4', '19']
                         ]
                     },
-              ],
+		],
+		category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -1610,6 +1626,7 @@ export default function (ScratchBlocks) {
                         ]
                     },
 		],
+		category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -1624,7 +1641,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_init_2',
                 message0: '初期化: ブザーを出力モードで使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1651,7 +1668,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1682,7 +1699,7 @@ export default function (ScratchBlocks) {
                         name: 'TIME'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1693,7 +1710,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_clear_2',
                 message0: '音を止める',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1704,7 +1721,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_pwm_music_2',
                 message0: '音楽を鳴らす',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1719,7 +1736,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_adc_init_2',
                 message0: '初期化: 基板上の温度計を使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1730,7 +1747,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_adc_measure_2',
                 message0: '基板上の温度計で温度を測る',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             })
         }
@@ -1741,7 +1758,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_adc_read_2',
                 message0: '基板上の温度計の温度',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1769,7 +1786,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1780,7 +1797,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_sht_get_temp_2',
                 message0: '拡張温度センサの気温',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1797,7 +1814,7 @@ export default function (ScratchBlocks) {
                         name: 'TEMP'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1826,7 +1843,7 @@ export default function (ScratchBlocks) {
                         name: 'PASSWORD'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1848,7 +1865,7 @@ export default function (ScratchBlocks) {
                         name: 'PASSWORD'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1859,7 +1876,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_wifi_is_connected_2',
                 message0: 'Wi-fiに接続している',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
 		extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -1872,8 +1889,8 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_init_2',
-                message0: 'I2C センサーを使う',
-                category: ScratchBlocks.Categories.smt2,
+                message0: '初期化: I2C',
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1886,8 +1903,8 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_sntp_init_2',
-                message0: '初期化: 時計合わせ (NTP)',
-                category: ScratchBlocks.Categories.smt2,
+                message0: '初期化: 時刻合わせ (NTP)',
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1898,7 +1915,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_get_2',
                 message0: '現在の時刻を取得する (NTP)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1910,7 +1927,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time_2',
                 message0: '現在の時:分:秒 (NTP)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1921,7 +1938,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time_1_2',
                 message0: '現在の年-月-日 (NTP)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1946,7 +1963,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1957,7 +1974,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_lcd_2',
                 message0: 'モニターに現在の時刻を表示する (NPT)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -1968,7 +1985,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_time_send_2',
                 message0: '現在の時刻（ザーバ転送用） (NTP)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -1982,7 +1999,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_lcd_init_2',
                 message0: '初期化: モニターを使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2007,7 +2024,7 @@ export default function (ScratchBlocks) {
                         name: 'TEXT'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2028,7 +2045,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.ruby,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2042,7 +2059,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_init_2',
                 message0: '初期化: GPS を使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2053,7 +2070,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_read_2',
                 message0: 'GPSデータの取得',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2064,7 +2081,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_time_2',
                 message0: 'GPSで位置が決定できた',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -2075,7 +2092,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_time_2',
                 message0: 'GPSの時刻',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2086,7 +2103,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_lat_2',
                 message0: 'GPSの緯度',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2097,7 +2114,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_lng_2',
                 message0: 'GPSの経度',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2108,7 +2125,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_lcd_2',
                 message0: 'モニターにGPSの時刻を表示する',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2119,7 +2136,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_distance_measure_2',
                 message0: 'お宝までの距離を計算',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2130,7 +2147,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_uart_gps_distance_2',
                 message0: 'お宝までの距離',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2145,7 +2162,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_spi_sd_init_2',
                 message0: '初期化: SDカードを使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2166,7 +2183,7 @@ export default function (ScratchBlocks) {
                         name: 'STR'
                     },
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2180,7 +2197,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_init_2',
                 message0: '初期化: CO2センサSCD30を使う',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2191,7 +2208,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_statue_2',
                 message0: 'SCD30からデータ取得可能',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -2202,7 +2219,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_read_2',
                 message0: 'SCD30センサからデータ取得する',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2213,7 +2230,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_co2_2',
                 message0: 'CO2濃度(SCD30)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2224,7 +2241,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_temp_2',
                 message0: '温度(SCD30)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2235,7 +2252,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_humi_2',
                 message0: '湿度(SCD30)',
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2257,7 +2274,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });
         }
@@ -2324,7 +2341,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2341,7 +2358,7 @@ export default function (ScratchBlocks) {
                         name: 'VALUE'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2352,7 +2369,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_matsue_mem_init_2',
                 message0: 'データをメモリに入れるための宣言',
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2369,7 +2386,7 @@ export default function (ScratchBlocks) {
                         name: 'NAME'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2380,7 +2397,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_matsue_mem_send_2',
                 message0: 'メモリに保存したデータを送信',
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2417,7 +2434,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2458,7 +2475,7 @@ export default function (ScratchBlocks) {
                         ]
                     },
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2487,7 +2504,7 @@ export default function (ScratchBlocks) {
                         name: 'WKEY'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2536,7 +2553,7 @@ export default function (ScratchBlocks) {
                         name: 'DATA2'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2547,7 +2564,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_ambient_data_send_2',
                 message0: 'Ambientにデータを送信',
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2578,7 +2595,7 @@ export default function (ScratchBlocks) {
                         name: 'SUBSTACK'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2595,7 +2612,7 @@ export default function (ScratchBlocks) {
                         name: 'OUTPUT'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2612,7 +2629,7 @@ export default function (ScratchBlocks) {
                         name: 'OUTPUT'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2641,7 +2658,7 @@ export default function (ScratchBlocks) {
                         name: 'SUBSTACK'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
@@ -2658,7 +2675,7 @@ export default function (ScratchBlocks) {
                         name: 'EXPRESSION'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -2679,7 +2696,7 @@ export default function (ScratchBlocks) {
                         name: 'TO'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -2700,7 +2717,7 @@ export default function (ScratchBlocks) {
                         name: 'TO'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt2,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_boolean']
             });
         }
@@ -2722,7 +2739,7 @@ export default function (ScratchBlocks) {
                         name: 'PIN'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2738,7 +2755,7 @@ export default function (ScratchBlocks) {
                         name: 'PIN'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2754,7 +2771,7 @@ export default function (ScratchBlocks) {
                         name: 'PIN'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2770,7 +2787,7 @@ export default function (ScratchBlocks) {
                         name: 'PIN'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2795,7 +2812,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2811,9 +2828,9 @@ export default function (ScratchBlocks) {
                         type: 'input_value',
                         name: 'PIN'
                     }
-              ],
-              category: ScratchBlocks.Categories.smt3, 
-              extensions: ['colours_smt3', 'output_number']
+		],
+                category: ScratchBlocks.Categories.ruby,
+		extensions: ['colours_smt3', 'output_number']
             });
         }
     };
@@ -2833,7 +2850,7 @@ export default function (ScratchBlocks) {
                         name: 'VALUE'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2853,7 +2870,7 @@ export default function (ScratchBlocks) {
                         name: 'VALUE'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3,
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'shape_statement']
             });
         }
@@ -2870,7 +2887,7 @@ export default function (ScratchBlocks) {
                         name: 'PIN'
                     }
                 ],
-                category: ScratchBlocks.Categories.smt3, 
+                category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt3', 'output_number']
             });
         }
