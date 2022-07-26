@@ -143,7 +143,7 @@ export default function (Generator) {
     ////
     Generator.mrubyc_i2c_m5lcd_init = function (block) {
         Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
-        return `lcd = ILI934X.new(23, 18, 14, 27, 33, 32) \n` ;
+        return `m5lcd = ILI934X.new(23, 18, 14, 27, 33, 32) \n` ;
     }; 
 
     Generator.mrubyc_i2c_m5lcd_write1 = function (block) {
@@ -154,7 +154,7 @@ export default function (Generator) {
         const pos4 = Generator.valueToCode(block, 'POS4', Generator.ORDER_NONE);
 	const type = Generator.getFieldValue(block, 'TYPE') || null;
 	const color= Generator.getFieldValue(block, 'COLOR') || null;
-        return `display.draw_${type}(${pos1}, ${pos2}, ${pos3}, ${pos4}, ${color}) \n`;
+        return `m5lcd.draw_${type}(${pos1}, ${pos2}, ${pos3}, ${pos4}, ${color}) \n`;
     };
 
     Generator.mrubyc_i2c_m5lcd_write2 = function (block) {
@@ -164,7 +164,7 @@ export default function (Generator) {
         const size = Generator.valueToCode(block, 'SIZE', Generator.ORDER_NONE);
 	const type = Generator.getFieldValue(block, 'TYPE') || null;
 	const color= Generator.getFieldValue(block, 'COLOR') || null;
-        return `display.draw_${type}(${pos1}, ${pos2}, ${size}, ${color}) \n`;
+        return `m5lcd.draw_${type}(${pos1}, ${pos2}, ${size}, ${color}) \n`;
     };
 
     Generator.mrubyc_i2c_m5lcd_write3 = function (block) {
@@ -174,7 +174,7 @@ export default function (Generator) {
         const size = Generator.valueToCode(block, 'SIZE', Generator.ORDER_NONE);
         const mess = Generator.valueToCode(block, 'MESS', Generator.ORDER_NONE);
 	const color= Generator.getFieldValue(block, 'COLOR') || null;
-        return `display.drawString(${pos1}, ${pos2}, ${mess}, ${size}, ${color}) \n`;
+        return `m5lcd.drawString(${pos1}, ${pos2}, ${mess}, ${size}, ${color}) \n`;
     };
 
     //
@@ -203,13 +203,13 @@ export default function (Generator) {
     Generator.mrubyc_i2c_rtc_ntp_init = function (block) {
         Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
         return `sntp = SNTP.new \n` +
-            `rtc = RC8035SA.new(i2c)\n`+
+            `rtc = RX8035SA.new(i2c)\n`+
 	    `rtc.write( sntp.datetime ) \n`;	   
     };
 
     Generator.mrubyc_i2c_rtc_ntp = function (block) {
-        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
-	Generator.prepares_['i2c_rtc_ntp'] = Generator.mrubyc_i2c_rtc_ntp_init(null);
+//        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
+//	Generator.prepares_['i2c_rtc_ntp'] = Generator.mrubyc_i2c_rtc_ntp_init(null);
         const time = Generator.getFieldValue(block, 'TIME') || null;
 	return [`rtc.${time}`, Generator.ORDER_ATOMIC];
     };
@@ -227,7 +227,8 @@ export default function (Generator) {
     //
     Generator.mrubyc_uart_gps_init = function (block) {
         Generator.prepares_['uart'] = Generator.mrubyc_uart_init(null);
-        return `gps = GPS.new(uart, GPS::RMSmode) \n` ;
+        return `GPS.power_on \n` +
+	       `gps = GPS.new(uart, GPS::RMSmode) \n` ;
     };
 
     Generator.mrubyc_uart_gps_status = function (block) {
@@ -260,6 +261,24 @@ export default function (Generator) {
         return [`scd30.${val}`, Generator.ORDER_ATOMIC];
     };
 
+    //
+    // SHT35
+    //
+    Generator.mrubyc_i2c_sht35_init = function (block) {
+	Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
+        return  `sht35 = SHT35.new(i2c)\n`;
+    };
+    
+    Generator.mrubyc_i2c_sht35_status = function (block) {
+        Generator.prepares_['i2c_sht35'] = Generator.mrubyc_i2c_sht35_init(null);
+        return [`sht35.is_ready?`, Generator.ORDER_ATOMIC];
+    };
+
+    Generator.mrubyc_i2c_sht35 = function (block) {
+        Generator.prepares_['i2c_sht35'] = Generator.mrubyc_i2c_sht35_init(null);
+        const val = Generator.getFieldValue(block, 'SHT35') || null;
+        return [`sht35.${val}`, Generator.ORDER_ATOMIC];
+    };
     
     //
     // お宝
@@ -283,16 +302,15 @@ export default function (Generator) {
     
     Generator.mrubyc_ibeacon_get = function (block) {
         Generator.prepares_['ibeacon'] = Generator.mrubyc_ibeacon_init(null);
-        return `info = ibeacon.get \n`;
+        return `ibeacon.get \n`;
     };
 
     Generator.mrubyc_ibeacon = function (block) {
         Generator.prepares_['ibeacon'] = Generator.mrubyc_ibeacon_init(null);
-	const val = Generator.valueToCode(block, 'VAL') || null;
-        return `info.${val} \n`;
+	const val = Generator.getFieldValue(block, 'VAL') || null;
+        return [`ibeacon.${val}`, Generator.ORDER_ATOMIC];	
     };    
-    
-    
+        
     // 高専サーバへの送信
     //
     Generator.mrubyc_matsue_send_srv = function (block) {

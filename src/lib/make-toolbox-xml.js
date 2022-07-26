@@ -883,6 +883,18 @@ const smt5 = function () {
         </block>
         ${blockSeparator}
 
+        <block type="mrubyc_i2c_sht35_status">
+        </block>
+
+        <block type="mrubyc_i2c_sht35">
+            <value name="SHT35">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
         <block type="mrubyc_uart_gps_otakara_distance">
             <value name="OTAKARA">
                 <shadow type="math_number">

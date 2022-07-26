@@ -605,14 +605,13 @@ export default function (ScratchBlocks) {
     ScratchBlocks.Blocks.mrubyc_i2c_scd30_status = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_i2c_scd30_statue',
+                type: 'mrubyc_i2c_scd30_status',
                 message0: 'SCD30 からデータ取得可能 ?',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_sens', 'output_boolean']
             });
         }
     };
-
    
     ScratchBlocks.Blocks.mrubyc_i2c_scd30 = {
         init: function () {
@@ -625,6 +624,41 @@ export default function (ScratchBlocks) {
                         name: 'SCD30',
                         options: [
                             ['CO2濃度', 'co2'],
+                            ['温度', 'temp'],
+                            ['湿度', 'humi']
+                        ]
+                    }
+                ],
+		category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_sens', 'output_number']
+            });
+        }
+    };
+
+    //
+    // SHT35
+    //
+    ScratchBlocks.Blocks.mrubyc_i2c_sht35_status = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_sht35_status',
+                message0: 'SHT35 からデータ取得可能 ?',
+		category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_sens', 'output_boolean']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_sht35 = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_sht35',
+                message0: 'SHT35 : %1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'SHT35',
+                        options: [
                             ['温度', 'temp'],
                             ['湿度', 'humi']
                         ]
