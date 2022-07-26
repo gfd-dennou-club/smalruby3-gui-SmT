@@ -36,11 +36,11 @@ export default function (Generator) {
             args = paramNamesIdsAndDefaults[0];
         }
         const argsString = args.length > 0 ? `(${args.join(', ')})` : '';
-        return `${isCall ? '' : 'def self.'}${methodName}${argsString}\n`;
+        return `${isCall ? '' : 'def myBlock_'}${methodName}${argsString}\n`;
     };
 
     Generator.procedures_call = function (block) {
-        return `self.${blockToMethod(block, true)}`;
+        return `myBlock_${blockToMethod(block, true)}`;
     };
 
     Generator.procedures_prototype = function (block) {
