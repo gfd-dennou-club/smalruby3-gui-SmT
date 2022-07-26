@@ -651,56 +651,20 @@ const myBlocks = function () {
     `;
 };
 
-ScratchBlocks.Msg.CATEGORY_SMT1 = 'smt1';
-ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT1 = 'easy';
-ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT1 = 'かんたん';
-ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT1 = 'かんたん';
 
-const smt1 = function () {
+
+ScratchBlocks.Msg.CATEGORY_SMT5 = 'smt5';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT5 = 'peripheral';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT5 = '機器';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT5 = 'きき';
+
+const smt5 = function () {
     return `
     <category
-        name="%{BKY_CATEGORY_SMT1}"
-        id="smt1"
-        colour="#CC0043"
-        secondaryColour="#FF4D6A">
-
-        <block type="mrubyc_gpio_set_level">
-            <value name="PIN">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="STATE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_gpio_sw_status">
-            <value name="SW">
-                <shadow type="math_number">
-                    <field name="NUM"/>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_pwm_sound">
-            <value name="SOUND">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_pwm_clear">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_adc_read">
-        </block>
-        ${blockSeparator}
+        name="%{BKY_CATEGORY_SMT5}"
+        id="smt5"
+        colour="#db7093"
+        secondaryColour="#CC0043">
 
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
@@ -714,31 +678,87 @@ const smt1 = function () {
                 </shadow>
             </value>
         </block>
-        <block type="mrubyc_i2c_lcd_clear">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_i2c_rtc_time2">
-        </block>
-        <block type="mrubyc_i2c_rtc_time_1">
-        </block>
-        <block type="mrubyc_i2c_rtc_time">
-        </block>
-        <block type="mrubyc_i2c_rtc_time_send">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_i2c_scd30_val">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_spi_sd_write">
-            <value name="FILE">
+          <block type="mrubyc_i2c_m5lcd_write1">
+            <value name="POS1">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="POS2">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="POS3">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="POS4">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TYPE">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
             </value>
-            <value name="STR">
+            <value name="COLOR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_m5lcd_write2">
+            <value name="POS1">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="POS2">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="SIZE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TYPE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="COLOR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_m5lcd_write3">
+            <value name="POS1">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="POS2">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="SIZE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="MESS">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="COLOR">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>
@@ -758,13 +778,42 @@ const smt1 = function () {
                 </shadow>
             </value>
         </block>
+
         <block type="mrubyc_wifi_is_connected">
         </block>
 
-        <block type="mrubyc_matsue_send_data">
-            <value name="URL">
+        <block type="mrubyc_i2c_rtc_ntp_init">
+        </block>
+
+        <block type="mrubyc_i2c_rtc_ntp">
+            <value name="TIME">
                 <shadow type="text">
-                    <field name="TEXT">http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php?</field>
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_uart_gps_status">
+        </block>
+
+        <block type="mrubyc_uart_gps">
+            <value name="DATA">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+
+        <block type="mrubyc_matsue_send_srv">
+        </block>
+
+        <block type="mrubyc_matsue_send_data">
+            <value name="SRV">
+                <shadow type="text">
+                    <field name="TEXT"></field>
                 </shadow>
             </value>
             <value name="NAME">
@@ -803,22 +852,178 @@ const smt1 = function () {
                 </shadow>
             </value>
         </block>
+
+        <block type="mrubyc_matsue_send">
+            <value name="URL">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_matsue_send_save">
+            <value name="URL">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_matsue_send_save2">
+        </block>
         ${blockSeparator}
+
+        <block type="mrubyc_i2c_scd30_status">
+        </block>
+
+        <block type="mrubyc_i2c_scd30">
+            <value name="SCD30">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_sht35_status">
+        </block>
+
+        <block type="mrubyc_i2c_sht35">
+            <value name="SHT35">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_uart_gps_otakara_distance">
+            <value name="OTAKARA">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+
+        <block type="mrubyc_ibeacon_get">
+        </block>
+        <block type="mrubyc_ibeacon">
+            <value name="VAL">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${categorySeparator}
     </category>
     `;
 };
 
-//GPSブロック
-//<block type="mrubyc_uart_gps_status">
-//</block>
-//<block type="mrubyc_uart_gps_val">
-//</block>
-//${blockSeparator}
+
+
+ScratchBlocks.Msg.CATEGORY_SMT1 = 'smt1';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT1 = 'easy';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT1 = 'Pin, PWM, ADC (かんたん)';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT1 = 'Pin, PWM, ADC (かんたん)';
+
+const smt1 = function () {
+    return `
+    <category
+        name="%{BKY_CATEGORY_SMT1}"
+        id="smt1"
+        colour="#CC0043"
+        secondaryColour="#FF4D6A">
+
+
+        <block type="mrubyc_gpio_led_all">
+            <value name="LED1">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED2">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED3">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED4">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED5">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED6">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED7">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="LED8">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_gpio_sw_all">
+            <value name="SW1">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="SW2">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="SW3">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+            <value name="SW4">
+                <shadow type="math_number">
+                    <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_pwm_sound">
+            <value name="SOUND">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_pwm_clear">
+        </block>
+
+        <block type="mrubyc_adc_read">
+        </block>
+        ${categorySeparator}
+    </category>
+    `;
+};
+
+
 
 ScratchBlocks.Msg.CATEGORY_SMT2 = 'smt2';
 ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT2 = 'usual';
-ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT2 = '普通';
-ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT2 = '普通';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT2 = 'Pin, PWM, ADC (ふつう)';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT2 = 'Pin, PWM, ADC (ふつう)';
 
 const smt2 = function () {
     return `
@@ -850,7 +1055,6 @@ const smt2 = function () {
                 </shadow>
             </value>
         </block>
-        ${blockSeparator}
 
         <block type="mrubyc_pwm_init_2">
         </block>
@@ -863,7 +1067,6 @@ const smt2 = function () {
         </block>
         <block type="mrubyc_pwm_clear_2">
         </block>
-        ${blockSeparator}
 
         <block type="mrubyc_adc_init_2">
         </block>
@@ -871,74 +1074,7 @@ const smt2 = function () {
         </block>
         <block type="mrubyc_adc_read_2">
         </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_i2c_init_2">
-        </block>
-
-        <block type="mrubyc_i2c_lcd_init_2">
-        </block>
-        <block type="mrubyc_i2c_lcd_write_2">
-            <value name="LINE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="TEXT">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_i2c_lcd_clear_2">
-        </block>
-        ${blockSeparator}
-        
-        <block type="mrubyc_i2c_rtc_sntp_init_2">
-        </block>
-        <block type="mrubyc_i2c_rtc_get_2">
-        </block>
-        <block type="mrubyc_i2c_rtc_time2_2">
-        </block>
-        <block type="mrubyc_i2c_rtc_time_2">
-        </block>
-        <block type="mrubyc_i2c_rtc_time_1_2">
-        </block>
-        <block type="mrubyc_i2c_rtc_time_send_2">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_i2c_scd30_init_2">
-        </block>
-        <block type="mrubyc_i2c_scd30_status_2">
-        </block>
-        <block type="mrubyc_i2c_scd30_read_2">
-        </block>
-        <block type="mrubyc_i2c_scd30_val_2">
-        </block>
-        ${blockSeparator}
-
-        <block type="mrubyc_spi_sd_init_2">
-            <value name="FILE">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_spi_sd_write_2">
-            <value name="FILE">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="STR">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
-
+        ${categorySeparator}
     </category>
     `;
 };
@@ -946,15 +1082,15 @@ const smt2 = function () {
 
 ScratchBlocks.Msg.CATEGORY_SMT3 = 'smt3';
 ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT3 = 'hard';
-ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT3 = 'むずい';
-ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT3 = 'むずい';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT3 = 'Pin, PWM, ADC (むずい)';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT3 = 'Pin, PWM, ADC (むずい)';
 
 const smt3 = function () {
     return `
     <category
         name="%{BKY_CATEGORY_SMT3}"
         id="smt3"
-        colour="#deb887"
+        colour="#daa520"
         secondaryColour="#FF4D6A">
 
         <block type="mrubyc_gpio_output_init_3">
@@ -1036,6 +1172,119 @@ const smt3 = function () {
                 </shadow>
             </value>
         </block>
+        <block type="mrubyc_gpio_pwm_freq_3">
+            <value name="PIN">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${categorySeparator}
+    </category>
+    `;
+};
+
+ScratchBlocks.Msg.CATEGORY_SMT4 = 'smt4';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT4 = 'hard2';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT4 = 'I2C, UART';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT4 = 'I2C, UART';
+
+const smt4 = function () {
+    return `
+    <category
+        name="%{BKY_CATEGORY_SMT4}"
+        id="smt4"
+        colour="#d2b48c"
+        secondaryColour="#FF4D6A">
+
+        <block type="mrubyc_i2c_init_3">
+            <value name="NAME">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="SCL">
+                <shadow type="math_number">
+                    <field name="NUM">23</field>
+                </shadow>
+            </value>
+            <value name="SDA">
+                <shadow type="math_number">
+                    <field name="NUM">22</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_write_3">
+            <value name="NAME">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="ADDR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="CMD">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_i2c_read_3">
+            <value name="NAME">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="ADDR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_uart_init_3">
+            <value name="NAME">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_uart_write_3">
+            <value name="NAME">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="CMD">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_uart_gets_3">
+            <value name="NAME">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+        ${categorySeparator}
     </category>
     `;
 };
@@ -1152,9 +1401,11 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
         operators(isStage, targetId), gap,
         variables(isStage, targetId), gap,
         myBlocks(isStage, targetId), gap,
+        smt5(isStage, targetId), gap,
         smt1(isStage, targetId), gap,
         smt2(isStage, targetId), gap,
-        smt3(isStage, targetId)
+        smt3(isStage, targetId), gap,
+        smt4(isStage, targetId)
     ];
 
     if (categoriesXML) {
