@@ -59,7 +59,7 @@ export default function (Generator) {
 	       `led26.write(${led5})\n`+
 	       `led25.write(${led6})\n`+
 	       `led33.write(${led7})\n`+
-	       `led32.write(${led7})\n`;
+	       `led32.write(${led8})\n`;
     };
 
     Generator.mrubyc_gpio_sw_all = function (block) {
@@ -285,13 +285,13 @@ export default function (Generator) {
     //
     Generator.mrubyc_uart_gps_otakara_init = function (block) {
         Generator.prepares_['uart_gps'] = Generator.mrubyc_uart_gps_init(null);
-        return `takara = Otakara.new( wlan ) \n` ;
+        return `takara = Otakara.new() \n` ;
     };
 
     Generator.mrubyc_uart_gps_otakara_distance = function (block) {
         Generator.prepares_['uart_gps_otakara'] = Generator.mrubyc_uart_gps_otakara_init(null);
-	const pos = Generator.getFieldValue(block, 'OTAKARA') || null;
-        return [`takara.calcDist( gps.pos, ${pos} )`, Generator.ORDER_ATOMIC];	
+	const num = Generator.getFieldValue(block, 'OTAKARA') || null;
+        return [`takara.calcDist( gps.pos, takara.pos${num} )`, Generator.ORDER_ATOMIC];	
     };
 
     // iBeacon
@@ -314,7 +314,7 @@ export default function (Generator) {
     // 高専サーバへの送信
     //
     Generator.mrubyc_matsue_send_srv = function (block) {
-        return [`"http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php"`, Generator.ORDER_ATOMIC];
+        return [`"http://pluto.epi.it.matsue-ct.jp/gps/monitoring.php"`, Generator.ORDER_ATOMIC];
     }
 
     Generator.mrubyc_matsue_send_data = function (block) {
@@ -326,7 +326,7 @@ export default function (Generator) {
 	const key2 = Generator.getFieldValue(block,'KEY2') || null;
 	const val2 = Generator.valueToCode(block,  'VALUE2', Generator.ORDER_NONE);
 	const tz   = Generator.getFieldValue(block,'TIMEZONE') || null;
-        return  [`sprintf("%s?hostname=%s&time=%s&${key}=%f&${key2}=%f&utc=%d",${srv},${name},${time},${val},${val2},${tz})`, Generator.ORDER_ATOMIC];
+        return  [`sprintf("%s?hostname=%s&time=%s&${key}=%s&${key2}=%s&utc=%d",${srv},${name},${time},${val}.to_s,${val2}.to_s,${tz})`, Generator.ORDER_ATOMIC];
     };
 
     Generator.mrubyc_matsue_send = function (block) {
@@ -344,9 +344,10 @@ export default function (Generator) {
         return `listURLs.push( ${url} )\n`;
     };
 
-    Generator.mrubyc_matsue_send_save2 = function (block) {
+    Generator.mrubyc_matsue_send2 = function (block) {
 	Generator.prepares_['send_save_init'] = Generator.mrubyc_matsue_send_save_init(null);
         return `listURLs.each do |listURL| \n` +
+	    `  puts listURL \n` +
 	    `  wlan.access( listURL ) \n` +
 	    `end \n` +
 	    `listURLs = Array.new \n`;

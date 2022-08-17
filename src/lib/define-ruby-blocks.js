@@ -5,6 +5,51 @@
  */
 export default function (ScratchBlocks) {
 
+    const wifi = 'wifi'
+    if (ScratchBlocks.Categories.hasOwnProperty(wifi)) {
+	return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[wifi] = wifi;
+    ScratchBlocks.Colours[wifi] = {
+        primary: '#9966FF',
+        secondary: '#774DCB',
+        tertiary: '#7A0000'
+    };
+    ScratchBlocks.Extensions.register(
+        `colours_${wifi}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(wifi)
+    );
+
+    const lcd1 = 'lcd1'
+    if (ScratchBlocks.Categories.hasOwnProperty(lcd1)) {
+	return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[lcd1] = lcd1;
+    ScratchBlocks.Colours[lcd1] = {
+        primary: '#D65CD6',
+        secondary: '#BD42BD',
+        tertiary: '#7A0000'
+    };
+    ScratchBlocks.Extensions.register(
+        `colours_${lcd1}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(lcd1)
+    );
+
+    const sens = 'sens'
+    if (ScratchBlocks.Categories.hasOwnProperty(sens)) {
+	return ScratchBlocks;
+    }
+    ScratchBlocks.Categories[sens] = sens;
+    ScratchBlocks.Colours[sens] = {
+        primary: '#D65CD6',
+        secondary: '#BD42BD',
+        tertiary: '#7A0000'
+    };
+    ScratchBlocks.Extensions.register(
+        `colours_${sens}`,
+        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(sens)
+    );
+    
     const smt1 = 'smt1'
     if (ScratchBlocks.Categories.hasOwnProperty(smt1)) {
 	return ScratchBlocks;
@@ -20,60 +65,15 @@ export default function (ScratchBlocks) {
         ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(smt1)
     );
 
-    const lcd1 = 'lcd1'
-    if (ScratchBlocks.Categories.hasOwnProperty(lcd1)) {
-	return ScratchBlocks;
-    }
-    ScratchBlocks.Categories[lcd1] = lcd1;
-    ScratchBlocks.Colours[lcd1] = {
-        primary: '#db7093',
-        secondary: '#CC0043',
-        tertiary: '#7A0000'
-    };
-    ScratchBlocks.Extensions.register(
-        `colours_${lcd1}`,
-        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(lcd1)
-    );
-
-    const wifi = 'wifi'
-    if (ScratchBlocks.Categories.hasOwnProperty(wifi)) {
-	return ScratchBlocks;
-    }
-    ScratchBlocks.Categories[wifi] = wifi;
-    ScratchBlocks.Colours[wifi] = {
-        primary: '#db7093',
-        secondary: '#CC0043',
-        tertiary: '#7A0000'
-    };
-    ScratchBlocks.Extensions.register(
-        `colours_${wifi}`,
-        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(wifi)
-    );
-
-    const sens = 'sens'
-    if (ScratchBlocks.Categories.hasOwnProperty(sens)) {
-	return ScratchBlocks;
-    }
-    ScratchBlocks.Categories[sens] = sens;
-    ScratchBlocks.Colours[sens] = {
-        primary: '#db7093',
-        secondary: '#CC0043',
-        tertiary: '#7A0000'
-    };
-    ScratchBlocks.Extensions.register(
-        `colours_${sens}`,
-        ScratchBlocks.ScratchBlocks.VerticalExtensions.colourHelper(sens)
-    );
-    
     const smt2 = 'smt2'
     if (ScratchBlocks.Categories.hasOwnProperty(smt2)) {
 	return ScratchBlocks;
     }
     ScratchBlocks.Categories[smt2] = smt2;
     ScratchBlocks.Colours[smt2] = {
-        primary: '#1E90FF',
-        secondary: '#0000FF',
-        tertiary: '#6495ED'
+        primary: '#FF4500',
+        secondary: '#DB4D7B',
+        tertiary: '#7A0028'
     };
     ScratchBlocks.Extensions.register(
         `colours_${smt2}`,
@@ -86,9 +86,9 @@ export default function (ScratchBlocks) {
     }
     ScratchBlocks.Categories[smt3] = smt3;
     ScratchBlocks.Colours[smt3] = {
-        primary: '#daa520',  
-        secondary: '#fff0f5',
-        tertiary: '#fff0f5'
+        primary: '#FF1493',
+        secondary: '#DB4D7B',
+        tertiary: '#7A0028'
     };
     ScratchBlocks.Extensions.register(
         `colours_${smt3}`,
@@ -101,9 +101,9 @@ export default function (ScratchBlocks) {
     }
     ScratchBlocks.Categories[smt4] = smt4;
     ScratchBlocks.Colours[smt4] = {
-        primary: '#d2b48c',  
-        secondary: '#fff0f5',
-        tertiary: '#fff0f5'
+        primary: '#DB7093',
+        secondary: '#DB4D7B',
+        tertiary: '#7A0028'
     };
     ScratchBlocks.Extensions.register(
         `colours_${smt4}`,
@@ -141,64 +141,64 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'LED1',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED2',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED3',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED4',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED5',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED6',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED7',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'LED8',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     }		    
 		],
@@ -218,32 +218,32 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'SW1',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+                            ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'SW2',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+			    ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'SW3',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+			    ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
                     {
                         type: 'field_dropdown',
                         name: 'SW4',
                         options: [
-                            ['ON', '1'],
-                            ['OFF', '0']
+			    ['OFF', '0'],
+			    ['ON', '1']
                         ]
                     },
 		],
@@ -563,7 +563,7 @@ export default function (ScratchBlocks) {
                 type: 'mrubyc_uart_gps_status',
                 message0: 'GPSデータが取得できた ?',
 		category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_wifi', 'output_boolean']
+                extensions: ['colours_sens', 'output_boolean']
             });
         }
     };
@@ -578,7 +578,7 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'DATA',
                         options: [
-                            ['緯度(度-分)', 'lon'],
+                            ['緯度(度-分)', 'lat'],
                             ['経度(度-分)', 'lng'],
 			    ['年月日 時分秒', 'str_datetime'],
 			    ['年-月-日', 'str_date'],
@@ -594,7 +594,7 @@ export default function (ScratchBlocks) {
                     }
                 ],
 		category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_wifi', 'output_number']
+                extensions: ['colours_sens', 'output_number']
             });
         }
     };
@@ -684,14 +684,14 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'OTAKARA',
                         options: [
-			    ['1', '[35,29.8100,133,1.5250]'],
-                            ['2', '[35,29.7431,133,1.5960]'],
-                            ['3', '[35,29.8635,133,1.5397]'],
-                            ['4', '[35,29.7880,133,1.5800]'],
-                            ['5', '[35,29.8191,133,1.6020]'],
-                            ['6', '[35,29.8160,133,1.5628]'],
-                            ['7', '[35,29.8490,133,1.5792]'],
-                            ['8', '[35,29.7717,133,1.5980]']
+			    ['1', '1'],
+                            ['2', '2'],
+                            ['3', '3'],
+                            ['4', '4'],
+                            ['5', '5'],
+                            ['6', '6'],
+                            ['7', '7'],
+                            ['8', '8']
                         ]
                     }
                 ],
@@ -849,10 +849,10 @@ export default function (ScratchBlocks) {
             });
         }
     };
-    ScratchBlocks.Blocks.mrubyc_matsue_send_save2 = {
+    ScratchBlocks.Blocks.mrubyc_matsue_send2 = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_matsue_send_save2',
+                type: 'mrubyc_matsue_send2',
                 message0: '保存したデータを送信',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_wifi', 'shape_statement']
@@ -877,14 +877,14 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'PIN',
                         options: [
-                            ['LED1', '13'],
-                            ['LED2', '12'],
-                            ['LED3', '14'],
-                            ['LED4', '27'],
-                            ['LED5', '26'],
-                            ['LED6', '25'],
-                            ['LED7', '33'],
-                            ['LED8', '32']
+                            ['LED1 (GPIO 13)', '13'],
+                            ['LED2 (GPIO 12)', '12'],
+                            ['LED3 (GPIO 14)', '14'],
+                            ['LED4 (GPIO 27)', '27'],
+                            ['LED5 (GPIO 26)', '26'],
+                            ['LED6 (GPIO 25)', '25'],
+                            ['LED7 (GPIO 33)', '33'],
+                            ['LED8 (GPIO 32)', '32']
                         ]
                     }
                 ],
@@ -904,10 +904,10 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'PIN',
                         options: [
-                            ['スイッチ1', '34'],
-                            ['スイッチ2', '35'],
-                            ['スイッチ3', '18'],
-                            ['スイッチ4', '19']
+                            ['スイッチ1 (GPIO 34)', '34'],
+                            ['スイッチ2 (GPIO 35)', '35'],
+                            ['スイッチ3 (GPIO 18)', '18'],
+                            ['スイッチ4 (GPIO 19)', '19']
                         ]
                     }
                 ],
@@ -927,14 +927,14 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'PIN',
                         options: [
-                            ['LED1', '13'],
-                            ['LED2', '12'],
-                            ['LED3', '14'],
-                            ['LED4', '27'],
-                            ['LED5', '26'],
-                            ['LED6', '25'],
-                            ['LED7', '33'],
-                            ['LED8', '32']
+                            ['LED1 (GPIO 13)', '13'],
+                            ['LED2 (GPIO 12)', '12'],
+                            ['LED3 (GPIO 14)', '14'],
+                            ['LED4 (GPIO 27)', '27'],
+                            ['LED5 (GPIO 26)', '26'],
+                            ['LED6 (GPIO 25)', '25'],
+                            ['LED7 (GPIO 33)', '33'],
+                            ['LED8 (GPIO 32)', '32']
                         ]
                     },
                     {
@@ -962,10 +962,10 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'SW',
                         options: [
-                            ['スイッチ1', '34'],
-                            ['スイッチ2', '35'],
-                            ['スイッチ3', '18'],
-                            ['スイッチ4', '19']
+                            ['スイッチ1 (GPIO 34)', '34'],
+                            ['スイッチ2 (GPIO 35)', '35'],
+                            ['スイッチ3 (GPIO 18)', '18'],
+                            ['スイッチ4 (GPIO 19)', '19']
                         ]
                     },
 		],
@@ -983,7 +983,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_pwm_init_2',
-                message0: '初期化: ブザーを出力モードで使う',
+                message0: '初期化: ブザー(GPIO 15)を出力モードで使う',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
@@ -994,7 +994,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_pwm_sound_2',
-                message0: '%1の音を鳴らす',
+                message0: 'ブザー(GPIO 15)で%1の音を鳴らす',
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -1009,37 +1009,6 @@ export default function (ScratchBlocks) {
                             ['シ', '493'],
                             ['高いド', '523']
                         ]
-                    }
-                ],
-		category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_smt2', 'shape_statement']
-            });
-        }
-    };
-
-    ScratchBlocks.Blocks.mrubyc_pwm_sound2_2 = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_pwm_sound2_2',
-                message0: '%1の音を%2秒鳴らす',
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'SOUND',
-                        options: [
-                            ['ド', '261'],
-                            ['レ', '294'],
-                            ['ミ', '329'],
-                            ['ファ', '349'],
-                            ['ソ', '391'],
-                            ['ラ', '440'],
-                            ['シ', '493'],
-                            ['高いド', '523']
-                        ]
-                    },
-                    {
-                        type: 'input_value',
-                        name: 'TIME'
                     }
                 ],
 		category: ScratchBlocks.Categories.ruby,
@@ -1052,25 +1021,13 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_pwm_clear_2',
-                message0: '音を止める',
+                message0: 'ブザー(GPIO 15)の音を止める',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
         }
     };
     
-    ScratchBlocks.Blocks.mrubyc_pwm_music_2 = {
-        init: function () {
-            this.jsonInit({
-                type: 'mrubyc_pwm_music_2',
-                message0: '音楽を鳴らす',
-		category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_smt2', 'shape_statement']
-            });
-        }
-    };
-
-
     //
     // ADC
     //
@@ -1078,7 +1035,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_adc_init_2',
-                message0: '初期化: 基板上の温度計を使う',
+                message0: '初期化: 基板上の温度計(GPIO 39)を使う',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             });
@@ -1089,7 +1046,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_adc_measure_2',
-                message0: '基板上の温度計で温度を測る',
+                message0: '基板上の温度計(GPIO 39)で温度を測る',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'shape_statement']
             })
@@ -1100,7 +1057,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_adc_read_2',
-                message0: '基板上の温度計の温度',
+                message0: '基板上の温度計(GPIO 39)の温度',
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_smt2', 'output_number']
             });

@@ -379,10 +379,7 @@ const control = function (isStage) {
         ${blockSeparator}
         <block type="control_if"/>
         <block type="control_if_else"/>
-        <block id="wait_until" type="control_wait_until"/>
         <block id="repeat_until" type="control_repeat_until"/>
-        ${blockSeparator}
-        <block type="control_stop"/>
         ${blockSeparator}
         ${categorySeparator}
     </category>
@@ -635,6 +632,7 @@ const variables = function () {
         colour="#FF8C1A"
         secondaryColour="#DB6E00"
         custom="VARIABLE">
+        ${categorySeparator}
     </category>
     `;
 };
@@ -647,11 +645,117 @@ const myBlocks = function () {
         colour="#FF6680"
         secondaryColour="#FF4D6A"
         custom="PROCEDURE">
+        ${categorySeparator}
     </category>
     `;
 };
 
+ScratchBlocks.Msg.CATEGORY_SMT6 = 'smt6';
+ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT6 = 'WiFi';
+ScratchBlocks.ScratchMsgs.locales.ja.CATEGORY_SMT6 = 'WiFi';
+ScratchBlocks.ScratchMsgs.locales['ja-Hira'].CATEGORY_SMT6 = 'WiFi';
 
+const smt6 = function () {
+    return `
+    <category
+        name="%{BKY_CATEGORY_SMT6}"
+        id="smt6"
+        colour="#9966FF"
+        secondaryColour="#9966FF">
+
+        <block type="mrubyc_wifi_personal_init">
+            <value name="SSID">
+                <shadow type="text">
+                    <field name="TEXT">SugiyamaLab</field>
+                </shadow>
+            </value>
+            <value name="PASSWORD">
+                <shadow type="text">
+                    <field name="TEXT">epi.it.matsue-ct.jp</field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_wifi_is_connected">
+        </block>
+
+        <block type="mrubyc_i2c_rtc_ntp_init">
+        </block>
+
+        <block type="mrubyc_i2c_rtc_ntp">
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_matsue_send_srv">
+        </block>
+
+        <block type="mrubyc_matsue_send_data">
+            <value name="SRV">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="TIME">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="KEY">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="KEY2">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="VALUE2">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+            <value name="TIMEZONE">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_matsue_send">
+            <value name="URL">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_matsue_send_save">
+            <value name="URL">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="mrubyc_matsue_send2">
+        </block>
+        ${categorySeparator}
+    </category>
+    `;
+};
 
 ScratchBlocks.Msg.CATEGORY_SMT5 = 'smt5';
 ScratchBlocks.ScratchMsgs.locales.en.CATEGORY_SMT5 = 'peripheral';
@@ -663,8 +767,8 @@ const smt5 = function () {
     <category
         name="%{BKY_CATEGORY_SMT5}"
         id="smt5"
-        colour="#db7093"
-        secondaryColour="#CC0043">
+        colour="#D65CD6"
+        secondaryColour="#BD42BD">
 
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
@@ -766,34 +870,6 @@ const smt5 = function () {
         </block>
         ${blockSeparator}
 
-        <block type="mrubyc_wifi_personal_init">
-            <value name="SSID">
-                <shadow type="text">
-                    <field name="TEXT">SugiyamaLab</field>
-                </shadow>
-            </value>
-            <value name="PASSWORD">
-                <shadow type="text">
-                    <field name="TEXT">epi.it.matsue-ct.jp</field>
-                </shadow>
-            </value>
-        </block>
-
-        <block type="mrubyc_wifi_is_connected">
-        </block>
-
-        <block type="mrubyc_i2c_rtc_ntp_init">
-        </block>
-
-        <block type="mrubyc_i2c_rtc_ntp">
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        ${blockSeparator}
-
         <block type="mrubyc_uart_gps_status">
         </block>
 
@@ -806,70 +882,6 @@ const smt5 = function () {
         </block>
         ${blockSeparator}
 
-
-        <block type="mrubyc_matsue_send_srv">
-        </block>
-
-        <block type="mrubyc_matsue_send_data">
-            <value name="SRV">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="NAME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="KEY">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="VALUE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="KEY2">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-            <value name="VALUE2">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-            <value name="TIMEZONE">
-                <shadow type="math_number">
-                    <field name="NUM"></field>
-                </shadow>
-            </value>
-        </block>
-
-        <block type="mrubyc_matsue_send">
-            <value name="URL">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_matsue_send_save">
-            <value name="URL">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-        <block type="mrubyc_matsue_send_save2">
-        </block>
-        ${blockSeparator}
 
         <block type="mrubyc_i2c_scd30_status">
         </block>
@@ -1030,8 +1042,9 @@ const smt2 = function () {
     <category
         name="%{BKY_CATEGORY_SMT2}"
         id="smt2"
-        colour="#1E90FF"
-        secondaryColour="#0000FF">
+        colour="#FF4500"
+        secondaryColour="#FF4D6A">
+
         <block type="mrubyc_gpio_output_init_2">
         </block>
         <block type="mrubyc_gpio_set_level_2">
@@ -1090,7 +1103,7 @@ const smt3 = function () {
     <category
         name="%{BKY_CATEGORY_SMT3}"
         id="smt3"
-        colour="#daa520"
+        colour="#FF1493"
         secondaryColour="#FF4D6A">
 
         <block type="mrubyc_gpio_output_init_3">
@@ -1199,8 +1212,8 @@ const smt4 = function () {
     <category
         name="%{BKY_CATEGORY_SMT4}"
         id="smt4"
-        colour="#d2b48c"
-        secondaryColour="#FF4D6A">
+        colour="#DB7093" 
+        secondaryColour="#DB4D7B">
 
         <block type="mrubyc_i2c_init_3">
             <value name="NAME">
@@ -1401,7 +1414,8 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML) {
         operators(isStage, targetId), gap,
         variables(isStage, targetId), gap,
         myBlocks(isStage, targetId), gap,
-        smt5(isStage, targetId), gap,
+        smt6(isStage, targetId), gap,
+	smt5(isStage, targetId), gap,
         smt1(isStage, targetId), gap,
         smt2(isStage, targetId), gap,
         smt3(isStage, targetId), gap,
