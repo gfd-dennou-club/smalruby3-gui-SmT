@@ -782,22 +782,22 @@ const smt5 = function () {
         <block type="mrubyc_i2c_m5lcd_write1">
             <value name="POS1">
                 <shadow type="math_number">
-                    <field name="NUM"></field>
+                    <field name="NUM">0</field>
                 </shadow>
             </value>
             <value name="POS2">
                 <shadow type="math_number">
-                    <field name="NUM"></field>
+                    <field name="NUM">0</field>
                 </shadow>
             </value>
             <value name="POS3">
                 <shadow type="math_number">
-                    <field name="NUM"></field>
+                    <field name="NUM">320</field>
                 </shadow>
             </value>
             <value name="POS4">
                 <shadow type="math_number">
-                    <field name="NUM"></field>
+                    <field name="NUM">240</field>
                 </shadow>
             </value>
             <value name="TYPE">
@@ -886,6 +886,11 @@ const smt5 = function () {
                     <field name="NUM">1</field>
                 </shadow>
             </value>
+            <value name="WDAY">
+                <shadow type="math_number">
+                    <field name="NUM"></field>
+                </shadow>
+            </value>
             <value name="HOUR">
                 <shadow type="math_number">
                     <field name="NUM">13</field>
@@ -902,7 +907,8 @@ const smt5 = function () {
                 </shadow>
             </value>
         </block>
-
+        <block type="mrubyc_i2c_rtc_read">
+        </block>
         <block type="mrubyc_i2c_rtc">
             <value name="TIME">
                 <shadow type="text">

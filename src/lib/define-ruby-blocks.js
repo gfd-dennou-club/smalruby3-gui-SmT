@@ -478,7 +478,7 @@ export default function (ScratchBlocks) {
                         name: 'MESS'
                     },
                     {
-			type: 'field_dropdown',
+			            type: 'field_dropdown',
                         name: 'COLOR',
                         options: [
                             ['白', '[0xFF, 0xFF, 0xFF]'],
@@ -549,7 +549,7 @@ export default function (ScratchBlocks) {
         init: function () {
             this.jsonInit({
                 type: 'mrubyc_i2c_rtc_init',
-                message0: 'RTC: 時間合わせ  %1年 %2月 %3日 %4時 %5分 %6秒',
+                message0: 'RTC: 時間合わせ  %1年 %2月 %3日 %4曜日 %5時 %6分 %7秒',
                 args0: [
                     {
                         type: 'input_value',
@@ -564,6 +564,19 @@ export default function (ScratchBlocks) {
                         name: 'DAY'
                     },
                     {
+			            type: 'field_dropdown',
+                        name: 'WDAY',
+                        options: [
+                            ['日', 0],
+                            ['月', 1],
+                            ['火', 2],
+                            ['水', 3],
+                            ['木', 4],
+                            ['金', 5],
+                            ['土', 6]
+                        ]
+                    },
+                    {
                         type: 'input_value',
                         name: 'HOUR'
                     },
@@ -576,8 +589,8 @@ export default function (ScratchBlocks) {
                         name: 'SEC'
                     }
                 ],
-		category: ScratchBlocks.Categories.ruby,
-		extensions: ['colours_sens', 'shape_statement']
+		        category: ScratchBlocks.Categories.ruby,
+		        extensions: ['colours_sens', 'shape_statement']
             });
         }
     };    
@@ -592,12 +605,12 @@ export default function (ScratchBlocks) {
                         type: 'field_dropdown',
                         name: 'TIME',
                         options: [
-			    ['年月日 時分秒', 'str_datetime'],
-			    ['年-月-日', 'str_date'],
-			    ['時:分:秒', 'str_time'],
-			    ['年(4桁)', 'year'],
-			    ['年(下2桁)', 'year2'],
-			    ['月', 'month'],
+			                ['年月日 時分秒', 'str_datetime'],
+			                ['年-月-日', 'str_date'],
+			                ['時:分:秒', 'str_time'],
+			                ['年(4桁)', 'year'],
+			                ['年(下2桁)', 'year2'],
+			                ['月', 'month'],
                             ['日', 'day'],
                             ['時', 'hour'],
                             ['分', 'min'],
@@ -607,6 +620,17 @@ export default function (ScratchBlocks) {
                 ],
 		category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_sens', 'output_number']
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_read = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc_read',
+                message0: 'RTC: 時間取得',
+        		category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_sens', 'shape_statement']
             });
         }
     };
@@ -637,12 +661,12 @@ export default function (ScratchBlocks) {
                         options: [
                             ['緯度(度-分)', 'lat'],
                             ['経度(度-分)', 'lng'],
-			    ['年月日 時分秒', 'str_datetime'],
-			    ['年-月-日', 'str_date'],
-			    ['時:分:秒', 'str_time'],
-			    ['年(4桁)', 'year'],
-			    ['年(下2桁)', 'year2'],
-			    ['月', 'month'],
+			                ['年月日 時分秒', 'str_datetime'],
+			                ['年-月-日', 'str_date'],
+			                ['時:分:秒', 'str_time'],
+			                ['年(4桁)', 'year'],
+			                ['年(下2桁)', 'year2'],
+			                ['月', 'month'],
                             ['日', 'day'],
                             ['時', 'hour'],
                             ['分', 'min'],
@@ -664,7 +688,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_scd30_status',
                 message0: 'SCD30 からデータ取得可能 ?',
-		category: ScratchBlocks.Categories.ruby,
+		        category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_sens', 'output_boolean']
             });
         }
@@ -686,7 +710,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-		category: ScratchBlocks.Categories.ruby,
+		        category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_sens', 'output_number']
             });
         }
@@ -700,7 +724,7 @@ export default function (ScratchBlocks) {
             this.jsonInit({
                 type: 'mrubyc_i2c_sht35_status',
                 message0: 'SHT35 からデータ取得可能 ?',
-		category: ScratchBlocks.Categories.ruby,
+		        category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_sens', 'output_boolean']
             });
         }
@@ -721,7 +745,7 @@ export default function (ScratchBlocks) {
                         ]
                     }
                 ],
-		category: ScratchBlocks.Categories.ruby,
+		        category: ScratchBlocks.Categories.ruby,
                 extensions: ['colours_sens', 'output_number']
             });
         }

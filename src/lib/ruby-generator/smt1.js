@@ -152,8 +152,8 @@ export default function (Generator) {
         const pos2 = Generator.valueToCode(block, 'POS2', Generator.ORDER_NONE);
         const pos3 = Generator.valueToCode(block, 'POS3', Generator.ORDER_NONE);
         const pos4 = Generator.valueToCode(block, 'POS4', Generator.ORDER_NONE);
-	const type = Generator.getFieldValue(block, 'TYPE') || null;
-	const color= Generator.getFieldValue(block, 'COLOR') || null;
+	    const type = Generator.getFieldValue(block, 'TYPE') || null;
+	    const color= Generator.getFieldValue(block, 'COLOR') || null;
         return `m5lcd.draw_${type}(${pos1}, ${pos2}, ${pos3}, ${pos4}, ${color}) \n`;
     };
 
@@ -173,7 +173,7 @@ export default function (Generator) {
         const pos2 = Generator.valueToCode(block, 'POS2', Generator.ORDER_NONE);
         const size = Generator.valueToCode(block, 'SIZE', Generator.ORDER_NONE);
         const mess = Generator.valueToCode(block, 'MESS', Generator.ORDER_NONE);
-	const color= Generator.getFieldValue(block, 'COLOR') || null;
+	    const color= Generator.getFieldValue(block, 'COLOR') || null;
         return `m5lcd.drawString(${pos1}, ${pos2}, ${mess}, ${size}, ${color}) \n`;
     };
 
@@ -209,14 +209,15 @@ export default function (Generator) {
 
     Generator.mrubyc_i2c_rtc_init = function (block) {
         Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
-	const year = Generator.valueToCode(block,  'YEAR', Generator.ORDER_NONE);
-	const mon  = Generator.valueToCode(block,  'MON',  Generator.ORDER_NONE);
-	const day  = Generator.valueToCode(block,  'DAY',  Generator.ORDER_NONE);
-	const hour = Generator.valueToCode(block,  'HOUR', Generator.ORDER_NONE);
-	const min  = Generator.valueToCode(block,  'MIN',  Generator.ORDER_NONE);
-	const sec  = Generator.valueToCode(block,  'SEC',  Generator.ORDER_NONE);
+	    const year = Generator.valueToCode(block,  'YEAR', Generator.ORDER_NONE);
+	    const mon  = Generator.valueToCode(block,  'MON',  Generator.ORDER_NONE);
+	    const day  = Generator.valueToCode(block,  'DAY',  Generator.ORDER_NONE);
+        const wday = Generator.getFieldValue(block, 'WDAY') || 0;
+	    const hour = Generator.valueToCode(block,  'HOUR', Generator.ORDER_NONE);
+	    const min  = Generator.valueToCode(block,  'MIN',  Generator.ORDER_NONE);
+	    const sec  = Generator.valueToCode(block,  'SEC',  Generator.ORDER_NONE);
         return `rtc = RX8035SA.new(i2c)\n` +
-	    `rtc.write( [${year} % 2000, ${mon}, ${day}, ${hour}, ${min}, ${sec}] ) \n`;	   
+	    `rtc.write( [${year} % 2000, ${mon}, ${day}, ${wday}, ${hour}, ${min}, ${sec}] ) \n`;	   
     };
 
     Generator.mrubyc_i2c_rtc = function (block) {
@@ -226,12 +227,16 @@ export default function (Generator) {
 	return [`rtc.${time}`, Generator.ORDER_ATOMIC];
     };
 
+    Generator.mrubyc_i2c_rtc_read = function (block) {
+            return `rtc.read \n`;
+            };
+
     //
     // puts
     //
     Generator.mrubyc_puts = function (block) {	
         const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
-	return `puts ${text}.to_s`;
+	return `puts ${text}.to_s \n`;
     };
 
     //
