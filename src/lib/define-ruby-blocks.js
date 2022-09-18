@@ -338,6 +338,26 @@ export default function (ScratchBlocks) {
     };
 
     ////
+    //// puts
+    ////
+    ScratchBlocks.Blocks.mrubyc_puts = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_puts',
+                message0: 'デバッグ出力 %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'TEXT'
+                    },
+                ],
+		category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_lcd1', 'shape_statement']
+            });
+        }
+    };
+
+    ////
     //// LCD
     ////
     ScratchBlocks.Blocks.mrubyc_i2c_m5lcd_write1 = {
@@ -520,15 +540,52 @@ export default function (ScratchBlocks) {
                 type: 'mrubyc_i2c_rtc_ntp_init',
                 message0: 'RTC: Wi-Fiで時間合わせ',
 		category: ScratchBlocks.Categories.ruby,
-		extensions: ['colours_wifi', 'shape_statement']
+		extensions: ['colours_sens', 'shape_statement']
             });
         }
     };
 
-    ScratchBlocks.Blocks.mrubyc_i2c_rtc_ntp = {
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc_init = {
         init: function () {
             this.jsonInit({
-                type: 'mrubyc_i2c_rtc_ntp',
+                type: 'mrubyc_i2c_rtc_init',
+                message0: 'RTC: 時間合わせ  %1年 %2月 %3日 %4時 %5分 %6秒',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'YEAR'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'MON'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DAY'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'HOUR'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'MIN'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'SEC'
+                    }
+                ],
+		category: ScratchBlocks.Categories.ruby,
+		extensions: ['colours_sens', 'shape_statement']
+            });
+        }
+    };    
+
+    ScratchBlocks.Blocks.mrubyc_i2c_rtc = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_i2c_rtc',
                 message0: 'RTC: %1',
                 args0: [
                     {
@@ -549,7 +606,7 @@ export default function (ScratchBlocks) {
                     }
                 ],
 		category: ScratchBlocks.Categories.ruby,
-                extensions: ['colours_wifi', 'output_number']
+                extensions: ['colours_sens', 'output_number']
             });
         }
     };

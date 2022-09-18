@@ -679,17 +679,6 @@ const smt6 = function () {
         <block type="mrubyc_wifi_is_connected">
         </block>
 
-        <block type="mrubyc_i2c_rtc_ntp_init">
-        </block>
-
-        <block type="mrubyc_i2c_rtc_ntp">
-            <value name="TIME">
-                <shadow type="text">
-                    <field name="TEXT"></field>
-                </shadow>
-            </value>
-        </block>
-
         <block type="mrubyc_matsue_send_srv">
         </block>
 
@@ -770,6 +759,14 @@ const smt5 = function () {
         colour="#D65CD6"
         secondaryColour="#BD42BD">
 
+        <block type="mrubyc_puts">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
                 <shadow type="math_number">
@@ -782,7 +779,7 @@ const smt5 = function () {
                 </shadow>
             </value>
         </block>
-          <block type="mrubyc_i2c_m5lcd_write1">
+        <block type="mrubyc_i2c_m5lcd_write1">
             <value name="POS1">
                 <shadow type="math_number">
                     <field name="NUM"></field>
@@ -863,6 +860,51 @@ const smt5 = function () {
                 </shadow>
             </value>
             <value name="COLOR">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+
+        <block type="mrubyc_i2c_rtc_ntp_init">
+        </block>
+
+        <block type="mrubyc_i2c_rtc_init">
+            <value name="YEAR">
+                <shadow type="math_number">
+                    <field name="NUM">2022</field>
+                </shadow>
+            </value>
+            <value name="MON">
+                <shadow type="math_number">
+                    <field name="NUM">8</field>
+                </shadow>
+            </value>
+            <value name="DAY">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="HOUR">
+                <shadow type="math_number">
+                    <field name="NUM">13</field>
+                </shadow>
+            </value>
+            <value name="MIN">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="SEC">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="mrubyc_i2c_rtc">
+            <value name="TIME">
                 <shadow type="text">
                     <field name="TEXT"></field>
                 </shadow>

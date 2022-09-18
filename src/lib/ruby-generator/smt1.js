@@ -207,13 +207,32 @@ export default function (Generator) {
 	    `rtc.write( sntp.datetime ) \n`;	   
     };
 
-    Generator.mrubyc_i2c_rtc_ntp = function (block) {
+    Generator.mrubyc_i2c_rtc_init = function (block) {
+        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
+	const year = Generator.valueToCode(block,  'YEAR', Generator.ORDER_NONE);
+	const mon  = Generator.valueToCode(block,  'MON',  Generator.ORDER_NONE);
+	const day  = Generator.valueToCode(block,  'DAY',  Generator.ORDER_NONE);
+	const hour = Generator.valueToCode(block,  'HOUR', Generator.ORDER_NONE);
+	const min  = Generator.valueToCode(block,  'MIN',  Generator.ORDER_NONE);
+	const sec  = Generator.valueToCode(block,  'SEC',  Generator.ORDER_NONE);
+        return `rtc = RX8035SA.new(i2c)\n` +
+	    `rtc.write( [${year} % 2000, ${mon}, ${day}, ${hour}, ${min}, ${sec}] ) \n`;	   
+    };
+
+    Generator.mrubyc_i2c_rtc = function (block) {
 //        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
 //	Generator.prepares_['i2c_rtc_ntp'] = Generator.mrubyc_i2c_rtc_ntp_init(null);
         const time = Generator.getFieldValue(block, 'TIME') || null;
 	return [`rtc.${time}`, Generator.ORDER_ATOMIC];
     };
-    
+
+    //
+    // puts
+    //
+    Generator.mrubyc_puts = function (block) {	
+        const text = Generator.valueToCode(block, 'TEXT', Generator.ORDER_NONE);
+	return `puts ${text}.to_s`;
+    };
 
     //
     // UART
