@@ -174,7 +174,7 @@ export default function (Generator) {
         const size = Generator.valueToCode(block, 'SIZE', Generator.ORDER_NONE);
         const mess = Generator.valueToCode(block, 'MESS', Generator.ORDER_NONE);
 	    const color= Generator.getFieldValue(block, 'COLOR') || null;
-        return `m5lcd.drawString(${pos1}, ${pos2}, ${mess}, ${size}, ${color}) \n`;
+        return `m5lcd.drawString(${pos1}, ${pos2}, ${mess}.to_s, ${size}, ${color}) \n`;
     };
 
     //
@@ -338,13 +338,15 @@ export default function (Generator) {
     // 高専サーバへの送信
     //
     Generator.mrubyc_matsue_send_srv = function (block) {
-        return [`"http://pluto.epi.it.matsue-ct.jp/gps/monitoring.php"`, Generator.ORDER_ATOMIC];
+//        return [`"http://pluto.epi.it.matsue-ct.jp/gps/monitoring.php"`, Generator.ORDER_ATOMIC];
+        return [`"http://pluto.epi.it.matsue-ct.jp/iotex2/monitoring3.php"`, Generator.ORDER_ATOMIC];
     }
 
     Generator.mrubyc_matsue_send_data = function (block) {
 	const srv  = Generator.valueToCode(block,  'SRV') || null;
 	const name = Generator.valueToCode(block,  'NAME') || null;
-	const time = getUnquoteText(block,         'TIME', Generator.ORDER_NONE);
+	const time = getUnquoteText(block, 'TIME', Generator.ORDER_NONE) || '';
+//    const time = Generator.valueToCode(block, 'TIME')|| null;
 	const key  = Generator.getFieldValue(block,'KEY') || null;
 	const val  = Generator.valueToCode(block,  'VALUE', Generator.ORDER_NONE);
 	const key2 = Generator.getFieldValue(block,'KEY2') || null;
