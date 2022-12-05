@@ -75,7 +75,7 @@ export default function (Generator) {
     // PWM 
     //
     Generator.mrubyc_pwm_init = function (block) {
-        return `pwm1 = PWM.new( 15 )\n` ;
+        return `pwm1 = PWM.new( 25 )\n` ;
     };
 
     Generator.mrubyc_pwm_sound = function (block) {
