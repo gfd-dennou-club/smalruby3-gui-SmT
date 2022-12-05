@@ -333,7 +333,24 @@ export default function (Generator) {
         Generator.prepares_['ibeacon'] = Generator.mrubyc_ibeacon_init(null);
 	const val = Generator.getFieldValue(block, 'VAL') || null;
         return [`ibeacon.${val}`, Generator.ORDER_ATOMIC];	
-    };    
+    };
+
+    // 距離センサ
+    //
+    Generator.mrubyc_distance_init = function (block) {
+        Generator.prepares_['i2c'] = Generator.mrubyc_i2c_init(null);
+	return `vl53l0x = VL53L0X.new(i2c)\n` +
+            `vl53l0x.set_timeout(500)\n` +
+            `vl53l0x.init \n`+
+            `vl53l0x.start_continuous\n`
+    }
+
+    Generator.mrubyc_distance = function (block) {
+        Generator.prepares_['i2c_distance'] = Generator.mrubyc_distance_init(null);
+        return [`vl53l0x.read_range_continuous_millimeters`, Generator.ORDER_ATOMIC];
+    }
+
+    
         
     // 高専サーバへの送信
     //

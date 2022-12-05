@@ -766,7 +766,7 @@ const smt5 = function () {
                 </shadow>
             </value>
         </block>
-
+<!--
         <block type="mrubyc_i2c_lcd_write">
             <value name="LINE">
                 <shadow type="math_number">
@@ -779,6 +779,7 @@ const smt5 = function () {
                 </shadow>
             </value>
         </block>
+-->
         <block type="mrubyc_i2c_m5lcd_write1">
             <value name="POS1">
                 <shadow type="math_number">
@@ -866,7 +867,7 @@ const smt5 = function () {
             </value>
         </block>
         ${blockSeparator}
-
+<!--
         <block type="mrubyc_i2c_rtc_ntp_init">
         </block>
 
@@ -975,6 +976,11 @@ const smt5 = function () {
             </value>
         </block>
         ${categorySeparator}
+-->
+        <block type="mrubyc_distance">
+        </block>
+
+        ${categorySeparator}
     </category>
     `;
 };
@@ -994,7 +1000,7 @@ const smt1 = function () {
         colour="#CC0043"
         secondaryColour="#FF4D6A">
 
-
+<!--
         <block type="mrubyc_gpio_led_all">
             <value name="LED1">
                 <shadow type="math_number">
@@ -1060,7 +1066,7 @@ const smt1 = function () {
                 </shadow>
             </value>
         </block>
-
+-->
         <block type="mrubyc_pwm_sound">
             <value name="SOUND">
                 <shadow type="math_number">
@@ -1070,9 +1076,10 @@ const smt1 = function () {
         </block>
         <block type="mrubyc_pwm_clear">
         </block>
-
+<!--
         <block type="mrubyc_adc_read">
         </block>
+-->
         ${categorySeparator}
     </category>
     `;
@@ -1092,7 +1099,7 @@ const smt2 = function () {
         id="smt2"
         colour="#FF4500"
         secondaryColour="#FF4D6A">
-
+<!--
         <block type="mrubyc_gpio_output_init_2">
         </block>
         <block type="mrubyc_gpio_set_level_2">
@@ -1136,9 +1143,11 @@ const smt2 = function () {
         <block type="mrubyc_adc_read_2">
         </block>
         ${categorySeparator}
+-->
     </category>
     `;
 };
+
 
 
 ScratchBlocks.Msg.CATEGORY_SMT3 = 'smt3';
@@ -1153,7 +1162,6 @@ const smt3 = function () {
         id="smt3"
         colour="#FF1493"
         secondaryColour="#FF4D6A">
-
         <block type="mrubyc_gpio_output_init_3">
             <value name="PIN">
                 <shadow type="math_number">

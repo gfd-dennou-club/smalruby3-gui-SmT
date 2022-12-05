@@ -818,6 +818,21 @@ export default function (ScratchBlocks) {
             });
         }
     };
+
+    //
+    // 距離センサ
+    //
+    ScratchBlocks.Blocks.mrubyc_distance = {
+        init: function () {
+            this.jsonInit({
+                type: 'mrubyc_distance',
+                message0: 'きょりセンサーの値',
+                category: ScratchBlocks.Categories.ruby,
+                extensions: ['colours_sens', 'output_number']
+            });
+        }
+    };
+
     
     
     //
